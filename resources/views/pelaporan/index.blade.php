@@ -42,7 +42,6 @@
                         </div>
                     @endif
 
-
                     <!-- Tabel Responsif -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -51,52 +50,47 @@
                                 <tr>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        No
-                                    </th>
+                                        No</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Tugas
-                                    </th>
+                                        Tugas</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        KM 8
-                                    </th>
+                                        KM 8</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        KM 10
-                                    </th>
+                                        KM 10</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Kertas Kerja AT
-                                    </th>
+                                        Kertas Kerja AT</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Konsep LHP
-                                    </th>
+                                        Konsep LHP</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        EXPOSE Pelaporan
-                                    </th>
+                                        EXPOSE Pelaporan</th>
 
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Tanggal Expose
-                                    </th>
+                                        Tanggal Expose</th>
+
+                                    <!-- [DIUBAH] Status baru menambahkan 2 status: Dikonfirmasi Inspektur & Dijadwalkan Ulang -->
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
-                                    </th>
+                                        Status</th>
+
+                                    <!-- [DIUBAH] Kolom judul: dari "Alasan Tolak" -> "Catatan Jadwal" (fallback ke alasan_tolak bila belum ada kolom) -->
                                     <th
                                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Alasan Tolak
-                                    </th>
+                                        Catatan Jadwal</th>
+
+                                    <!-- [DIUBAH] Aksi untuk Inspektur: "Konfirmasi Jadwal" & "Ubah Jadwal" -->
                                     <th
                                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Aksi
-                                    </th>
-                                    
+                                        Aksi</th>
                                 </tr>
                             </thead>
+
                             <!-- Body Tabel -->
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @forelse ($pelaporans as $pelaporan)
@@ -179,34 +173,48 @@
                                             @endif
                                         </td>
 
-                                        <!-- Status -->
-
-
                                         <!-- Tanggal Expose -->
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $pelaporan->tanggal_expose ? \Carbon\Carbon::parse($pelaporan->tanggal_expose)->format('d M Y') : '-' }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            <span
-                                                class="px-2 py-1 text-xs font-medium rounded-full 
-                                                {{ $pelaporan->status === 'Menunggu Inspektur'
-                                                 ? 'bg-yellow-100 text-yellow-800'
-                                                : ($pelaporan->status === 'Acc'
-                                                 ? 'bg-green-100 text-green-800'
-                                                : ($pelaporan->status === 'Ditolak'
-                                                ? 'bg-red-100 text-red-800'
-                                                : 'bg-gray-100 text-gray-800')) }}">
-                                                {{ ucfirst($pelaporan->status) }}
-                                            </span>
 
-                                        </td>
+                                        <!-- [DIUBAH] Badge Status: tambahkan 2 status baru -->
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            {{ $pelaporan->alasan_tolak }}
+                                            @php
+                                                $status = $pelaporan->status;
+                                                $badge = match ($status) {
+                                                    'Menunggu Inspektur' => 'bg-yellow-100 text-yellow-800',
+                                                    // [DITAMBAHKAN] status baru
+                                                    'Dikonfirmasi Inspektur' => 'bg-green-100 text-green-800',
+                                                    'Dijadwalkan Ulang' => 'bg-blue-100 text-blue-800',
+                                                    // fallback untuk status lama agar tetap terbaca
+                                                    'Acc' => 'bg-green-100 text-green-800',
+                                                    'Ditolak', 'Ditolak Inspektur' => 'bg-red-100 text-red-800',
+                                                    default => 'bg-gray-100 text-gray-800',
+                                                };
+                                            @endphp
+                                            <span
+                                                class="px-2 py-1 text-xs font-medium rounded-full {{ $badge }}">
+                                                {{ ucfirst($status) }}
+                                            </span>
                                         </td>
+
+                                        <!-- [DIUBAH] Catatan Jadwal: tampilkan catatan_jadwal bila ada, jika tidak fallback ke alasan_tolak -->
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                            {{ $pelaporan->catatan_jadwal ?? ($pelaporan->alasan_tolak ?? '-') }}
+                                        </td>
+
                                         <!-- Aksi -->
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
                                             @if (auth()->user()->role === 'admin')
-                                                @if ($pelaporan->status === 'Menunggu Inspektur' || $pelaporan->status === 'Ditolak' || $pelaporan->status === 'Acc' || $pelaporan->status === 'Ditolak Inspektur')
+                                                @if (in_array($pelaporan->status, [
+                                                        'Menunggu Inspektur',
+                                                        'Ditolak',
+                                                        'Acc',
+                                                        'Ditolak Inspektur',
+                                                        'Dikonfirmasi Inspektur',
+                                                        'Dijadwalkan Ulang',
+                                                    ]))
                                                     <!-- Tombol Edit -->
                                                     <a href="{{ route('pelaporan.edit', $pelaporan->id) }}"
                                                         class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
@@ -214,7 +222,8 @@
                                                         Edit
                                                     </a>
                                                     <!-- Tombol Hapus -->
-                                                    <form action="{{ route('pelaporan.destroy', $pelaporan->id) }}" method="POST" class="inline-block"
+                                                    <form action="{{ route('pelaporan.destroy', $pelaporan->id) }}"
+                                                        method="POST" class="inline-block"
                                                         onsubmit="return confirm('Yakin ingin menghapus?')">
                                                         @csrf
                                                         @method('DELETE')
@@ -227,73 +236,75 @@
                                                 @endif
                                             @elseif (auth()->user()->role === 'inspektur')
                                                 @if ($pelaporan->status === 'Menunggu Inspektur')
-                                                    <!-- Tombol ACC -->
-                                                    <form action="{{ route('inspektur.pelaporan.acc', $pelaporan->id) }}" method="POST" class="inline-block">
+                                                    <!-- [DIUBAH] Tombol ACC -> Konfirmasi Jadwal -->
+                                                    <form
+                                                        action="{{ route('inspektur.pelaporan.confirm', $pelaporan->id) }}"
+                                                        method="POST" class="inline-block">
                                                         @csrf
                                                         <button type="submit"
-                                                            class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                                                            class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                            onclick="return confirm('Konfirmasi jadwal expose tanpa perubahan tanggal?')">
                                                             <i class="fas fa-check mr-2"></i>
-                                                            ACC
+                                                            Konfirmasi Jadwal
                                                         </button>
                                                     </form>
-                                                    <!-- Tombol Tolak -->
-                                                    <button type="button" onclick="openModal({{ $pelaporan->id }})"
-                                                        class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
-                                                        <i class="fas fa-times mr-2"></i>
-                                                        Tolak
+
+                                                    <!-- [DIUBAH] Tombol Tolak -> Ubah Jadwal (modal) -->
+                                                    <button type="button"
+                                                        class="inline-flex items-center px-4 py-2 bg-amber-600 text-white text-sm font-medium rounded-md hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 ml-2"
+                                                        onclick="document.getElementById('res-{{ $pelaporan->id }}').showModal()">
+                                                        <i class="fas fa-calendar-alt mr-2"></i>
+                                                        Ubah Jadwal
                                                     </button>
+
+                                                    <!-- [DITAMBAHKAN] Modal Ubah Jadwal -->
+                                                    <dialog id="res-{{ $pelaporan->id }}" class="rounded-lg p-0">
+                                                        <form method="POST"
+                                                            action="{{ route('inspektur.pelaporan.reschedule', $pelaporan->id) }}"
+                                                            class="p-4 w-96">
+                                                            @csrf
+                                                            <h3 class="font-semibold mb-3">Ubah Jadwal Expose</h3>
+
+                                                            <label class="block text-sm">Tanggal baru</label>
+                                                            <input type="date" name="tanggal_expose_baru"
+                                                                class="mt-1 w-full border-gray-300 rounded-md"
+                                                                required>
+
+                                                            <label class="block text-sm mt-3">Catatan
+                                                                (opsional)
+                                                            </label>
+                                                            <input type="text" name="catatan_jadwal"
+                                                                class="mt-1 w-full border-gray-300 rounded-md"
+                                                                placeholder="Alasan perubahan…">
+
+                                                            <div class="mt-4 flex justify-end gap-2">
+                                                                <button type="button"
+                                                                    onclick="this.closest('dialog').close()"
+                                                                    class="px-3 py-2 border rounded-md">Batal</button>
+                                                                <button
+                                                                    class="px-3 py-2 bg-blue-600 text-white rounded-md">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                    </dialog>
                                                 @endif
                                             @endif
                                         </td>
-                                        
-                                        <!-- Modal Tolak -->
-                                        <div id="modal-tolak" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
-                                            <div class="bg-white rounded-lg shadow-lg w-1/3 p-6">
-                                                <h3 class="text-lg font-medium text-gray-700">Tolak Pelaporan</h3>
-                                                <form action="{{ route('inspektur.pelaporan.reject') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" id="pelaporan_id" name="pelaporan_id">
-                                                    <div class="mt-4">
-                                                        <label for="alasan_tolak" class="block text-sm text-gray-600">Alasan Penolakan:</label>
-                                                        <textarea id="alasan_tolak" name="alasan_tolak" class="w-full border-gray-300 rounded-md" rows="4" required></textarea>
-                                                    </div>
-                                                    <div class="mt-4 flex justify-end">
-                                                        <button type="button" onclick="closeModal()"
-                                                            class="px-4 py-2 bg-gray-500 text-white rounded-md mr-2">Batal</button>
-                                                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md">Tolak</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- JavaScript untuk Modal -->
-                                        <script>
-                                            function openModal(pelaporanId) {
-                                                document.getElementById('modal-tolak').classList.remove('hidden');
-                                                document.getElementById('pelaporan_id').value = pelaporanId;
-                                            }
-                                        
-                                            function closeModal() {
-                                                document.getElementById('modal-tolak').classList.add('hidden');
-                                            }
-                                        </script>
-                                        
 
-
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8"
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                        Tidak ada pelaporan.
-                                    </td>
-                                </tr>
+                                        <!-- [DIHAPUS] Modal Tolak lama & script open/close (sudah tidak dipakai) -->
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="11"
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                            Tidak ada pelaporan.
+                                        </td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Pagination dengan Tailwind -->
+                    <!-- Pagination dengan Tailwind (tema putih sudah di-override global) -->
                     <div class="mt-6">
                         {{ $pelaporans->links('pagination::tailwind') }}
                     </div>

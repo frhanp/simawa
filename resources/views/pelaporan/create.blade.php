@@ -90,7 +90,7 @@
                         <!-- Upload Konsep LHP -->
                         <div class="mb-4">
                             <label for="konsep_lhp" class="block text-sm font-medium text-gray-700">Upload Konsep
-                                LHP</label>
+                                LHP (Setelah review berjenjang)</label>
                             <input type="file" name="konsep_lhp" id="konsep_lhp"
                                 class="mt-1 block w-full text-sm text-gray-500
                                 file:mr-4 file:py-2 file:px-4
@@ -142,4 +142,4 @@
         </div>
     </div>
 </x-app-layout>
-k
+

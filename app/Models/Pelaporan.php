@@ -21,6 +21,7 @@ class Pelaporan extends Model
         'tanggal_expose', // Tambahkan ini
         'status',
         'alasan_tolak',
+        'catatan_jadwal',
     ];
     
 

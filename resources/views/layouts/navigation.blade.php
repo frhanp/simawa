@@ -34,7 +34,7 @@
                 {{ __('Pelaporan') }}
             </x-nav-link>
             <x-nav-link :href="route('lhp.index')" :active="request()->routeIs('lhp.index')">
-                {{ __('Buat LHP') }}
+                {{ __('LHP') }}
             </x-nav-link>
         @endif
 
@@ -42,6 +42,9 @@
         @if (Auth::check() && Auth::user()->role === 'sekretaris')
             <x-nav-link :href="route('pertimbangan')" :active="request()->routeIs('pertimbangan')">
                 {{ __('Pertimbangan Penugasan') }}
+            </x-nav-link>
+            <x-nav-link :href="route('penugasan')" :active="request()->routeIs('penugasan*')">
+                Perencanaan Penugasan
             </x-nav-link>
         @endif
 
@@ -61,6 +64,12 @@
             </x-nav-link>
             <x-nav-link :href="route('lhp.index')" :active="request()->routeIs('lhp.index')">
                 {{ __('Lihat LHP') }}
+            </x-nav-link>
+            {{-- <x-nav-link :href="route('inspektur.penugasan')" :active="request()->routeIs('inspektur.penugasan*')">
+                {{ __('Manajemen Penugasan') }}
+            </x-nav-link> --}}
+            <x-nav-link :href="route('inspektur.orang.index')" :active="request()->routeIs('inspektur.orang.*')">
+                {{ __('Data Personel') }}
             </x-nav-link>
         @endif
     </nav>

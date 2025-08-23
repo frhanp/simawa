@@ -10,6 +10,7 @@ use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\PelaksanaanController;
 use App\Http\Controllers\PreparationController;
+use App\Http\Controllers\OrangController;
 
 
 /*
@@ -130,6 +131,22 @@ Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur
     //Route::get('/pelaksanaan/{pelaksanaan}', [PelaksanaanController::class, 'show'])->name('pelaksanaan.show');
     Route::post('/pelaporan/{id}/acc', [InspekturController::class, 'acc'])->name('pelaporan.acc');
     Route::post('/pelaporan/reject', [InspekturController::class, 'reject'])->name('pelaporan.reject');
+
+    Route::resource('orang', OrangController::class)
+        ->except(['show']);
+
+    // Manajemen Penugasan (hubungkan ke halaman planning & list task)
+    Route::get('penugasan', [TaskController::class, 'planning'])
+        ->name('penugasan');
+    Route::get('penugasan/list', [TaskController::class, 'view'])
+        ->name('penugasan.list');
+
+    Route::post('pelaporan/{id}/confirm', [PelaporanController::class, 'confirm'])
+        ->name('pelaporan.confirm');
+
+    // Ubah tanggal expose (reschedule)
+    Route::post('pelaporan/{id}/reschedule', [PelaporanController::class, 'reschedule'])
+        ->name('pelaporan.reschedule');
 });
 
 Route::middleware(['auth', 'isSekretaris'])->group(function () {
@@ -148,5 +165,23 @@ Route::middleware(['auth', 'isSekretaris'])->group(function () {
     Route::get('/pdf', function () {
         return view('tasks.pdf.team_composition_with_data');
     });
+
+    // [DITAMBAHKAN] Halaman perencanaan penugasan (mirip admin)
+    Route::get('penugasan', [TaskController::class, 'planning'])
+        ->name('penugasan');
+
+    // [DITAMBAHKAN] List/detail penugasan
+    Route::get('penugasan/list', [TaskController::class, 'view'])
+        ->name('penugasan.list');
+
+    // [DITAMBAHKAN] Aksi simpan/ubah (jika admin sudah pakai ini, kita pakai endpoint sama)
+    Route::post('penugasan', [TaskController::class, 'store'])
+        ->name('penugasan.store');
+
+    Route::put('penugasan/{task}', [TaskController::class, 'update'])
+        ->name('penugasan.update');
+
+    Route::delete('penugasan/{task}', [TaskController::class, 'destroy'])
+        ->name('penugasan.destroy');
 });
 require __DIR__ . '/auth.php';

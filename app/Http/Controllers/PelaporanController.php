@@ -6,6 +6,7 @@ use App\Models\Pelaporan;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; // Import Storage Facade
+use Illuminate\Support\Facades\Schema;
 
 class PelaporanController extends Controller
 {
@@ -134,5 +135,49 @@ class PelaporanController extends Controller
         $pelaporan->delete();
 
         return redirect()->route('pelaporan.index')->with('success', 'Pelaporan berhasil dihapus.');
+    }
+
+
+    public function confirm($id)
+    {
+        // 1) Ambil data pelaporan
+        $pelaporan = \App\Models\Pelaporan::findOrFail($id);
+
+        // 2) Update status menjadi "Dikonfirmasi Inspektur"
+        $pelaporan->status = 'Dikonfirmasi Inspektur'; // [PERUBAHAN STATUS]
+        $pelaporan->save();
+
+        // 3) Kembali ke index dengan pesan sukses
+        return back()->with('success', 'Jadwal expose dikonfirmasi.');
+    }
+
+    // [DITAMBAHKAN] Ubah tanggal_expose + (opsional) catatan alasan
+    public function reschedule(Request $request, $id)
+    {
+        
+
+        // 1. Validasi input
+        $data = $request->validate([
+            'tanggal_expose_baru' => ['required', 'date', 'after_or_equal:today'],
+            'catatan_jadwal'      => ['nullable', 'string', 'max:255'],
+        ]);
+
+        
+
+        // 2. Ambil model
+        $pelaporan = Pelaporan::findOrFail($id);
+
+
+
+        // =======================================================
+        // INI UPDATE YANG WAJIB ADA
+        // =======================================================
+        $pelaporan->tanggal_expose = $data['tanggal_expose_baru'];   // ubah tanggal
+        $pelaporan->status         = 'Dijadwalkan Ulang';            // ubah status
+        $pelaporan->catatan_jadwal = $data['catatan_jadwal'] ?? null;
+        $pelaporan->save();
+        // =======================================================
+
+        return back()->with('success', 'Tanggal expose diubah.');
     }
 }
