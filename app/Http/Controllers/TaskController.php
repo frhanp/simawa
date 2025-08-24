@@ -39,17 +39,43 @@ class TaskController extends Controller
 
     public function planning()
     {
-        // Ambil data orang dari tabel 'orang' untuk setiap kategori
-        $penanggungJawab = Orang::where('jabatan', 'Penanggung Jawab')->get();
-        $ketuaTim = Orang::where('jabatan', 'Ketua Tim')->get();
+        $penanggungJawab      = Orang::where('jabatan', 'Penanggung Jawab')->get();
+        $ketuaTim             = Orang::where('jabatan', 'Ketua Tim')->get();
         $wakilPenanggungJawab = Orang::where('jabatan', 'Wakil Penanggung Jawab')->get();
-        $anggotaTim = Orang::where('jabatan', 'Anggota Tim')->get();
-        $pengendaliTeknis = Orang::where('jabatan', 'Pengendali Teknis')->get();
-        $penunjang = Orang::where('jabatan', 'Penunjang')->get();
+        $anggotaTim           = Orang::where('jabatan', 'Anggota Tim')->get();
+        $pengendaliTeknis     = Orang::where('jabatan', 'Pengendali Teknis')->get();
+        $penunjang            = Orang::where('jabatan', 'Penunjang')->get();
 
-        // Kirim data ke view
-        return view('task.planning', compact('penanggungJawab', 'ketuaTim', 'wakilPenanggungJawab', 'anggotaTim', 'pengendaliTeknis', 'penunjang'));
+        // 🔒 cari ID yang sudah dipakai di task aktif
+        $lockedIds = Task::query()
+            ->whereIn('status', ['pending', 'Disetujui Inspektur']) // status aktif
+            ->get('team_composition')
+            ->flatMap(function ($t) {
+                $tc = json_decode($t->team_composition, true) ?? [];
+                return collect([
+                    $tc['ketua_tim'] ?? null,
+                    ...((array)($tc['pengendali_teknis'] ?? [])),
+                    ...((array)($tc['anggota_tim'] ?? [])),
+                    ...((array)($tc['penunjang'] ?? [])),
+                ]);
+            })
+            ->filter()
+            ->map(fn($v) => (string)$v)
+            ->unique();
+
+        return view('task.planning', compact(
+            'penanggungJawab',
+            'ketuaTim',
+            'wakilPenanggungJawab',
+            'anggotaTim',
+            'pengendaliTeknis',
+            'penunjang',
+            'lockedIds'
+        ));
     }
+
+
+
 
 
 
@@ -95,83 +121,142 @@ class TaskController extends Controller
 
 
     public function edit($id)
-    {
-        // Mengambil task berdasarkan id
-        $task = Task::findOrFail($id);
+{
+    // [AMBIL TASK]
+    $task = \App\Models\Task::findOrFail($id);
 
-        // Men-decode team_composition (JSON) untuk digunakan pada form
-        $teamComposition = json_decode($task->team_composition, true);
+    // [PARSE KOMPOSISI TIM] kolom bisa string JSON atau sudah array
+    $tcCurrent = is_string($task->team_composition)
+        ? (json_decode($task->team_composition, true) ?? [])
+        : ($task->team_composition ?? []);
 
-        // Ambil data orang berdasarkan jabatan
-        $penanggungJawab = Orang::where('jabatan', 'Penanggung Jawab')->get();
-        $wakilPenanggungJawab = Orang::where('jabatan', 'Wakil Penanggung Jawab')->get();
-        $pengendaliTeknis = Orang::where('jabatan', 'Pengendali Teknis')->get();
-        $ketuaTim = Orang::where('jabatan', 'Ketua Tim')->get();
-        $anggotaTim = Orang::where('jabatan', 'Anggota Tim')->get();
-        $penunjang = Orang::where('jabatan', 'Penunjang')->get();
+    // [HITUNG TERKUNCI] personel yang sedang terpakai di tugas AKTIF lain (selain PJ/WPJ)
+    // Aktif = pending / Disetujui Inspektur (samakan dengan logika store/update)
+    $lockedIds = \App\Models\Task::query()
+        ->where('id', '!=', $task->id)                       // exclude task ini
+        ->whereIn('status', ['pending', 'Disetujui Inspektur'])
+        ->get('team_composition')
+        ->flatMap(function ($t) {
+            $tc = is_string($t->team_composition)
+                ? (json_decode($t->team_composition, true) ?? [])
+                : ($t->team_composition ?? []);
+            return collect([
+                $tc['ketua_tim'] ?? null,
+                ...((array)($tc['pengendali_teknis'] ?? [])),
+                ...((array)($tc['anggota_tim'] ?? [])),
+                ...((array)($tc['penunjang'] ?? [])),
+            ]);
+        })
+        ->filter()
+        ->map(fn($v) => (string)$v)       // <-- konsisten string
+        ->unique()
+        ->values();
 
-        // Menampilkan halaman edit dengan data task dan data orang
-        return view('task.edit', compact(
-            'task',
-            'penanggungJawab',
-            'wakilPenanggungJawab',
-            'pengendaliTeknis',
-            'ketuaTim',
-            'anggotaTim',
-            'penunjang',
-            'teamComposition' // Pass the decoded team composition
-        ));
-    }
+    // [YANG SUDAH TERPILIH DI TASK INI] tetap boleh tampil/dipilih di form edit
+    $selectedHere = collect([
+        $tcCurrent['ketua_tim'] ?? null,
+        ...((array)($tcCurrent['pengendali_teknis'] ?? [])),
+        ...((array)($tcCurrent['anggota_tim'] ?? [])),
+        ...((array)($tcCurrent['penunjang'] ?? [])),
+    ])->filter()
+      ->map(fn($v) => (string)$v)         // <-- konsisten string
+      ->unique()
+      ->values();
+
+    // kunci akhir = terkunci minus yang sudah terpilih di task ini
+    $lockedIds = $lockedIds->diff($selectedHere)->values();
+
+    // [DATA DROPDOWN] (silakan sesuaikan filter jabatan bila perlu)
+    $penanggungJawab       = \App\Models\Orang::where('jabatan', 'Penanggung Jawab')->get();
+    $wakilPenanggungJawab  = \App\Models\Orang::where('jabatan', 'Wakil Penanggung Jawab')->get();
+    $ketuaTim              = \App\Models\Orang::where('jabatan', 'Ketua Tim')->get();
+    $pengendaliTeknis      = \App\Models\Orang::where('jabatan', 'Pengendali Teknis')->get();
+    $anggotaTim            = \App\Models\Orang::where('jabatan', 'Anggota Tim')->get();
+    $penunjang             = \App\Models\Orang::where('jabatan', 'Penunjang')->get();
+
+    // [KIRIM KE VIEW]
+    return view('task.edit', compact(
+        'task',
+        'tcCurrent',
+        'lockedIds',
+        'penanggungJawab',
+        'wakilPenanggungJawab',
+        'ketuaTim',
+        'pengendaliTeknis',
+        'anggotaTim',
+        'penunjang'
+    ));
+}
+
 
 
 
     public function update(Request $request, $id)
-{
-    // Validasi input
-    $request->validate([
-        'assignment_type' => 'required|string|max:255',
-        'penanggung_jawab' => 'required|integer|exists:orang,id',
-        'wakil_penanggung_jawab' => 'required|integer|exists:orang,id',
-        'ketua_tim' => 'required|integer|exists:orang,id',
-        'pengendali_teknis' => 'array|nullable',
-        'pengendali_teknis.*' => 'integer|exists:orang,id',
-        'anggota_tim' => 'array|nullable',
-        'anggota_tim.*' => 'integer|exists:orang,id',
-        'penunjang' => 'array|nullable',
-        'penunjang.*' => 'integer|exists:orang,id',
-        'number_of_days' => 'required|integer|min:1',
-    ]);
+    {
+        $validated = $request->validate([
+            'assignment_type'        => 'required|string|max:255',
+            'penanggung_jawab'       => 'required|integer|exists:orang,id',
+            'wakil_penanggung_jawab' => 'required|integer|exists:orang,id',
+            'ketua_tim'              => 'required|integer|exists:orang,id',
+            'pengendali_teknis'      => 'array|nullable',
+            'pengendali_teknis.*'    => 'integer|exists:orang,id',
+            'anggota_tim'            => 'array|nullable',
+            'anggota_tim.*'          => 'integer|exists:orang,id',
+            'penunjang'              => 'array|nullable',
+            'penunjang.*'            => 'integer|exists:orang,id',
+            'number_of_days'         => 'required|integer|min:1',
+        ]);
 
-    // Cari tugas berdasarkan ID
-    $task = Task::findOrFail($id);
+        $task = Task::findOrFail($id);
 
-    // Menyusun komposisi tim dalam format yang sesuai
-    $teamComposition = [
-        'penanggung_jawab' => $request->input('penanggung_jawab'),
-        'wakil_penanggung_jawab' => $request->input('wakil_penanggung_jawab'),
-        'ketua_tim' => $request->input('ketua_tim'),
-        'pengendali_teknis' => $request->input('pengendali_teknis', []),
-        'anggota_tim' => $request->input('anggota_tim', []),
-        'penunjang' => $request->input('penunjang', []),
-    ];
+        $teamComposition = [
+            'penanggung_jawab'       => (string) $validated['penanggung_jawab'],
+            'wakil_penanggung_jawab' => (string) $validated['wakil_penanggung_jawab'],
+            'ketua_tim'              => (string) $validated['ketua_tim'],
+            'pengendali_teknis'      => collect($validated['pengendali_teknis'] ?? [])->map(fn($v) => (string)$v)->all(),
+            'anggota_tim'            => collect($validated['anggota_tim'] ?? [])->map(fn($v) => (string)$v)->all(),
+            'penunjang'              => collect($validated['penunjang'] ?? [])->map(fn($v) => (string)$v)->all(),
+        ];
 
-    // Update atribut tugas
-    $task->assignment_type = $request->input('assignment_type');
-    $task->team_composition = json_encode($teamComposition); // Menyimpan komposisi tim dalam format JSON
-    $task->number_of_days = $request->input('number_of_days');
+        // Cek konflik (exclude task ini)
+        $cekIds = collect([
+            $teamComposition['ketua_tim'],
+            ...$teamComposition['pengendali_teknis'],
+            ...$teamComposition['anggota_tim'],
+            ...$teamComposition['penunjang'],
+        ])->filter()->unique();
 
-    // Cek apakah status sebelumnya adalah 'rejected'
-    if ($task->status === 'Ditolak Sekretaris' || $task->status === 'Ditolak Inspektur') {
-        $task->status = 'pending'; // Kembalikan status ke 'pending'
-        $task->rejection_reason = null; // Hapus alasan penolakan
+        $konflik = Task::query()
+            ->where('id', '!=', $task->id)
+            ->whereIn('status', ['pending', 'Disetujui Inspektur'])
+            ->where(function ($q) use ($cekIds) {
+                foreach ($cekIds as $id) {
+                    $q->orWhereJsonContains('team_composition->ketua_tim', (string)$id)
+                        ->orWhereJsonContains('team_composition->pengendali_teknis', (string)$id)
+                        ->orWhereJsonContains('team_composition->anggota_tim', (string)$id)
+                        ->orWhereJsonContains('team_composition->penunjang', (string)$id);
+                }
+            })
+            ->exists();
+
+        if ($konflik) {
+            return back()->withErrors(['anggota' => 'Ada personel (selain PJ/WPJ) yang sudah terikat di tugas aktif.'])->withInput();
+        }
+
+        $task->assignment_type   = $validated['assignment_type'];
+        $task->team_composition  = json_encode($teamComposition);
+        $task->number_of_days    = $validated['number_of_days'];
+
+        if (in_array($task->status, ['Ditolak Sekretaris', 'Ditolak Inspektur'], true)) {
+            $task->status = 'pending';
+            $task->rejection_reason = null;
+        }
+
+        $task->save();
+
+        return redirect()->route('task.index')->with('success', 'Tugas berhasil diperbarui.');
     }
 
-    // Simpan perubahan
-    $task->save();
-
-    // Redirect kembali dengan pesan sukses
-    return redirect()->route('task.index')->with('success', 'Tugas berhasil diperbarui dan status dikembalikan ke pending.');
-}
 
 
 
