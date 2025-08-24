@@ -165,23 +165,5 @@ Route::middleware(['auth', 'isSekretaris'])->group(function () {
     Route::get('/pdf', function () {
         return view('tasks.pdf.team_composition_with_data');
     });
-
-    // [DITAMBAHKAN] Halaman perencanaan penugasan (mirip admin)
-    Route::get('penugasan', [TaskController::class, 'planning'])
-        ->name('penugasan');
-
-    // [DITAMBAHKAN] List/detail penugasan
-    Route::get('penugasan/list', [TaskController::class, 'view'])
-        ->name('penugasan.list');
-
-    // [DITAMBAHKAN] Aksi simpan/ubah (jika admin sudah pakai ini, kita pakai endpoint sama)
-    Route::post('penugasan', [TaskController::class, 'store'])
-        ->name('penugasan.store');
-
-    Route::put('penugasan/{task}', [TaskController::class, 'update'])
-        ->name('penugasan.update');
-
-    Route::delete('penugasan/{task}', [TaskController::class, 'destroy'])
-        ->name('penugasan.destroy');
 });
 require __DIR__ . '/auth.php';
