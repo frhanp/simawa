@@ -187,13 +187,13 @@
                                                     $task->status === 'Ditolak Inspektur')
                                                 <div class="flex justify-center space-x-4">
                                                     <!-- Tombol Edit -->
-                                                    <a href="{{ route('task.edit', $task->id) }}"
+                                                    <a href="{{ Auth::user()->role === 'admin' ? route('task.edit', $task->id) : route('sekretaris.task.edit', $task->id) }}"
                                                         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
                                                         Edit
                                                     </a>
 
                                                     <!-- Tombol Hapus dengan Konfirmasi -->
-                                                    <form action="{{ route('task.destroy', $task->id) }}"
+                                                    <form action="{{ Auth::user()->role === 'admin' ? route('task.destroy', $task->id) : route('sekretaris.task.destroy', $task->id) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus tugas ini?');">
                                                         @csrf

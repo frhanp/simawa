@@ -165,5 +165,14 @@ Route::middleware(['auth', 'isSekretaris'])->group(function () {
     Route::get('/pdf', function () {
         return view('tasks.pdf.team_composition_with_data');
     });
+
+    Route::get('/penugasan/planning', [App\Http\Controllers\Sekretaris\TaskController::class, 'planning'])->name('sekretaris.task.planning');
+    Route::get('/penugasan/view', [App\Http\Controllers\Sekretaris\TaskController::class, 'view'])->name('sekretaris.task.view');
+    Route::post('/penugasan/store', [App\Http\Controllers\Sekretaris\TaskController::class, 'store'])->name('sekretaris.task.store');
+    Route::get('/penugasan/{task}/edit', [App\Http\Controllers\Sekretaris\TaskController::class, 'edit'])->name('sekretaris.task.edit');
+    Route::put('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'update'])->name('sekretaris.task.update');
+    Route::delete('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'destroy'])->name('sekretaris.task.destroy');
 });
+
+
 require __DIR__ . '/auth.php';

@@ -43,8 +43,11 @@
             <x-nav-link :href="route('pertimbangan')" :active="request()->routeIs('pertimbangan')">
                 {{ __('Pertimbangan Penugasan') }}
             </x-nav-link>
-            <x-nav-link :href="route('penugasan')" :active="request()->routeIs('penugasan*')">
+            <x-nav-link :href="route('sekretaris.task.planning')" :active="request()->routeIs('sekretaris.task.planning')">
                 Perencanaan Penugasan
+            </x-nav-link>
+            <x-nav-link :href="route('sekretaris.task.view')" :active="request()->routeIs('sekretaris.task.view')">
+                {{ __('Daftar Penugasan') }}
             </x-nav-link>
         @endif
 

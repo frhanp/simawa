@@ -10,7 +10,7 @@
         <div class="bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 text-gray-900">
   
-            <form method="POST" action="{{ route('task.update', $task->id) }}" class="space-y-6">
+            <form method="POST" action="{{ Auth::user()->role === 'admin' ? route('task.update', $task->id) : route('sekretaris.task.update', $task->id) }}" class="space-y-6">
               @csrf
               @method('PUT')
   
@@ -155,7 +155,7 @@
               </div>
   
               <div class="flex justify-end gap-3 pt-2">
-                <a href="{{ route('task.index') }}" class="px-4 py-2 rounded-md bg-gray-600 text-white">Batal</a>
+                <a href=""{{ Auth::user()->role === 'admin' ? route('task.index') : route('sekretaris.task.view') }} class="px-4 py-2 rounded-md bg-gray-600 text-white">Batal</a>
                 <button class="px-5 py-2 rounded-md bg-blue-600 text-white">Update Tugas</button>
               </div>
             </form>
