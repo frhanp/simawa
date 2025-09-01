@@ -12,12 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Baris ini adalah kunci agar semua seeder Anda berjalan.
+        $this->call([
+            OrangSeeder::class,
+            UserSeeder::class, // Menambahkan seeder user yang baru
+        ]);
     }
     
 }
