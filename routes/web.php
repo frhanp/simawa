@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     //rute pertimbangan
     Route::get('/task/sekretaris/{id}/accept', [TaskController::class, 'acceptForSekretaris'])->name('task.sekretaris.accept');
-    Route::get('/task/sekretaris/{id}/reject', [TaskController::class, 'rejectForSekretaris'])->name('task.sekretaris.reject');
+    //Route::get('/task/sekretaris/{id}/reject', [TaskController::class, 'rejectForSekretaris'])->name('task.sekretaris.reject');
 
 
     // Route untuk sekretaris menolak tugas dengan alasan

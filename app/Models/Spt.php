@@ -10,7 +10,7 @@ class Spt extends Model
     use HasFactory;
 
     // Nama tabel yang akan digunakan
-    protected $table = 'SPT';
+    protected $table = 'spt';
 
     // Izinkan pengisian massal pada kolom berikut
     protected $fillable = [
