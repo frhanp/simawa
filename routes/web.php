@@ -65,6 +65,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('lhp', LHPController::class);
     Route::post('/lhp/{id}/acc', [LHPController::class, 'acc'])->name('lhp.acc');
     Route::post('/lhp/reject', [LHPController::class, 'reject'])->name('lhp.reject');
+
+    // ROUTE BARU UNTUK OTP LHP
+    Route::post('/lhp/{lhp}/send-otp', [LHPController::class, 'sendOtp'])->name('lhp.sendOtp');
+    Route::post('/lhp/{lhp}/verify-otp', [LHPController::class, 'verifyOtp'])->name('lhp.verifyOtp');
+    Route::get('/lhp/{lhp}/view-file', [LHPController::class, 'viewFile'])->name('lhp.viewFile');
 });
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     Route::get('/task/planning', [TaskController::class, 'planning'])->name('task.planning');
