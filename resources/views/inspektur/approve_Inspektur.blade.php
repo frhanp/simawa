@@ -30,16 +30,20 @@
                         <table class="min-w-full divide-y divide-gray-200 table-fixed">
                             <thead class="bg-gray-100">
                                 <tr>
-                                    <th class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Jenis Penugasan
                                     </th>
-                                    <th class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Komposisi Tim
                                     </th>
-                                    <th class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Jumlah Hari
                                     </th>
-                                    <th class="w-1/5 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <th
+                                        class="w-1/5 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Aksi
                                     </th>
                                 </tr>
@@ -53,33 +57,39 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             <div class="border border-gray-300 rounded-lg p-4 bg-gray-50 shadow-sm">
                                                 <h3 class="text-sm font-semibold text-gray-800 mb-2">Komposisi Tim</h3>
-                                                <table class="table-auto w-full text-left text-sm border border-gray-300">
+                                                <table
+                                                    class="table-auto w-full text-left text-sm border border-gray-300">
                                                     <tbody>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Penanggung Jawab:</th>
+                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">
+                                                                Penanggung Jawab:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 {{ $task->team_composition['penanggung_jawab'] ?? '-' }}
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Ketua Tim:</th>
+                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">
+                                                                Ketua Tim:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 {{ $task->team_composition['ketua_tim'] ?? '-' }}
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Wakil Penanggung Jawab:</th>
+                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">
+                                                                Wakil Penanggung Jawab:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 {{ $task->team_composition['wakil_penanggung_jawab'] ?? '-' }}
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Anggota Tim:</th>
+                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">
+                                                                Anggota Tim:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 @if (!empty($task->team_composition['anggota_tim']))
                                                                     <ul class="list-none pl-0">
                                                                         @foreach ($task->team_composition['anggota_tim'] as $anggota)
-                                                                            <li class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
+                                                                            <li
+                                                                                class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
                                                                                 {{ $anggota }}
                                                                             </li>
                                                                         @endforeach
@@ -90,12 +100,14 @@
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Pengendali Teknis:</th>
+                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">
+                                                                Pengendali Teknis:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 @if (!empty($task->team_composition['pengendali_teknis']))
                                                                     <ul class="list-none pl-0">
                                                                         @foreach ($task->team_composition['pengendali_teknis'] as $pengendali)
-                                                                            <li class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
+                                                                            <li
+                                                                                class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
                                                                                 {{ $pengendali }}
                                                                             </li>
                                                                         @endforeach
@@ -106,12 +118,14 @@
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Penunjang:</th>
+                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">
+                                                                Penunjang:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 @if (!empty($task->team_composition['penunjang']))
                                                                     <ul class="list-none pl-0">
                                                                         @foreach ($task->team_composition['penunjang'] as $penunjang)
-                                                                            <li class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
+                                                                            <li
+                                                                                class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
                                                                                 {{ $penunjang }}
                                                                             </li>
                                                                         @endforeach
@@ -124,7 +138,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </td>                                        
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $task->number_of_days }} Hari
                                         </td>
@@ -148,7 +162,8 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                        <td colspan="4"
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
                                             Tidak ada tugas yang perlu disetujui.
                                         </td>
                                     </tr>
@@ -166,22 +181,22 @@
                 <!-- Modal untuk menolak tugas -->
                 <div x-show="isModalOpen" x-cloak class="fixed inset-0 z-50 flex items-center justify-center px-4">
                     <!-- Background Overlay -->
-                    <div @click="isModalOpen = false" class="absolute inset-0 bg-black opacity-50 transition-opacity"></div>
+                    <div @click="isModalOpen = false" class="absolute inset-0 bg-black opacity-50 transition-opacity">
+                    </div>
 
                     <!-- Modal Content -->
                     <div class="bg-white rounded-lg shadow-lg z-10 w-full max-w-md mx-auto p-6 transform transition-all"
                         x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 scale-90"
-                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-200"
-                        x-transition:leave-start="opacity-100 scale-100"
-                        x-transition:leave-end="opacity-0 scale-90">
+                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
                         <h3 class="text-lg font-semibold mb-4 text-gray-800">Alasan Penolakan</h3>
                         <form method="POST" action="{{ route('inspektur.reject') }}">
                             @csrf
                             <input type="hidden" name="task_id" :value="currentTaskId">
                             <div class="mb-4">
-                                <label for="rejection_reason" class="block text-sm font-medium text-gray-700">Alasan</label>
+                                <label for="rejection_reason"
+                                    class="block text-sm font-medium text-gray-700">Alasan</label>
                                 <textarea id="rejection_reason" name="rejection_reason" rows="3" required
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Masukkan alasan penolakan"></textarea>

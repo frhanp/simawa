@@ -1,8 +1,8 @@
-# digest.ps1 (v3 — fix "EmptyPipeElement" & backticks)
+# digest.ps1 (v4 — Tampilkan isi file lebih lengkap)
 
 [CmdletBinding()]
 param(
-  [string]$OutFile = "project_digest.md",
+  [string]$OutFile = "project_digest_full.md",
   [string]$Root = (Get-Location).Path,
   [string[]]$ExcludePatterns = @(
     '\.git\', '\.github\', '\.vscode\', '\.idea\',
@@ -22,6 +22,7 @@ param(
 $ErrorActionPreference = "SilentlyContinue"
 Set-Location $Root
 
+# --- Helper Functions ---
 function Is-IncludedPath([string]$path) {
   foreach ($p in $ExcludePatterns) {
     if ($path -replace '/','\' -match [regex]::Escape($p)) { return $false }
@@ -47,22 +48,39 @@ function Write-CodeBlock([object]$content) {
   Add-Content -Encoding UTF8 -Path $OutFile -Value ""
 }
 
-# reset output
-"# Project Digest" | Set-Content -Encoding UTF8 $OutFile
+# Fungsi baru untuk menulis konten file
+function Write-FileContents([array]$files) {
+    $output = @()
+    if ($files.Count -eq 0) {
+        $output += "No files found for this section."
+    } else {
+        foreach ($f in $files) {
+            $output += "===== $($f.FullName.Replace($Root,'').TrimStart('\','/')) ====="
+            $output += (Get-Content $f.FullName) -replace "`t","    "
+            $output += ""
+        }
+    }
+    Write-CodeBlock $output
+}
+# --- End Helper Functions ---
+
+
+# Reset output file
+"# Project Digest (Full Content)" | Set-Content -Encoding UTF8 $OutFile
 "_Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')_" | Add-Content -Encoding UTF8 $OutFile
 "**Root:** $Root" | Add-Content -Encoding UTF8 $OutFile
 "" | Add-Content -Encoding UTF8 $OutFile
 
-# 1) Struktur
-Write-Title "Struktur (filtered, no depth limit)"
+# 1) Struktur Proyek
+Write-Title "Struktur Proyek (filtered, no depth limit)"
 $structure = Get-ChildItem -Recurse -Force |
   Where-Object { Is-IncludedPath $_.FullName -and ( $_.PSIsContainer -or ($IncludeExtensions -contains $_.Extension) ) } |
   Select-Object -ExpandProperty FullName |
   ForEach-Object { $_.Replace($Root,'').TrimStart('\','/') }
 Write-CodeBlock $structure
 
-# 2) Git info
-Write-Title "Git"
+# 2) Info Git
+Write-Title "Info Git"
 $gitOut = & {
   git -C $Root rev-parse --is-inside-work-tree | Out-Null
   if ($LASTEXITCODE -eq 0) {
@@ -73,8 +91,9 @@ $gitOut = & {
 }
 Write-CodeBlock $gitOut
 
-# 3) Dependencies ringkas
+# 3) Dependencies
 Write-Title "Dependencies (summary)"
+# (Tidak ada perubahan di bagian ini)
 $depOut = & {
   if (Test-Path "$Root\composer.json") {
     "composer.json (require):"
@@ -93,7 +112,8 @@ $depOut = & {
 }
 Write-CodeBlock $depOut
 
-# 4) Konfigurasi (env redacted) + Docker
+
+# 4) Konfigurasi .env & Docker
 if (Test-Path "$Root\.env" -or Test-Path "$Root\.env.example") {
   Write-Title "Konfigurasi Penting (.env redacted)"
   $envPath = if (Test-Path "$Root\.env") { "$Root\.env" } else { "$Root\.env.example" }
@@ -104,16 +124,21 @@ if (Test-Path "$Root\.env" -or Test-Path "$Root\.env.example") {
   Write-CodeBlock $envOut
 }
 if (Test-Path "$Root\docker-compose.yml") {
-  Write-Title "docker-compose.yml (head)"
-  Write-CodeBlock (Get-Content "$Root\docker-compose.yml" -TotalCount 120)
+  Write-Title "docker-compose.yml"
+  Write-CodeBlock (Get-Content "$Root\docker-compose.yml")
 }
 if (Test-Path "$Root\Dockerfile") {
-  Write-Title "Dockerfile (head)"
-  Write-CodeBlock (Get-Content "$Root\Dockerfile" -TotalCount 120)
+  Write-Title "Dockerfile"
+  Write-CodeBlock (Get-Content "$Root\Dockerfile")
 }
 
-# 5) Routes (auto detect; opsional)
-Write-Title "Routes (auto-detected, if any)"
+
+# 5) Routes (diubah untuk menampilkan isi file)
+Write-Title "Routes Files Content"
+$routeFiles = Get-ChildItem -Recurse -Path "routes\*.php", "config\routes.rb", "src\routes\*" -Force | Where-Object { Is-IncludedPath $_.FullName }
+Write-FileContents $routeFiles
+# Bagian lama untuk list command tetap dijalankan
+Write-Title "Routes (from command)"
 $routesOut = & {
   try {
     if (Test-Path "$Root\artisan") {
@@ -124,79 +149,67 @@ $routesOut = & {
       & $c debug:router 2>$null
     } elseif (Test-Path "$Root\config\routes.rb") {
       rails routes 2>$null
-    } else {
-      "No known route command detected. (Laravel/Symfony/Rails not found)"
-    }
+    } else { "No known route command detected." }
   } catch { "Route scan failed (ignored)." }
 }
 Write-CodeBlock $routesOut
 
-# 6) Controllers (auto-detected)
-Write-Title "Controllers (auto-detected)"
-$controllerGlobs = @(
-  "app\Http\Controllers\*.php",
-  "app\Controllers\*.php",
-  "src\Controller\*.php",
-  "src\Controllers\*.php"
-)
+
+# 6) Controllers
+Write-Title "Controllers Content"
+$controllerGlobs = @("app\Http\Controllers\*.php", "app\Controllers\*.php", "src\Controller\*.php")
 $controllerFiles = @()
 foreach ($g in $controllerGlobs) {
-  if (Test-Path $g) {
-    $controllerFiles += Get-ChildItem -Recurse $g -Force | Where-Object { Is-IncludedPath $_.FullName }
+  if (Test-Path (Join-Path $Root $g)) {
+    $controllerFiles += Get-ChildItem -Recurse (Join-Path $Root $g) -Force | Where-Object { Is-IncludedPath $_.FullName }
   }
 }
-$ctrlOut = @()
-if ($controllerFiles.Count -eq 0) {
-  $ctrlOut += "No controllers found."
-} else {
-  foreach ($f in $controllerFiles) {
-    $ctrlOut += "===== $($f.FullName) ====="
-    $ctrlOut += (Get-Content $f.FullName) -replace "`t","    "
-    $ctrlOut += ""
-  }
-}
-Write-CodeBlock $ctrlOut
+Write-FileContents $controllerFiles
 
-# 7) Models (auto-detected)
-Write-Title "Models (auto-detected)"
-$modelDirs = @("app\Models","src\Models","models")
+
+# 7) Models
+Write-Title "Models Content"
+$modelDirs = @("app\Models", "src\Models", "app", "src\Entity")
 $modelFiles = @()
 foreach ($d in $modelDirs) {
-  if (Test-Path $d) {
-    $modelFiles += Get-ChildItem -Recurse $d -Filter *.php -Force | Where-Object { Is-IncludedPath $_.FullName }
-  }
+    if(Test-Path (Join-Path $Root $d)) {
+        $modelFiles += Get-ChildItem -Recurse (Join-Path $Root $d) -Filter *.php -Force | Where-Object { 
+            (Is-IncludedPath $_.FullName) -and ((Get-Content $_.FullName -Raw) -match "class\s+\w+\s+extends\s+Model|class\s+\w+\s+implements\s+Authenticatable")
+        }
+    }
 }
-$modelOut = @()
-if ($modelFiles.Count -eq 0) {
-  $modelOut += "No models found or non-PHP models ignored."
-} else {
-  foreach ($f in $modelFiles) {
-    $modelOut += "===== $($f.FullName) ====="
-    $modelOut += (Get-Content $f.FullName) -replace "`t","    "
-    $modelOut += ""
-  }
-}
-Write-CodeBlock $modelOut
+$modelFiles = $modelFiles | Sort-Object FullName -Unique
+Write-FileContents $modelFiles
 
-# 8) Views & UI Files
-Write-Title "Views & UI Files (listing)"
-$viewLists = @()
-if (Test-Path "resources\views") {
-  $viewLists += Get-ChildItem -Recurse "resources\views" -Include *.blade.php -Force | Where-Object { Is-IncludedPath $_.FullName } | Select-Object -Expand FullName
-}
-$viewLists += Get-ChildItem -Recurse -Include *.twig,*.cshtml -Force | Where-Object { Is-IncludedPath $_.FullName } | Select-Object -Expand FullName
-$viewLists += Get-ChildItem -Recurse -Include *.vue,*.jsx,*.tsx -Force | Where-Object { Is-IncludedPath $_.FullName } | Select-Object -Expand FullName
-$viewOut = if ($viewLists.Count -eq 0) { @("No view/UI files found.") } else { $viewLists | Sort-Object | ForEach-Object { $_.Replace($Root,'').TrimStart('\','/') } }
-Write-CodeBlock $viewOut
 
-# 9) Entry Points
-Write-Title "Entry Points (heuristic)"
-$entries = @()
-$entries += Get-ChildItem -Recurse -Include "public\index.php","server.php","artisan","app\Console\Kernel.php" -Force | % FullName
-$entries += Get-ChildItem -Recurse -Include "src\main.ts","src\main.js","resources\js\app.js","vite.config.*","webpack.*" -Force | % FullName
-$entries += Get-ChildItem -Recurse -Include "manage.py","wsgi.py","asgi.py" -Force | % FullName
-$entryOut = if ($entries.Count -eq 0) { @("No common entry points found.") } else { $entries | Sort-Object | ForEach-Object { $_.Replace($Root,'').TrimStart('\','/') } }
-Write-CodeBlock $entryOut
+# 8) Views & UI Files (diubah untuk menampilkan isi)
+Write-Title "Views & UI Files Content"
+$viewFiles = @()
+$viewGlobs = @("resources\views\*.blade.php", "templates\*.twig", "src\components\*.vue", "src\pages\*.jsx", "src\pages\*.tsx")
+foreach ($g in $viewGlobs) {
+    if(Test-Path (Join-Path $Root $g)) {
+        $viewFiles += Get-ChildItem -Recurse (Join-Path $Root $g) -Force | Where-Object { Is-IncludedPath $_.FullName }
+    }
+}
+Write-FileContents $viewFiles
+
+
+# 9) Entry Points & Config Files
+Write-Title "Entry Points & Main Configs Content"
+$entryFiles = @()
+$entryGlobs = @(
+    "public\index.php", "server.php", "artisan", "app\Console\Kernel.php", # PHP
+    "src\main.ts", "src\main.js", "resources\js\app.js", "vite.config.*", "webpack.*", # JS
+    "manage.py", "wsgi.py", "asgi.py", "main.py", # Python
+    "config\app.php", "config\database.php" # Configs
+)
+foreach($g in $entryGlobs){
+    if(Test-Path (Join-Path $Root $g)) {
+        $entryFiles += Get-ChildItem -Recurse (Join-Path $Root $g) -Force | Where-Object { Is-IncludedPath $_.FullName }
+    }
+}
+Write-FileContents $entryFiles
+
 
 "== Selesai ==" | Add-Content -Encoding UTF8 $OutFile
 Write-Host ("Digest generated: {0}" -f $OutFile)
