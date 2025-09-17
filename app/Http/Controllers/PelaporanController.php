@@ -7,6 +7,8 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; // Import Storage Facade
 use Illuminate\Support\Facades\Schema;
+use App\Models\Notification;
+use App\Models\User;
 
 class PelaporanController extends Controller
 {
@@ -58,6 +60,17 @@ class PelaporanController extends Controller
         }
 
         Pelaporan::create($data);
+        // --- [MODIFIKASI] ---
+        $task = Task::find($validated['task_id']);
+        $inspekturs = User::where('role', 'inspektur')->get();
+        foreach ($inspekturs as $inspektur) {
+            Notification::create([
+                'user_id' => $inspektur->id,
+                'message' => 'Jadwal expose untuk tugas "' . $task->assignment_type . '" perlu dikonfirmasi.',
+                'url'     => route('pelaporan.index'),
+            ]);
+        }
+        // --- [AKHIR MODIFIKASI] ---
 
         return redirect()->route('pelaporan.index')->with('success', 'Pelaporan berhasil dibuat.');
     }

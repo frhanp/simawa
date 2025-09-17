@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Preparation;
 use App\Models\Spt;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Notification;
+use App\Models\User;
 
 class PreparationController extends Controller
 {
@@ -68,12 +70,24 @@ class PreparationController extends Controller
         }
 
         // Buat entri persiapan baru
-        Preparation::create([
+        $preparation = Preparation::create([
             'spt_id' => $spt->id,
             'pka_path' => $pkaPath ?? null,
             'formulir_km4_path' => $formulirKm4Path ?? null,
             'status' => 'Pending',
         ]);
+
+        // --- [MODIFIKASI] ---
+        // Kirim notifikasi ke semua Inspektur
+        $inspekturs = User::where('role', 'inspektur')->get();
+        foreach ($inspekturs as $inspektur) {
+            Notification::create([
+                'user_id' => $inspektur->id,
+                'message' => 'Dokumen persiapan baru untuk tugas "' . $spt->task->assignment_type . '" perlu ditinjau.',
+                'url'     => route('inspektur.preparations.show', $preparation->id),
+            ]);
+        }
+        // --- [AKHIR MODIFIKASI] ---
 
         // Optional: Kirim notifikasi ke Inspektur
 

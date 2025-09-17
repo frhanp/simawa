@@ -6,6 +6,8 @@ use App\Models\Task;
 use App\Models\Pelaporan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notification;
+use App\Models\User;
 
 class InspekturController extends Controller
 {
@@ -69,6 +71,15 @@ class InspekturController extends Controller
         // Update status tugas menjadi 'Disetujui Inspektur'
         $task->status = 'Disetujui Inspektur';
         $task->save();
+        $adminsAndSecretaries = User::whereIn('role', ['admin', 'sekretaris'])->get();
+
+        foreach ($adminsAndSecretaries as $user) {
+            Notification::create([
+                'user_id' => $user->id,
+                'message' => 'Tugas "' . $task->assignment_type . '" telah disetujui oleh Inspektur.',
+                'url' => $user->role === 'admin' ? route('task.index') : route('sekretaris.task.view'),
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Tugas berhasil disetujui.');
     }

@@ -336,6 +336,17 @@ class TaskController extends Controller
             $task->status = 'Disetujui Sekretaris';
             $task->save(); // Simpan perubahan
 
+            // --- [MODIFIKASI] ---
+            // Kirim notifikasi ke semua Inspektur
+            $inspekturs = User::where('role', 'inspektur')->get();
+            foreach ($inspekturs as $inspektur) {
+                Notification::create([
+                    'user_id' => $inspektur->id,
+                    'message' => 'Tugas "' . $task->assignment_type . '" telah disetujui oleh Sekretaris dan menunggu persetujuan Anda.',
+                    'url'     => route('inspektur.approve_inspektur'),
+                ]);
+            }
+
             // Redirect dengan pesan sukses
             return redirect()->route('pertimbangan')->with('success', 'Tugas berhasil disetujui oleh Sekretaris.');
         }

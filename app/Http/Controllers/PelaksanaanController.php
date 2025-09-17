@@ -6,6 +6,8 @@ use App\Models\Pelaksanaan;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Notification;
+use App\Models\User;
 
 class PelaksanaanController extends Controller
 {
@@ -63,7 +65,18 @@ class PelaksanaanController extends Controller
         // Handle sent_to_inspektur checkbox using boolean()
         // $validated['sent_to_inspektur'] = $request->boolean('sent_to_inspektur');
 
-        Pelaksanaan::create($validated);
+        $pelaksanaan = Pelaksanaan::create($validated);
+        
+        $task = Task::find($validated['task_id']);
+        $inspekturs = User::where('role', 'inspektur')->get();
+        foreach ($inspekturs as $inspektur) {
+            Notification::create([
+                'user_id' => $inspektur->id,
+                'message' => 'Dokumen pelaksanaan baru untuk tugas "' . $task->assignment_type . '" telah dibuat.',
+                'url'     => route('pelaksanaan.show', $pelaksanaan->id),
+            ]);
+        }
+        // --- [AKHIR MODIFIKASI] ---
 
         return redirect()->route('pelaksanaan.index')->with('success', 'Pelaksanaan berhasil ditambahkan.');
     }

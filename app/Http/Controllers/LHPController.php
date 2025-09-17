@@ -55,6 +55,17 @@ class LHPController extends Controller
             'lhp_file' => $filePath,
             'keterangan' => $request->keterangan,
         ]);
+        // --- [MODIFIKASI] ---
+        $task = Task::find($request->task_id);
+        $inspekturs = User::where('role', 'inspektur')->get();
+        foreach ($inspekturs as $inspektur) {
+            Notification::create([
+                'user_id' => $inspektur->id,
+                'message' => 'LHP baru untuk tugas "' . $task->assignment_type . '" telah dibuat dan perlu persetujuan.',
+                'url'     => route('lhp.index'),
+            ]);
+        }
+        // --- [AKHIR MODIFIKASI] ---
 
         return redirect()->route('lhp.index')->with('success', 'LHP berhasil ditambahkan.');
     }
