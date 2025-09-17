@@ -347,6 +347,16 @@ class TaskController extends Controller
                 ]);
             }
 
+            // Kirim notifikasi ke semua Admin
+            $admins = User::where('role', 'admin')->get();
+            foreach ($admins as $admin) {
+                Notification::create([
+                    'user_id' => $admin->id,
+                    'message' => 'Tugas "' . $task->assignment_type . '" disetujui oleh Sekretaris.',
+                    'url'     => route('task.index'),
+                ]);
+            }
+
             // Redirect dengan pesan sukses
             return redirect()->route('pertimbangan')->with('success', 'Tugas berhasil disetujui oleh Sekretaris.');
         }

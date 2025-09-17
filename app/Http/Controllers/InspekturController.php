@@ -71,15 +71,28 @@ class InspekturController extends Controller
         // Update status tugas menjadi 'Disetujui Inspektur'
         $task->status = 'Disetujui Inspektur';
         $task->save();
-        $adminsAndSecretaries = User::whereIn('role', ['admin', 'sekretaris'])->get();
 
-        foreach ($adminsAndSecretaries as $user) {
+       // --- [MODIFIKASI] ---
+        // Kirim notifikasi ke semua Admin
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
             Notification::create([
-                'user_id' => $user->id,
+                'user_id' => $admin->id,
                 'message' => 'Tugas "' . $task->assignment_type . '" telah disetujui oleh Inspektur.',
-                'url' => $user->role === 'admin' ? route('task.index') : route('sekretaris.task.view'),
+                'url'     => route('task.index'),
             ]);
         }
+
+        // Kirim notifikasi ke semua Sekretaris
+        $sekretarisUsers = User::where('role', 'sekretaris')->get();
+        foreach ($sekretarisUsers as $sekretaris) {
+            Notification::create([
+                'user_id' => $sekretaris->id,
+                'message' => 'Tugas "' . $task->assignment_type . '" telah disetujui oleh Inspektur.',
+                'url'     => route('sekretaris.task.view'),
+            ]);
+        }
+        // --- [AKHIR MODIFIKASI] ---
 
         return redirect()->back()->with('success', 'Tugas berhasil disetujui.');
     }
@@ -115,6 +128,14 @@ class InspekturController extends Controller
         $pelaporan = Pelaporan::findOrFail($id);
         $pelaporan->status = 'ACC'; // Status diubah menjadi ACC
         $pelaporan->save();
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'Pelaporan untuk tugas "' . $pelaporan->task->assignment_type . '" telah di-ACC.',
+                'url'     => route('pelaporan.index'),
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Pelaporan telah di-ACC.');
     }
@@ -125,6 +146,15 @@ class InspekturController extends Controller
         $pelaporan->status = 'Ditolak'; // Status diubah menjadi Ditolak
         $pelaporan->alasan_tolak = $request->alasan_tolak; // Simpan alasan penolakan
         $pelaporan->save();
+        
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'Pelaporan untuk tugas "' . $pelaporan->task->assignment_type . '" telah DITOLAK.',
+                'url'     => route('pelaporan.index'),
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Pelaporan telah ditolak dengan alasan.');
     }

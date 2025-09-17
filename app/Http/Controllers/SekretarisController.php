@@ -12,6 +12,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Notification;
+use App\Models\User;
 
 class SekretarisController extends Controller
 {
@@ -227,6 +229,16 @@ class SekretarisController extends Controller
                     'file_path' => $filePath,  // Path file
                     'uploaded_by' => auth()->id(),  // ID user yang mengunggah file
                 ]);
+
+                $admins = User::where('role', 'admin')->get();
+                foreach ($admins as $admin) {
+                    Notification::create([
+                        'user_id' => $admin->id,
+                        'message' => 'SPT baru untuk tugas "' . $task->assignment_type . '" telah diunggah.',
+                        'url'     => route('spt.index'),
+                    ]);
+                }
+                // --- [AKHIR MODIFIKASI] ---
 
                 // Redirect ke halaman lain dengan pesan sukses
                 return redirect()->route('pertimbangan', $task->id)->with('success', 'SPT berhasil diunggah.');

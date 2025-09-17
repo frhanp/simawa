@@ -160,6 +160,15 @@ class PelaporanController extends Controller
         $pelaporan->status = 'Dikonfirmasi Inspektur'; // [PERUBAHAN STATUS]
         $pelaporan->save();
 
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'Jadwal expose tugas "' . $pelaporan->task->assignment_type . '" telah DIKONFIRMASI.',
+                'url'     => route('pelaporan.index'),
+            ]);
+        }
+
         // 3) Kembali ke index dengan pesan sukses
         return back()->with('success', 'Jadwal expose dikonfirmasi.');
     }
@@ -189,6 +198,15 @@ class PelaporanController extends Controller
         $pelaporan->status         = 'Dijadwalkan Ulang';            // ubah status
         $pelaporan->catatan_jadwal = $data['catatan_jadwal'] ?? null;
         $pelaporan->save();
+
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'Jadwal expose tugas "' . $pelaporan->task->assignment_type . '" DIJADWALKAN ULANG.',
+                'url'     => route('pelaporan.index'),
+            ]);
+        }
         // =======================================================
 
         return back()->with('success', 'Tanggal expose diubah.');

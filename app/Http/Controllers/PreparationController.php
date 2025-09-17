@@ -126,6 +126,15 @@ class PreparationController extends Controller
         $preparation->note = $request->input('note'); // Opsional: Catatan Inspektur
         $preparation->save();
 
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'Persiapan untuk tugas "' . $preparation->spt->task->assignment_type . '" telah DISETUJUI.',
+                'url'     => route('preparations'),
+            ]);
+        }
+
         // Optional: Kirim notifikasi ke pengguna terkait
 
         return redirect()->route('inspektur.preparations.index')->with('success', 'Persiapan SPT telah disetujui.');
@@ -153,6 +162,14 @@ class PreparationController extends Controller
         $preparation->status = 'Ditolak';
         $preparation->note = $request->input('note');
         $preparation->save();
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'Persiapan untuk tugas "' . $preparation->spt->task->assignment_type . '" telah DITOLAK.',
+                'url'     => route('preparations'),
+            ]);
+        }
 
         // Optional: Kirim notifikasi ke pengguna terkait
 
