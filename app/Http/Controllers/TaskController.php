@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\SPT;
 use App\Models\Task;
 use App\Models\Orang;
+use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -113,6 +115,17 @@ class TaskController extends Controller
             'number_of_days' => $validatedData['number_of_days'],
             'created_by' => $validatedData['created_by'],
         ]);
+
+        $secretaries = User::where('role', 'sekretaris')->get();
+        foreach ($secretaries as $secretary) {
+            Notification::create([
+                'user_id' => $secretary->id,
+                'message' => 'Perencanaan tugas baru "' . $task->assignment_type . '" perlu pertimbangan.',
+                'url' => route('pertimbangan'), // Arahkan ke halaman pertimbangan sekretaris
+            ]);
+        }
+
+
 
         return redirect()->route('task.index')->with('success', 'Tugas berhasil disimpan!');
     }

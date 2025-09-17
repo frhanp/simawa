@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orang;
 use App\Models\Task;
+use App\Models\Notification;
 
 class TaskController extends Controller
 {
@@ -45,6 +46,7 @@ class TaskController extends Controller
             'lockedIds'
         ));
     }
+
     public function store(Request $request)
     {
         // Validasi tanpa kolom 'status'
@@ -72,6 +74,7 @@ class TaskController extends Controller
             'penunjang' => $validatedData['penunjang'], // Array penunjang
         ];
 
+
         // Memasukkan data ke dalam table tasks
         $task = Task::create([
             'assignment_type' => $validatedData['assignment_type'],
@@ -79,6 +82,33 @@ class TaskController extends Controller
             'number_of_days' => $validatedData['number_of_days'],
             'created_by' => $validatedData['created_by'],
         ]);
+
+        // --- TAMBAHAN: Logika Notifikasi yang Disesuaikan ---
+        // 1. Kumpulkan semua ID pengguna dari semua peran ke dalam satu array
+        $allUserIds = array_merge(
+            [$validatedData['penanggung_jawab']],
+            [$validatedData['ketua_tim']],
+            [$validatedData['wakil_penanggung_jawab']],
+            $validatedData['anggota_tim'],
+            $validatedData['pengendali_teknis'],
+            $validatedData['penunjang']
+        );
+
+        // 2. Hilangkan ID yang duplikat
+        $uniqueUserIds = array_unique($allUserIds);
+
+        // 3. Buat notifikasi untuk setiap pengguna unik
+        foreach ($uniqueUserIds as $userId) {
+            // Pastikan user ID valid sebelum membuat notifikasi
+            if ($userId) {
+                Notification::create([
+                    'user_id' => $userId,
+                    'message' => 'Anda ditugaskan pada tugas baru: "' . $task->assignment_type . '".',
+                    'url' => route('inspektur.tasks.index'), // Arahkan ke daftar tugas inspektur
+                ]);
+            }
+        }
+        // --- AKHIR TAMBAHAN ---
 
         return redirect()->route('sekretaris.task.view')->with('success', 'Tugas berhasil disimpan!');
     }

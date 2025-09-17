@@ -11,6 +11,8 @@ use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\PelaksanaanController;
 use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\OrangController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
 
 
 /*
@@ -34,9 +36,8 @@ Route::get('/login', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,7 +46,7 @@ Route::middleware('auth')->group(function () {
     //rute pertimbangan
     Route::get('/task/sekretaris/{id}/accept', [TaskController::class, 'acceptForSekretaris'])->name('task.sekretaris.accept');
     //Route::get('/task/sekretaris/{id}/reject', [TaskController::class, 'rejectForSekretaris'])->name('task.sekretaris.reject');
-
+    Route::get('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 
     // Route untuk sekretaris menolak tugas dengan alasan
     Route::post('/task/sekretaris/reject', [TaskController::class, 'rejectWithReason'])->name('task.sekretaris.reject');
@@ -108,6 +109,7 @@ Route::prefix('admin')->middleware(['is_admin'])->group(function () {
 
 // Grup rute untuk Inspektur
 Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur.')->group(function () {
+    
     // Halaman persetujuan tugas
     Route::get('/approve', [InspekturController::class, 'approveInspektur'])->name('approve_inspektur');
 

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 use App\Models\LhpOtp;
 use Illuminate\Support\Facades\Log;
+use App\Models\Notification;
+use App\Models\User;
 
 
 class LHPController extends Controller
@@ -109,6 +111,15 @@ class LHPController extends Controller
         $lhp = Lhp::findOrFail($id);
         $lhp->status = 'disetujui';
         $lhp->save();
+
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'LHP untuk tugas "' . $lhp->task->assignment_type . '" telah disetujui.',
+                'url' => route('lhp.index'),
+            ]);
+        }
 
         return redirect()->route('lhp.index')->with('success', 'LHP disetujui');
     }

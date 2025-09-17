@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-09-06 11:32:19_
+_Generated: 2025-09-17 21:34:27_
 **Root:** D:\Laragon\www\simawa
 
 
@@ -7,6 +7,7 @@ _Generated: 2025-09-06 11:32:19_
 ```
 .git
 app
+baileys-server
 bootstrap
 config
 database
@@ -51,6 +52,7 @@ app\Http\Controllers\Auth
 app\Http\Controllers\Sekretaris
 app\Http\Controllers\AdminController.php
 app\Http\Controllers\Controller.php
+app\Http\Controllers\DashboardController.php
 app\Http\Controllers\InspekturController.php
 app\Http\Controllers\LHPController.php
 app\Http\Controllers\OrangController.php
@@ -88,6 +90,8 @@ app\Http\Requests\Auth\LoginRequest.php
 app\Models\Assignment.php
 app\Models\EntryMeeting.php
 app\Models\LHP.php
+app\Models\LhpOtp.php
+app\Models\Notification.php
 app\Models\Orang.php
 app\Models\Pelaksanaan.php
 app\Models\Pelaporan.php
@@ -103,6 +107,66 @@ app\Providers\RouteServiceProvider.php
 app\View\Components
 app\View\Components\AppLayout.php
 app\View\Components\GuestLayout.php
+baileys-server\baileys_auth_info
+baileys-server\node_modules
+baileys-server\package-lock.json
+baileys-server\package.json
+baileys-server\server.js
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4K.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4M.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4O.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4Q.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4R.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4S.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4T.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4U.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4V.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4W.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4X.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAAAAN4Y.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAcAAN4L.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAcAAN4N.json
+baileys-server\baileys_auth_info\app-state-sync-key-AAcAAN4P.json
+baileys-server\baileys_auth_info\app-state-sync-version-regular.json
+baileys-server\baileys_auth_info\app-state-sync-version-regular_low.json
+baileys-server\baileys_auth_info\creds.json
+baileys-server\baileys_auth_info\pre-key-1.json
+baileys-server\baileys_auth_info\pre-key-10.json
+baileys-server\baileys_auth_info\pre-key-11.json
+baileys-server\baileys_auth_info\pre-key-12.json
+baileys-server\baileys_auth_info\pre-key-13.json
+baileys-server\baileys_auth_info\pre-key-14.json
+baileys-server\baileys_auth_info\pre-key-15.json
+baileys-server\baileys_auth_info\pre-key-16.json
+baileys-server\baileys_auth_info\pre-key-17.json
+baileys-server\baileys_auth_info\pre-key-18.json
+baileys-server\baileys_auth_info\pre-key-19.json
+baileys-server\baileys_auth_info\pre-key-2.json
+baileys-server\baileys_auth_info\pre-key-20.json
+baileys-server\baileys_auth_info\pre-key-21.json
+baileys-server\baileys_auth_info\pre-key-22.json
+baileys-server\baileys_auth_info\pre-key-23.json
+baileys-server\baileys_auth_info\pre-key-24.json
+baileys-server\baileys_auth_info\pre-key-25.json
+baileys-server\baileys_auth_info\pre-key-26.json
+baileys-server\baileys_auth_info\pre-key-27.json
+baileys-server\baileys_auth_info\pre-key-28.json
+baileys-server\baileys_auth_info\pre-key-29.json
+baileys-server\baileys_auth_info\pre-key-3.json
+baileys-server\baileys_auth_info\pre-key-30.json
+baileys-server\baileys_auth_info\pre-key-4.json
+baileys-server\baileys_auth_info\pre-key-5.json
+baileys-server\baileys_auth_info\pre-key-6.json
+baileys-server\baileys_auth_info\pre-key-7.json
+baileys-server\baileys_auth_info\pre-key-8.json
+baileys-server\baileys_auth_info\pre-key-9.json
+baileys-server\baileys_auth_info\session-6285179841091.0.json
+baileys-server\baileys_auth_info\session-6285179841091.16.json
+baileys-server\baileys_auth_info\session-6285179841091.17.json
+baileys-server\baileys_auth_info\session-6285179841091.7.json
+baileys-server\baileys_auth_info\session-6285342513758.0.json
+baileys-server\baileys_auth_info\session-6285342513758.39.json
+baileys-server\baileys_auth_info\session-6285342513758.40.json
 bootstrap\cache
 bootstrap\app.php
 bootstrap\cache\.gitignore
@@ -154,6 +218,9 @@ database\migrations\2024_12_24_172044_change_team_composition_column_type_in_tas
 database\migrations\2024_12_24_172921_create_orang_table.php
 database\migrations\2025_08_23_144728_add_catatan_jadwal_to_pelaporans.php
 database\migrations\2025_08_23_152126_alter_status_enum_on_pelaporans.php
+database\migrations\2025_09_06_064610_add_phone_number_to_users_table.php
+database\migrations\2025_09_06_064619_create_lhp_otps_table.php
+database\migrations\2025_09_17_131621_create_notifications_table.php
 database\seeders\DatabaseSeeder.php
 database\seeders\OrangSeeder.php
 database\seeders\UserSeeder.php
@@ -182,6 +249,7 @@ resources\js\bootstrap.js
 resources\views\admin
 resources\views\auth
 resources\views\components
+resources\views\dashboard
 resources\views\inspektur
 resources\views\layouts
 resources\views\lhp
@@ -220,6 +288,9 @@ resources\views\components\primary-button.blade.php
 resources\views\components\responsive-nav-link.blade.php
 resources\views\components\secondary-button.blade.php
 resources\views\components\text-input.blade.php
+resources\views\dashboard\admin.blade.php
+resources\views\dashboard\inspektur.blade.php
+resources\views\dashboard\sekretaris.blade.php
 resources\views\inspektur\orang
 resources\views\inspektur\approve_inspektur.blade.php
 resources\views\inspektur\orang\create.blade.php
@@ -275,11 +346,13 @@ storage\app\public\berita_acara_entry
 storage\app\public\berita_acara_exit
 storage\app\public\entry_meeting_photos
 storage\app\public\exit_meeting_photos
+storage\app\public\lhp_files
 storage\app\public\preparations
 storage\app\public\spt_files
 storage\app\public\uploads
 storage\app\public\.gitignore
 storage\app\public\berita_acara_entry\858lfqSb9VtNMhrUEFY8Pa6hkqYCqXyiRRKW9yY0.pdf
+storage\app\public\berita_acara_entry\aidKVYRnhrqx8QmNAeV7geOuYVX8M3mczqSh2qv5.pdf
 storage\app\public\berita_acara_entry\BQDPr1QSKstrWnbu3hcvh5o6JhwpGAL9MfwVW0dw.docx
 storage\app\public\berita_acara_entry\fsgIjz6LiklN9iD8wjv5pMhcmjHKAbTzCKvOBQLS.docx
 storage\app\public\berita_acara_entry\HAfBBYS1HJyZjsznr0LOLES9PC2JRyiWTgSxQudl.pdf
@@ -288,6 +361,7 @@ storage\app\public\berita_acara_entry\JYh2eElzeMkJWBTOatMDVPuv0Y0N5wOKEmzivUvL.p
 storage\app\public\berita_acara_entry\notYv2ZPCcW3F6Pkdjqd7yuPjY1QNWYZtEX2HPOi.docx
 storage\app\public\berita_acara_entry\P0zHlmuyVpPrVrlKsxeTgTiQCfP4mOZqipYtKOYE.pdf
 storage\app\public\berita_acara_entry\rdxOwd80IWweB51K9uqnohEl5t8ofE7PwzatyXEy.docx
+storage\app\public\berita_acara_exit\57LewcJaEsUXtRZdmhV6Y3qlaHlHLglJpikmypcr.pdf
 storage\app\public\berita_acara_exit\5PmroIbrY6e4Z0Yh8CWa64NbmP0Qksp8bGX8k71d.pdf
 storage\app\public\berita_acara_exit\9GxIi21pKgSeWdHaMM4yb24UiPqoPnQDDZFnN0uB.pdf
 storage\app\public\berita_acara_exit\eEEvD0scsj3q1FO3kyM6ALvosCBfK7CwTP17Syid.docx
@@ -303,6 +377,7 @@ storage\app\public\entry_meeting_photos\Hdtokg6HxIdh3w4sYQYnrHqj1DZpeXHxegw4F3WK
 storage\app\public\entry_meeting_photos\jja9uNktHfODSw4xRg0I6HWOCZ8vlp7RujjVs3rP.png
 storage\app\public\entry_meeting_photos\jjy9CfVtrNpPTq4rCmpRGeO20ixVp3vwe1w1wqNz.png
 storage\app\public\entry_meeting_photos\LXRdINCKdTRs9pCjtzWA2GbAdjmeXs7rFmQIyeWj.png
+storage\app\public\entry_meeting_photos\PFLl75nhIG3z1hO68Bysxpp31VbVgHRkfXvpEEOW.jpg
 storage\app\public\entry_meeting_photos\vkNIspECSsrqc0RLkD4xjtsJ6QsAS48R35cg9jND.png
 storage\app\public\entry_meeting_photos\Z8uo1CHJLWDlr3ajVWVSaKYtqCXOn8JcptN7HZN9.png
 storage\app\public\entry_meeting_photos\zgxNwwLfNkyGdpfDHYqQ1iyCGumMajhRwKYK7Yyo.jpg
@@ -314,9 +389,12 @@ storage\app\public\exit_meeting_photos\GhclAGaenVcSTe1txxb3HwKqyS2ltNRaoZ2SawvA.
 storage\app\public\exit_meeting_photos\hDK31C5H873Xfsz919pNIRw7Q0unGrTXtfLgaDsS.png
 storage\app\public\exit_meeting_photos\kdmaElYdchjlRz3Y6GB2t1Rm2yMbhibFXERL8b5u.png
 storage\app\public\exit_meeting_photos\rqraSoTORhBPXrp0EsO2R28okU7Hch57PFpRIFAn.png
+storage\app\public\exit_meeting_photos\U2sZyb5NSzwIva6irwdNufoLCU3s3rDEMNOOMCqY.jpg
 storage\app\public\exit_meeting_photos\VoonDSMZ7KjRHqDzOXJ4rDFXIIBUS0pDyUggO9So.png
+storage\app\public\lhp_files\KR7mS8KR201iOwvDHxUNbMY3zvlmrg4248CsZiyb.pdf
 storage\app\public\preparations\formulir_km4
 storage\app\public\preparations\pka
+storage\app\public\preparations\formulir_km4\6B352lbZIUG4dmt0QosOPnpcKIc9lTY4BL9DtN4o.pdf
 storage\app\public\preparations\formulir_km4\KHfUC1vRVv4wJCUDNlm4VAVE4u9eYSy7JvkVvTxf.pdf
 storage\app\public\preparations\formulir_km4\nrkYleRIT6WpClF5dA1TSWu0tOQbT4JpL9ieftMB.pdf
 storage\app\public\preparations\formulir_km4\PDR0x4aaxM8DAAW71XpPRe3yTEHpSfsGA6Dr3ERl.docx
@@ -336,6 +414,7 @@ storage\app\public\preparations\pka\CdVbCvqx2KBT7nKXuCOQ1HJuLYi5EGucp1vi7CTk.pdf
 storage\app\public\preparations\pka\DxFlXFqLvzAVd1qHHvREfRf9bXrudOyaS7GG06kN.pdf
 storage\app\public\preparations\pka\HBXO3zCqeBZBoaS5Oz7I9xNnPvceatVWj6WJ5yIH.docx
 storage\app\public\preparations\pka\JQB4mgsVn4KxAdXAAgqDDdcN62PfCQIBRoCysZHx.pdf
+storage\app\public\preparations\pka\x7fy5tnSWMIwhGzJlBH2QrmYFzhCxhQaiZsjaS5x.pdf
 storage\app\public\preparations\pka\yS8eeTGPSS0uiGcsuDMlIf8bQJ6EP3SGkDqqw0dI.pdf
 storage\app\public\spt_files\1729505787_LAPORAN_AUDIT_UPA_PERPUSTAKAAN.docx
 storage\app\public\spt_files\1729505824_audit.pdf
@@ -345,6 +424,7 @@ storage\app\public\spt_files\1729737649_document.pdf
 storage\app\public\spt_files\1729746974_mqSh9nZ7LH1jjiPx5jGGqianrKkA0RvCBxRJTnS8.docx
 storage\app\public\spt_files\1735469026_document_39.pdf
 storage\app\public\spt_files\1753715816_PERNYATAAN_BUKAN_PNS.pdf
+storage\app\public\spt_files\1757139834_komposisi_tim_1.pdf
 storage\app\public\uploads\lhp
 storage\app\public\uploads\pelaporan
 storage\app\public\uploads\lhp\3coNH7Yp0fWA1CZh2Q317sQmJ9xsK9jalgPRhjW8.docx
@@ -356,10 +436,12 @@ storage\app\public\uploads\lhp\fKV7BeVutKkL3Yks8rDmtspJj7w925owuFo1KuSY.pdf
 storage\app\public\uploads\lhp\gAsTeXOepy8I8ejHXv9yZdEqUm5dLAjHITOLKdw8.pdf
 storage\app\public\uploads\lhp\jlGxqvvZcGdHv2jokP3obua3iBX9JVD2KlM7Zsv2.docx
 storage\app\public\uploads\lhp\kUvsDJtAc05OFnmJi7THJTVd7zuYoVBX4lkwsbJr.pdf
+storage\app\public\uploads\lhp\NpISWMrnajtv7pcmsKt3CcAKAZfp2QROBvCUUUmE.pdf
 storage\app\public\uploads\lhp\qCHV832YqV2Oj87dfAcDZHNc34XOMiNDKJGofdrW.pdf
 storage\app\public\uploads\pelaporan\0GjWqgPBahNBKxe32807MGl3aAXrAKqsM9Z4YKsj.pdf
 storage\app\public\uploads\pelaporan\16AqappHIJJNcY56nroYLuf8fgrtU7BsXbf6gQIT.pdf
 storage\app\public\uploads\pelaporan\2Mze4e6wESnByBEh8p8ndZtbMzEFVOwEagowbXVE.docx
+storage\app\public\uploads\pelaporan\2vVaY7bmkNPX069zLZIHpxG0wHCojIHsKxohjIem.docx
 storage\app\public\uploads\pelaporan\4fS4ykOSUNvCF4lRGtILLF4aX5GkEIKblgpVZZKY.pdf
 storage\app\public\uploads\pelaporan\5AMOjoypdwovnpU5ZtrBDxJ1UFUsUfcgjklPue7r.docx
 storage\app\public\uploads\pelaporan\6X77keifZm7d5kNOGTuH76KOsinps3GHsZhGhdr3.pdf
@@ -382,6 +464,7 @@ storage\app\public\uploads\pelaporan\hULjuip9OxIBu10MgIPMHiyN3OQq08KxdK3jKOv0.pd
 storage\app\public\uploads\pelaporan\iglKtDiYEGvzyO8B1qwLdBQRoTP9HdZpiq7JFpy0.pdf
 storage\app\public\uploads\pelaporan\iwY390yYWwRIVhXmZM6AV4mPvi9mh2CKK7bxu7An.pdf
 storage\app\public\uploads\pelaporan\jgTCagI4Jl1WGEFRhBORspf2Ov04NnaIf2JO30cb.pdf
+storage\app\public\uploads\pelaporan\JIvvFY7gl0CNrSlTEjPEolq8iVJM23J4VyKnxOY0.pdf
 storage\app\public\uploads\pelaporan\LINnsHEYFdDqlXeXwFAxSojHKCROAIPD1ZkfxyQr.pdf
 storage\app\public\uploads\pelaporan\LqGD6HN8M69JRtnlGVIH8dfrSGNKuxlnhVa5bJtu.pdf
 storage\app\public\uploads\pelaporan\mbvyuxexUPbgiTjfaiKOQkfxNtSRiGoa1FGsKwua.pdf
@@ -400,8 +483,10 @@ storage\app\public\uploads\pelaporan\RU48iq5mpU01UmD19hjpmwVgqKdwQzHBAO4MhIqH.pd
 storage\app\public\uploads\pelaporan\RVrlbqaTeANkStRjZX0OUIPWQLE6gA6sHwL2GOnK.pdf
 storage\app\public\uploads\pelaporan\RzfyQhMi3r7jNj1zDgfpxvT85xoq8n2NHDSt3MWw.pdf
 storage\app\public\uploads\pelaporan\S856IsGOgWHEAsN1wg7ktFf1CdIbjVzmD01RZF3l.pdf
+storage\app\public\uploads\pelaporan\TuMyH53zTZ6G1AmcYSUc9D8tZP3Gcz1rJOrMKwcD.pdf
 storage\app\public\uploads\pelaporan\uC9PL6NAiUAzXKmfUEpfMfuwM5Cbnh4h0XScad2J.pdf
 storage\app\public\uploads\pelaporan\UOgqFHZkxcg7tMxe280WrP96JVFBQJPP7PLrMSzI.docx
+storage\app\public\uploads\pelaporan\vDTY3s9UFqQaJEC5hYe19V9KFbjUToJygDLoemH5.pdf
 storage\app\public\uploads\pelaporan\VFWJ31Zu3uhST6EsGsHcqPzVZ4i79vs7AOzG7XdA.pdf
 storage\app\public\uploads\pelaporan\vKQsOwhhbmmO4a4wRLVoDpwGQdVBw51QR6Xs6Zj9.pdf
 storage\app\public\uploads\pelaporan\w34YxECpO1wHkaI1j77rPMMjJGhBDpH4uLWDNgg0.pdf
@@ -432,10 +517,17 @@ storage\framework\cache\data\5d\fc
 storage\framework\cache\data\6b\c5
 storage\framework\cache\data\dc\4a
 storage\framework\sessions\.gitignore
-storage\framework\sessions\1SqMoOz8550C85rphcQhNSwqMjTiPylIXXQMWxjl
-storage\framework\sessions\dz0iZfhvowkW4sSuc0sMSQIhcr9NfzTr0XV6ow45
-storage\framework\sessions\Udlfy1LlLayC5lynZSAmMi6zuMoT1CRN2Kl1pTTs
-storage\framework\sessions\xUmzN9yejXOjFuG5GlmnMsZp1ZNnSUaMzUZrXVbe
+storage\framework\sessions\7iJRZpPYlxB1jWhHfGsW8ShsfBV9gcsMGIUPLRFV
+storage\framework\sessions\EWmJWffnJQ2JkYc8Wu5crfSSMqqXnNJhWqzr4vuq
+storage\framework\sessions\jPS5ZG87Sbw3G7z78yVrDVSzgSFL69SHUNNVK9LZ
+storage\framework\sessions\LP1O1yn3MS5UtcatDLsqVEmYrpFn96lLIXJb4W0A
+storage\framework\sessions\Lymwtb2qTEKb9TbfV7fL68ifHsAp7LyvQCoX50qm
+storage\framework\sessions\MQlAwwM2ALAnEcY6uiBSXlHk9MffuKzcerr9sG1m
+storage\framework\sessions\mqUodbJA7G0aKuBPaGKcK1CmrCPHKAcTvynDLQC4
+storage\framework\sessions\OprzygZ4W7FI0WYDJIoOnaeFAntbnI2Ez78EFXEH
+storage\framework\sessions\p5X5b2kUr89DqYcol9KVGGqoP0iukiRVFJiQVcfH
+storage\framework\sessions\tfwaJIEyNt1NDfUWgZgMjFm4mpvPq9P11UQqpEKA
+storage\framework\sessions\wPCkWnZ8XzUsfq9fNB0LTNvqCgLxpGy0UUB1tfDJ
 storage\framework\testing\.gitignore
 storage\framework\views\.gitignore
 storage\framework\views\001cb81e1afba3b8d5675e0496c5347d.php
@@ -462,6 +554,7 @@ storage\framework\views\41366b0dbf01c9e09f14970cc6721b90.php
 storage\framework\views\43275602a39382386a707c5fcc4ed110.php
 storage\framework\views\43702a28f27a884bd3bf76246296158b.php
 storage\framework\views\446a1881fb4dfe7fdd02779004b302d1.php
+storage\framework\views\4572a8a815e9b553cec092e523d7134b.php
 storage\framework\views\50802ededb51788eded50c4f9fa5e2ae.php
 storage\framework\views\5458ce64c5666bda60a860f2637dde71.php
 storage\framework\views\57ee91cd628703987ae586e1899ae24b.php
@@ -498,6 +591,7 @@ storage\framework\views\a4b8df39fc2fc7bd77de40e1728506f4.php
 storage\framework\views\a646a033151ea9d635dc383747aff02e.php
 storage\framework\views\a7c1c12690b36cc3d74f04f97879cd36.php
 storage\framework\views\a7d1412c273c41a65a2cc0fbc4dfcf35.php
+storage\framework\views\a92d77b3d0f61c0d8077ec4c3326ac32.php
 storage\framework\views\ab308be6fc63e48096523f1c8abe7325.php
 storage\framework\views\b00e8de0ca126c9dbd1ebbcfc33f9a78.php
 storage\framework\views\b0f5893baddc3aa76b9a8450522dd3fc.php
@@ -524,6 +618,7 @@ storage\framework\views\ecc13eea0c775ac1fcacd4b2707fcece.php
 storage\framework\views\ed751d4b0363e82e3ff9f4f975e3612e.php
 storage\framework\views\ed8b33204dcfe3f283d900c292c0bd15.php
 storage\framework\views\f92428ccc800eed1eff6734b15661c01.php
+storage\framework\views\fab38667166317a5a840879ec53347ce.php
 storage\framework\views\fcc62738355fae8f50ac41072f4f864c.php
 tests\Feature
 tests\Unit
@@ -552,11 +647,11 @@ Branch:
 main
 
 Last 5 commits:
+a529d5b implementasi OTP
+bfe93f5 testing 1
 4438f80 test
 ca5b637 revisi migrate
 058125b penugasan di sekretaris
-74be965 hapus route
-b396957 buat jadi lock
 ```
 
 
@@ -713,6 +808,7 @@ use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\PelaksanaanController;
 use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\OrangController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -736,9 +832,8 @@ Route::get('/login', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -767,6 +862,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('lhp', LHPController::class);
     Route::post('/lhp/{id}/acc', [LHPController::class, 'acc'])->name('lhp.acc');
     Route::post('/lhp/reject', [LHPController::class, 'reject'])->name('lhp.reject');
+
+    // ROUTE BARU UNTUK OTP LHP
+    Route::post('/lhp/{lhp}/send-otp', [LHPController::class, 'sendOtp'])->name('lhp.sendOtp');
+    Route::post('/lhp/{lhp}/verify-otp', [LHPController::class, 'verifyOtp'])->name('lhp.verifyOtp');
+    Route::get('/lhp/{lhp}/view-file', [LHPController::class, 'viewFile'])->name('lhp.viewFile');
 });
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     Route::get('/task/planning', [TaskController::class, 'planning'])->name('task.planning');
@@ -805,6 +905,7 @@ Route::prefix('admin')->middleware(['is_admin'])->group(function () {
 
 // Grup rute untuk Inspektur
 Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur.')->group(function () {
+    
     // Halaman persetujuan tugas
     Route::get('/approve', [InspekturController::class, 'approveInspektur'])->name('approve_inspektur');
 
@@ -883,6 +984,124 @@ require __DIR__ . '/auth.php';
 
 
 ## Routes (from command)
+```
+
+  GET|HEAD        / .............................................................................................................................. 
+  GET|HEAD        _debugbar/assets/javascript ........................................ debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ..................................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} ............................... debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} .............................. debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ......................................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ............................. debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  POST            _ignition/execute-solution ....................... ignition.executeSolution ΓÇ║ Spatie\LaravelIgnition ΓÇ║ ExecuteSolutionController
+  GET|HEAD        _ignition/health-check ................................... ignition.healthCheck ΓÇ║ Spatie\LaravelIgnition ΓÇ║ HealthCheckController
+  POST            _ignition/update-config ................................ ignition.updateConfig ΓÇ║ Spatie\LaravelIgnition ΓÇ║ UpdateConfigController
+  GET|HEAD        admin/admin/entry-meeting ................................................... admin.entry-meeting ΓÇ║ AdminController@entryMeeting
+  POST            admin/admin/entry-meeting/store .................................. admin.entry-meeting.store ΓÇ║ AdminController@storeEntryMeeting
+  GET|HEAD        admin/admin/km4 ................................................................................ admin.km4 ΓÇ║ AdminController@km4
+  POST            admin/admin/km4/store ............................................................... admin.km4.store ΓÇ║ AdminController@storeKM4
+  POST            admin/admin/persiapan/store ............................................. admin.persiapan.store ΓÇ║ AdminController@storePersiapan
+  GET|HEAD        admin/admin/persiapan/{id} ......................................................... admin.persiapan ΓÇ║ AdminController@persiapan
+  GET|HEAD        admin/admin/pka ................................................................................ admin.pka ΓÇ║ AdminController@pka
+  POST            admin/admin/pka/store ............................................................... admin.pka.store ΓÇ║ AdminController@storePKA
+  GET|HEAD        admin/preparations ............................................................. preparations ΓÇ║ PreparationController@adminIndex
+  GET|HEAD        admin/spt ................................................................................. spt.index ΓÇ║ AdminController@indexSPT
+  GET|HEAD        admin/spt/view ........................................................................... task.ViewSpt ΓÇ║ TaskController@viewSPT
+  GET|HEAD        admin/task/planning .................................................................... task.planning ΓÇ║ TaskController@planning
+  POST            admin/task/store ............................................................................. task.store ΓÇ║ TaskController@store
+  GET|HEAD        admin/task/view ............................................................................... task.index ΓÇ║ TaskController@view
+  PUT             admin/tasks/{id} ........................................................................... task.update ΓÇ║ TaskController@update
+  DELETE          admin/tasks/{id} ......................................................................... task.destroy ΓÇ║ TaskController@destroy
+  GET|HEAD        admin/tasks/{id}/edit .......................................................................... task.edit ΓÇ║ TaskController@edit
+  GET|HEAD        api/user ....................................................................................................................... 
+  GET|HEAD        confirm-password .................................................... password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password ...................................................................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ................................................................................ dashboard ΓÇ║ DashboardController@index
+  POST            email/verification-notification ......................... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password ..................................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password ........................................................ password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        inspektur/approve ........................................... inspektur.approve_inspektur ΓÇ║ InspekturController@approveInspektur
+  GET|HEAD        inspektur/approve-task/{id} ................................................ inspektur.approve ΓÇ║ InspekturController@approveTask
+  GET|HEAD        inspektur/orang .................................................................. inspektur.orang.index ΓÇ║ OrangController@index
+  POST            inspektur/orang .................................................................. inspektur.orang.store ΓÇ║ OrangController@store
+  GET|HEAD        inspektur/orang/create ......................................................... inspektur.orang.create ΓÇ║ OrangController@create
+  PUT|PATCH       inspektur/orang/{orang} ........................................................ inspektur.orang.update ΓÇ║ OrangController@update
+  DELETE          inspektur/orang/{orang} ...................................................... inspektur.orang.destroy ΓÇ║ OrangController@destroy
+  GET|HEAD        inspektur/orang/{orang}/edit ....................................................... inspektur.orang.edit ΓÇ║ OrangController@edit
+  POST            inspektur/pelaporan/reject ............................................. inspektur.pelaporan.reject ΓÇ║ InspekturController@reject
+  POST            inspektur/pelaporan/{id}/acc ................................................. inspektur.pelaporan.acc ΓÇ║ InspekturController@acc
+  POST            inspektur/pelaporan/{id}/confirm ..................................... inspektur.pelaporan.confirm ΓÇ║ PelaporanController@confirm
+  POST            inspektur/pelaporan/{id}/reschedule ............................ inspektur.pelaporan.reschedule ΓÇ║ PelaporanController@reschedule
+  GET|HEAD        inspektur/penugasan .............................................................. inspektur.penugasan ΓÇ║ TaskController@planning
+  GET|HEAD        inspektur/penugasan/list ........................................................ inspektur.penugasan.list ΓÇ║ TaskController@view
+  GET|HEAD        inspektur/preparations .............................................. inspektur.preparations.index ΓÇ║ PreparationController@index
+  GET|HEAD        inspektur/preparations/{preparation} .................................. inspektur.preparations.show ΓÇ║ PreparationController@show
+  POST            inspektur/preparations/{preparation}/approve .................... inspektur.preparations.approve ΓÇ║ PreparationController@approve
+  POST            inspektur/preparations/{preparation}/reject ....................... inspektur.preparations.reject ΓÇ║ PreparationController@reject
+  POST            inspektur/reject-task ........................................................ inspektur.reject ΓÇ║ InspekturController@rejectTask
+  GET|HEAD        lhp ............................................................................................ lhp.index ΓÇ║ LHPController@index
+  POST            lhp ............................................................................................ lhp.store ΓÇ║ LHPController@store
+  GET|HEAD        lhp/create ................................................................................... lhp.create ΓÇ║ LHPController@create
+  POST            lhp/reject ................................................................................... lhp.reject ΓÇ║ LHPController@reject
+  POST            lhp/{id}/acc ....................................................................................... lhp.acc ΓÇ║ LHPController@acc
+  GET|HEAD        lhp/{lhp} ........................................................................................ lhp.show ΓÇ║ LHPController@show
+  PUT|PATCH       lhp/{lhp} .................................................................................... lhp.update ΓÇ║ LHPController@update
+  DELETE          lhp/{lhp} .................................................................................. lhp.destroy ΓÇ║ LHPController@destroy
+  GET|HEAD        lhp/{lhp}/edit ................................................................................... lhp.edit ΓÇ║ LHPController@edit
+  POST            lhp/{lhp}/send-otp ......................................................................... lhp.sendOtp ΓÇ║ LHPController@sendOtp
+  POST            lhp/{lhp}/verify-otp ................................................................... lhp.verifyOtp ΓÇ║ LHPController@verifyOtp
+  GET|HEAD        lhp/{lhp}/view-file ...................................................................... lhp.viewFile ΓÇ║ LHPController@viewFile
+  GET|HEAD        login ....................................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login ................................................................................ Auth\AuthenticatedSessionController@store
+  POST            logout .................................................................... logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  PUT             password ...................................................................... password.update ΓÇ║ Auth\PasswordController@update
+  GET|HEAD        pdf ............................................................................................................................ 
+  GET|HEAD        pelaksanaan .................................................................... pelaksanaan.index ΓÇ║ PelaksanaanController@index
+  POST            pelaksanaan .................................................................... pelaksanaan.store ΓÇ║ PelaksanaanController@store
+  GET|HEAD        pelaksanaan/create ........................................................... pelaksanaan.create ΓÇ║ PelaksanaanController@create
+  GET|HEAD        pelaksanaan/{pelaksanaan} ........................................................ pelaksanaan.show ΓÇ║ PelaksanaanController@show
+  PUT|PATCH       pelaksanaan/{pelaksanaan} .................................................... pelaksanaan.update ΓÇ║ PelaksanaanController@update
+  DELETE          pelaksanaan/{pelaksanaan} .................................................. pelaksanaan.destroy ΓÇ║ PelaksanaanController@destroy
+  GET|HEAD        pelaksanaan/{pelaksanaan}/edit ................................................... pelaksanaan.edit ΓÇ║ PelaksanaanController@edit
+  GET|HEAD        pelaporan .......................................................................... pelaporan.index ΓÇ║ PelaporanController@index
+  POST            pelaporan .......................................................................... pelaporan.store ΓÇ║ PelaporanController@store
+  GET|HEAD        pelaporan/create ................................................................. pelaporan.create ΓÇ║ PelaporanController@create
+  GET|HEAD        pelaporan/{pelaporan} ................................................................ pelaporan.show ΓÇ║ PelaporanController@show
+  PUT|PATCH       pelaporan/{pelaporan} ............................................................ pelaporan.update ΓÇ║ PelaporanController@update
+  DELETE          pelaporan/{pelaporan} .......................................................... pelaporan.destroy ΓÇ║ PelaporanController@destroy
+  GET|HEAD        pelaporan/{pelaporan}/edit ........................................................... pelaporan.edit ΓÇ║ PelaporanController@edit
+  GET|HEAD        penugasan/planning ............................................... sekretaris.task.planning ΓÇ║ Sekretaris\TaskController@planning
+  POST            penugasan/store ........................................................ sekretaris.task.store ΓÇ║ Sekretaris\TaskController@store
+  GET|HEAD        penugasan/view ........................................................... sekretaris.task.view ΓÇ║ Sekretaris\TaskController@view
+  PUT             penugasan/{task} ..................................................... sekretaris.task.update ΓÇ║ Sekretaris\TaskController@update
+  DELETE          penugasan/{task} ................................................... sekretaris.task.destroy ΓÇ║ Sekretaris\TaskController@destroy
+  GET|HEAD        penugasan/{task}/edit .................................................... sekretaris.task.edit ΓÇ║ Sekretaris\TaskController@edit
+  GET|HEAD        pertimbangan .................................................................. pertimbangan ΓÇ║ SekretarisController@pertimbangan
+  GET|HEAD        profile .................................................................................. profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile .............................................................................. profile.update ΓÇ║ ProfileController@update
+  DELETE          profile ............................................................................ profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ....................................................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ................................................................................... Auth\RegisteredUserController@store
+  POST            reset-password ............................................................... password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ...................................................... password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        sanctum/csrf-cookie .......................................... sanctum.csrf-cookie ΓÇ║ Laravel\Sanctum ΓÇ║ CsrfCookieController@show
+  GET|HEAD        spt/upload/{task} ....................................................... sekretaris.spt.upload ΓÇ║ SekretarisController@createSPT
+  POST            spt/upload/{task} ......................................................... sekretaris.spt.store ΓÇ║ SekretarisController@storeSPT
+  POST            spt/{spt}/preparations ........................................................ preparations.store ΓÇ║ PreparationController@store
+  GET|HEAD        spt/{spt}/preparations/create ............................................... preparations.create ΓÇ║ PreparationController@create
+  POST            task/sekretaris/reject ................................................ task.sekretaris.reject ΓÇ║ TaskController@rejectWithReason
+  GET|HEAD        task/sekretaris/{id}/accept ........................................ task.sekretaris.accept ΓÇ║ TaskController@acceptForSekretaris
+  GET|HEAD        tasks/{task}/create-pdf ............................................. task.sekretaris.create_pdf ΓÇ║ SekretarisController@showForm
+  POST            tasks/{task}/create-pdf .......................... task.sekretaris.create_pdf_with_data ΓÇ║ SekretarisController@createPdfWithData
+  GET|HEAD        verify-email ...................................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ...................................................... verification.verify ΓÇ║ Auth\VerifyEmailController
+
+                                                                                                                              Showing [109] routes
+
+```
+
+
+## Controllers Content
 ```
 ===== app\Http\Controllers\Auth\AuthenticatedSessionController.php =====
 <?php
@@ -1266,6 +1485,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orang;
 use App\Models\Task;
+use App\Models\Notification;
 
 class TaskController extends Controller
 {
@@ -1305,6 +1525,7 @@ class TaskController extends Controller
             'lockedIds'
         ));
     }
+
     public function store(Request $request)
     {
         // Validasi tanpa kolom 'status'
@@ -1332,6 +1553,7 @@ class TaskController extends Controller
             'penunjang' => $validatedData['penunjang'], // Array penunjang
         ];
 
+
         // Memasukkan data ke dalam table tasks
         $task = Task::create([
             'assignment_type' => $validatedData['assignment_type'],
@@ -1339,6 +1561,33 @@ class TaskController extends Controller
             'number_of_days' => $validatedData['number_of_days'],
             'created_by' => $validatedData['created_by'],
         ]);
+
+        // --- TAMBAHAN: Logika Notifikasi yang Disesuaikan ---
+        // 1. Kumpulkan semua ID pengguna dari semua peran ke dalam satu array
+        $allUserIds = array_merge(
+            [$validatedData['penanggung_jawab']],
+            [$validatedData['ketua_tim']],
+            [$validatedData['wakil_penanggung_jawab']],
+            $validatedData['anggota_tim'],
+            $validatedData['pengendali_teknis'],
+            $validatedData['penunjang']
+        );
+
+        // 2. Hilangkan ID yang duplikat
+        $uniqueUserIds = array_unique($allUserIds);
+
+        // 3. Buat notifikasi untuk setiap pengguna unik
+        foreach ($uniqueUserIds as $userId) {
+            // Pastikan user ID valid sebelum membuat notifikasi
+            if ($userId) {
+                Notification::create([
+                    'user_id' => $userId,
+                    'message' => 'Anda ditugaskan pada tugas baru: "' . $task->assignment_type . '".',
+                    'url' => route('inspektur.tasks.index'), // Arahkan ke daftar tugas inspektur
+                ]);
+            }
+        }
+        // --- AKHIR TAMBAHAN ---
 
         return redirect()->route('sekretaris.task.view')->with('success', 'Tugas berhasil disimpan!');
     }
@@ -1636,6 +1885,56 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 }
 
+===== app\Http\Controllers\DashboardController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\LHP;
+use App\Models\Task;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        $user = Auth::user();
+        $data = [];
+
+        if ($user->role === 'admin') {
+            $data['totalUsers'] = User::count();
+            $data['totalTasks'] = Task::count();
+            $data['totalLhps'] = LHP::count();
+            $data['taskStatusSummary'] = Task::select('status', DB::raw('count(*) as total'))
+                ->groupBy('status')
+                ->pluck('total', 'status');
+            $data['recentLhps'] = LHP::with('task')->latest()->take(5)->get();
+        } elseif ($user->role === 'sekretaris') {
+            $data['pendingAssignmentTasks'] = Task::whereNull('team_composition')->count();
+            $data['newTasks'] = Task::whereNull('team_composition')->latest()->take(5)->get();
+        } elseif ($user->role === 'inspektur') {
+            $userId = $user->id;
+            $data['myActiveTasks'] = Task::whereJsonContains('team_composition', $userId)
+                ->where('status', '!=', 'selesai')
+                ->count();
+
+            $myLhps = LHP::whereHas('task', function ($query) use ($userId) {
+                $query->whereJsonContains('team_composition', $userId);
+            })->select('status', DB::raw('count(*) as total'))
+                ->groupBy('status')
+                ->pluck('total', 'status');
+
+            $data['myLhpStatus'] = $myLhps;
+        }
+
+        return view('dashboard', compact('data'));
+    }
+}
+
 ===== app\Http\Controllers\InspekturController.php =====
 <?php
 
@@ -1767,6 +2066,14 @@ use App\Models\LHP;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; // Pastikan mengimpor Storage Facade
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use App\Models\LhpOtp;
+use Illuminate\Support\Facades\Log;
+use App\Models\Notification;
+use App\Models\User;
+
 
 class LHPController extends Controller
 {
@@ -1795,22 +2102,21 @@ class LHPController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'task_id' => 'required|exists:tasks,id',
-            'lhp_file' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
-            'keterangan' => 'nullable|string|max:1000',
+            'lhp_file' => 'required|file|mimes:pdf,doc,docx',
+            'keterangan' => 'nullable|string',
         ]);
 
-        $data = $validated;
+        $filePath = $request->file('lhp_file')->store('lhp_files', 'public');
 
-        // Handle file upload
-        if ($request->hasFile('lhp_file')) {
-            $data['lhp_file'] = $request->file('lhp_file')->store('uploads/lhp', 'public');
-        }
+        LHP::create([
+            'task_id' => $request->task_id,
+            'lhp_file' => $filePath,
+            'keterangan' => $request->keterangan,
+        ]);
 
-        LHP::create($data);
-
-        return redirect()->route('lhp.index')->with('success', 'LHP berhasil dibuat.');
+        return redirect()->route('lhp.index')->with('success', 'LHP berhasil ditambahkan.');
     }
 
     /**
@@ -1828,21 +2134,19 @@ class LHPController extends Controller
      */
     public function update(Request $request, LHP $lhp)
     {
-        $validated = $request->validate([
+        $request->validate([
             'task_id' => 'required|exists:tasks,id',
-            'lhp_file' => 'nullable|file|mimes:pdf,doc,docx|max:10000',
-            'keterangan' => 'nullable|string|max:1000',
+            'lhp_file' => 'nullable|file|mimes:pdf,doc,docx',
+            'keterangan' => 'nullable|string',
         ]);
 
-        $data = $validated;
+        $data = $request->only('task_id', 'keterangan');
 
-        // Handle file upload
         if ($request->hasFile('lhp_file')) {
-            // Hapus file lama jika ada
             if ($lhp->lhp_file) {
                 Storage::disk('public')->delete($lhp->lhp_file);
             }
-            $data['lhp_file'] = $request->file('lhp_file')->store('uploads/lhp', 'public');
+            $data['lhp_file'] = $request->file('lhp_file')->store('lhp_files', 'public');
         }
 
         $lhp->update($data);
@@ -1855,13 +2159,10 @@ class LHPController extends Controller
      */
     public function destroy(LHP $lhp)
     {
-        // Hapus file terkait jika ada
         if ($lhp->lhp_file) {
             Storage::disk('public')->delete($lhp->lhp_file);
         }
-
         $lhp->delete();
-
         return redirect()->route('lhp.index')->with('success', 'LHP berhasil dihapus.');
     }
 
@@ -1870,6 +2171,15 @@ class LHPController extends Controller
         $lhp = Lhp::findOrFail($id);
         $lhp->status = 'disetujui';
         $lhp->save();
+
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Notification::create([
+                'user_id' => $admin->id,
+                'message' => 'LHP untuk tugas "' . $lhp->task->assignment_type . '" telah disetujui.',
+                'url' => route('lhp.index'),
+            ]);
+        }
 
         return redirect()->route('lhp.index')->with('success', 'LHP disetujui');
     }
@@ -1886,6 +2196,74 @@ class LHPController extends Controller
         $lhp->save();
 
         return redirect()->route('lhp.index')->with('success', 'LHP ditolak');
+    }
+
+    public function sendOtp(LHP $lhp)
+    {
+        $user = Auth::user();
+
+        if (!$user->phone_number) {
+            return response()->json(['error' => 'Nomor WhatsApp tidak ditemukan.'], 400);
+        }
+
+        $otpCode = rand(100000, 999999);
+        $expiresAt = Carbon::now()->addMinutes(5);
+
+        LhpOtp::create([
+            'lhp_id' => $lhp->id,
+            'user_id' => $user->id,
+            'otp_code' => $otpCode,
+            'expires_at' => $expiresAt,
+        ]);
+
+        try {
+            Http::post('http://localhost:3000/send-message', [
+                'number' => $user->phone_number,
+                'message' => "Kode OTP Anda untuk melihat LHP adalah: *{$otpCode}*. Jangan berikan kode ini kepada siapapun.",
+            ]);
+            return response()->json(['success' => 'OTP telah dikirim ke WhatsApp Anda.']);
+        } catch (\Exception $e) {
+            Log::error('Tidak dapat terhubung ke Baileys API: ' . $e->getMessage());
+            return response()->json(['success' => 'OTP telah dikirim (simulasi).']); // Fallback untuk development
+        }
+    }
+
+    public function verifyOtp(Request $request, LHP $lhp)
+    {
+        $request->validate(['otp' => 'required|numeric|digits:6']);
+        $user = Auth::user();
+
+        $otpRecord = LhpOtp::where('lhp_id', $lhp->id)
+            ->where('user_id', $user->id)
+            ->where('otp_code', $request->otp)
+            ->where('expires_at', '>', Carbon::now())
+            ->latest()
+            ->first();
+
+        if ($otpRecord) {
+            session(['lhp_otp_verified_' . $lhp->id => true]);
+            $otpRecord->delete();
+            return response()->json([
+                'success' => 'OTP valid.',
+                'redirect_url' => route('lhp.viewFile', $lhp->id)
+            ]);
+        }
+        return response()->json(['error' => 'OTP salah atau sudah kedaluwarsa.'], 422);
+    }
+
+    public function viewFile(LHP $lhp)
+    {
+        if (!session('lhp_otp_verified_' . $lhp->id)) {
+            abort(403, 'Akses ditolak. Silakan verifikasi OTP terlebih dahulu.');
+        }
+
+        session()->forget('lhp_otp_verified_' . $lhp->id);
+        $filePath = storage_path('app/public/' . $lhp->lhp_file);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File tidak ditemukan.');
+        }
+        return response()->file($filePath);
     }
 }
 
@@ -3269,6 +3647,50 @@ class LHP extends Model
     }
 }
 
+===== app\Models\LhpOtp.php =====
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class LhpOtp extends Model
+{
+    use HasFactory;
+    protected $table = 'lhp_otps';
+    protected $fillable = [
+        'lhp_id',
+        'user_id',
+        'otp_code',
+        'expires_at',
+    ];
+    
+    public function lhp()
+    {
+        return $this->belongsTo(Lhp::class);
+    }
+    
+    public function user()
+    
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+
+===== app\Models\Notification.php =====
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Notification extends Model
+{
+    use HasFactory;
+}
+
 ===== app\Models\Orang.php =====
 <?php
 
@@ -4212,6 +4634,121 @@ $classes = ($active ?? false)
 
 <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm']) !!}>
 
+===== resources\views\dashboard\admin.blade.php =====
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-gray-500 text-sm font-medium">Total Pengguna</h3>
+        <p class="text-3xl font-semibold text-gray-800">{{ $data['totalUsers'] ?? 0 }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-gray-500 text-sm font-medium">Total Tugas</h3>
+        <p class="text-3xl font-semibold text-gray-800">{{ $data['totalTasks'] ?? 0 }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-gray-500 text-sm font-medium">Total LHP</h3>
+        <p class="text-3xl font-semibold text-gray-800">{{ $data['totalLhps'] ?? 0 }}</p>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Ringkasan Status Tugas</h3>
+        <ul>
+            @forelse($data['taskStatusSummary'] as $status => $total)
+                <li class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">{{ ucfirst($status) }}</span>
+                    <span class="font-bold text-gray-800">{{ $total }}</span>
+                </li>
+            @empty
+                <li class="text-gray-500">Belum ada tugas.</li>
+            @endforelse
+        </ul>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">LHP Terbaru</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full">
+                @forelse($data['recentLhps'] as $lhp)
+                    <tr class="border-b">
+                        <td class="py-2 text-gray-600">{{ $lhp->task->assignment_type ?? 'N/A' }}</td>
+                        <td class="py-2 text-right">
+                            <span class="text-xs font-semibold px-2 py-1 rounded-full 
+                                {{ $lhp->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                {{ $lhp->status === 'disetujui' ? 'bg-green-100 text-green-800' : '' }}
+                                {{ $lhp->status === 'ditolak' ? 'bg-red-100 text-red-800' : '' }}">
+                                {{ ucfirst($lhp->status) }}
+                            </span>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td class="py-2 text-gray-500">Belum ada LHP.</td>
+                    </tr>
+                @endforelse
+            </table>
+        </div>
+    </div>
+</div>
+
+===== resources\views\dashboard\inspektur.blade.php =====
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-gray-500 text-sm font-medium">Tugas Aktif Saya</h3>
+        <p class="text-5xl font-semibold text-green-600 my-4">{{ $data['myActiveTasks'] ?? 0 }}</p>
+        {{-- <a href="{{ route('tasks.index') }}" class="text-blue-500 hover:underline">Lihat semua tugas</a> --}}
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Ringkasan LHP Saya</h3>
+        <ul>
+            <li class="flex justify-between py-2 border-b">
+                <span class="text-gray-600">Pending</span>
+                <span class="font-bold text-yellow-600">{{ $data['myLhpStatus']['pending'] ?? 0 }}</span>
+            </li>
+            <li class="flex justify-between py-2 border-b">
+                <span class="text-gray-600">Disetujui</span>
+                <span class="font-bold text-green-600">{{ $data['myLhpStatus']['disetujui'] ?? 0 }}</span>
+            </li>
+            <li class="flex justify-between py-2">
+                <span class="text-gray-600">Ditolak</span>
+                <span class="font-bold text-red-600">{{ $data['myLhpStatus']['ditolak'] ?? 0 }}</span>
+            </li>
+        </ul>
+        <a href="{{ route('lhp.index') }}" class="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            Lihat LHP Saya
+        </a>
+    </div>
+</div>
+
+===== resources\views\dashboard\sekretaris.blade.php =====
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+        <h3 class="text-gray-500 text-sm font-medium">Tugas Perlu Ditugaskan</h3>
+        <p class="text-5xl font-semibold text-blue-600 my-4">{{ $data['pendingAssignmentTasks'] ?? 0 }}</p>
+        {{-- <a href="{{ route('sekretaris.tasks.index') }}" class="inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            Lihat Tugas
+        </a> --}}
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Tugas Baru Menunggu</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full">
+                @forelse($data['newTasks'] as $task)
+                    <tr class="border-b">
+                        <td class="py-2 text-gray-600">{{ $task->assignment_type }}</td>
+                        <td class="py-2 text-gray-500 text-sm">{{ $task->created_at->format('d M Y') }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td class="py-2 text-gray-500">Tidak ada tugas baru.</td>
+                    </tr>
+                @endforelse
+            </table>
+        </div>
+    </div>
+</div>
+
 ===== resources\views\inspektur\orang\create.blade.php =====
 <x-app-layout>
     <x-slot name="header">
@@ -4748,21 +5285,17 @@ $classes = ($active ?? false)
 
 ===== resources\views\layouts\navigation.blade.php =====
 <aside class="h-full flex flex-col md:h-screen md:sticky md:top-0">
-    <!-- Logo -->
     <div class="p-6 border-b border-gray-200">
         <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-gray-800">
             {{ config('app.name', 'MY APP') }}
         </a>
     </div>
 
-    <!-- Nav Links -->
     <nav class="flex-1 px-4 py-6 space-y-2">
-        <!-- Dashboard -->
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        <!-- Menu for Admin -->
         @if (Auth::check() && Auth::user()->role === 'admin')
             <x-nav-link :href="route('task.planning')" :active="request()->routeIs('task.planning')">
                 {{ __('Perencanaan Penugasan') }}
@@ -4787,7 +5320,6 @@ $classes = ($active ?? false)
             </x-nav-link>
         @endif
 
-        <!-- Menu for Sekretaris -->
         @if (Auth::check() && Auth::user()->role === 'sekretaris')
             <x-nav-link :href="route('pertimbangan')" :active="request()->routeIs('pertimbangan')">
                 {{ __('Pertimbangan Penugasan') }}
@@ -4800,7 +5332,6 @@ $classes = ($active ?? false)
             </x-nav-link>
         @endif
 
-        <!-- Menu for Inspektur -->
         @if (Auth::check() && Auth::user()->role === 'inspektur')
             <x-nav-link :href="route('inspektur.approve_inspektur')" :active="request()->routeIs('inspektur.approve_inspektur')">
                 {{ __('Persetujuan Tugas') }}
@@ -4826,28 +5357,52 @@ $classes = ($active ?? false)
         @endif
     </nav>
 
-    <!-- User Dropdown -->
-    <div x-data="{ open: false }" class="px-4 py-4 border-t border-gray-200">
-        <button @click="open = !open"
-            class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-left bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
-            <span>{{ Auth::user()->name }}</span>
-            <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transform transition-transform" fill="none"
-                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-        </button>
-
-        <div x-show="open" x-cloak class="mt-2 space-y-1 bg-white rounded-lg shadow-inner text-sm text-gray-700">
-            <a href="{{ route('profile.edit') }}"
-                class="block px-4 py-2 hover:bg-gray-100 rounded-lg">{{ __('Profile') }}</a>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit"
-                    class="w-full text-left px-4 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
+    <div class="px-4 py-4 border-t border-gray-200">
+        <div x-data="{ open: false }" class="relative mb-4">
+            <button @click="open = ! open" class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-left bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                <span>Notifikasi</span>
+                @if(isset($unreadCount) && $unreadCount > 0)
+                    <span class="inline-flex items-center justify-center h-6 w-6 text-xs font-bold text-white bg-red-500 rounded-full">{{ $unreadCount }}</span>
+                @else
+                    <svg class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                @endif
+            </button>
+            <div x-show="open" x-cloak @click.away="open = false" class="absolute bottom-full mb-2 w-full bg-white rounded-lg shadow-lg z-50 border max-h-64 overflow-y-auto">
+                <div class="py-2 px-4 font-bold border-b text-gray-800">Notifikasi</div>
+                @if(isset($notifications) && $notifications->count() > 0)
+                    @foreach($notifications as $notification)
+                        <a href="{{ $notification->url ?? '#' }}" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-b-0">
+                            <p>{{ $notification->message }}</p>
+                            <p class="text-xs text-gray-500 mt-1">{{ $notification->created_at->diffForHumans() }}</p>
+                        </a>
+                    @endforeach
+                @else
+                    <p class="px-4 py-3 text-sm text-gray-500">Tidak ada notifikasi baru.</p>
+                @endif
+            </div>
+        </div>
+        <div x-data="{ open: false }">
+            <button @click="open = !open"
+                class="w-full flex items-center justify-between px-4 py-2 text-sm font-medium text-left bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                <span>{{ Auth::user()->name }}</span>
+                <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transform transition-transform" fill="none"
+                    stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div x-show="open" x-cloak class="mt-2 space-y-1 bg-white rounded-lg shadow-inner text-sm text-gray-700">
+                <a href="{{ route('profile.edit') }}"
+                    class="block px-4 py-2 hover:bg-gray-100 rounded-lg">{{ __('Profile') }}</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                        class="w-full text-left px-4 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg">
+                        {{ __('Log Out') }}
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </aside>
@@ -5048,8 +5603,6 @@ $classes = ($active ?? false)
 </x-app-layout>
 
 ===== resources\views\lhp\index.blade.php =====
-<!-- resources/views/lhp/index.blade.php -->
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -5057,7 +5610,6 @@ $classes = ($active ?? false)
         </h2>
     </x-slot>
 
-    <!-- Modal Tolak -->
     <div id="rejectModal" class="fixed inset-0 z-50 hidden bg-gray-500 bg-opacity-50 flex justify-center items-center">
         <div class="bg-white p-6 rounded-lg shadow-lg w-96">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Alasan Penolakan</h3>
@@ -5069,12 +5621,10 @@ $classes = ($active ?? false)
                     <textarea id="reason" name="reason" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                 </div>
                 <div class="flex justify-end">
-                    <button type="button" onclick="closeRejectModal()"
-                        class="px-4 py-2 bg-gray-300 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-400">
+                    <button type="button" onclick="closeRejectModal()" class="px-4 py-2 bg-gray-300 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-400">
                         Batal
                     </button>
-                    <button type="submit"
-                        class="ml-2 px-4 py-2 bg-red-600 text-sm font-medium text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <button type="submit" class="ml-2 px-4 py-2 bg-red-600 text-sm font-medium text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
                         Tolak
                     </button>
                 </div>
@@ -5082,62 +5632,60 @@ $classes = ($active ?? false)
         </div>
     </div>
 
-    <script>
-        function showRejectModal(id) {
-            document.getElementById('lhp_id').value = id;
-            document.getElementById('rejectModal').classList.remove('hidden');
-        }
+    <div x-data="otpModal()" x-show="show" @keydown.escape.window="show = false" class="fixed inset-0 z-50 bg-gray-500 bg-opacity-75 flex justify-center items-center" style="display: none;">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-sm" @click.away="show = false">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Verifikasi OTP</h3>
+            <p class="text-gray-600 mb-4">Kami telah mengirimkan kode OTP ke nomor WhatsApp Anda. Silakan masukkan kode di bawah ini.</p>
+            
+            <div x-show="message" :class="{ 'bg-green-100 text-green-800': !error, 'bg-red-100 text-red-800': error }" class="p-3 rounded-md mb-4 text-sm" x-text="message"></div>
+            
+            <form @submit.prevent="verifyOtp()">
+                <div class="mb-4">
+                    <label for="otp" class="block text-sm font-medium text-gray-700">Kode OTP</label>
+                    <input type="text" id="otp" x-model="otp" maxlength="6" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-center tracking-widest text-lg" required>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" @click="show = false" class="px-4 py-2 bg-gray-300 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-400">
+                        Batal
+                    </button>
+                    <button type="submit" :disabled="loading" class="ml-2 px-4 py-2 bg-blue-600 text-sm font-medium text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center">
+                        <svg x-show="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span x-text="loading ? 'Memverifikasi...' : 'Verifikasi'"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-        function closeRejectModal() {
-            document.getElementById('rejectModal').classList.add('hidden');
-        }
-    </script>
-
-    <div class="py-12">
+    <div class="py-12" x-data>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Card Container -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
-                    <!-- Header dan Aksi Tambahan -->
                     @if (auth()->user()->role !== 'inspektur')
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="text-lg font-medium text-gray-700">LHP</h3>
-                            <a href="{{ route('lhp.create') }}"
-                                class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 4v16m8-8H4" />
+                            <a href="{{ route('lhp.create') }}" class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                 </svg>
                                 Tambah LHP
                             </a>
                         </div>
                     @endif
 
-                    <!-- Tabel Responsif -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
-                            <!-- Header Tabel -->
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        No</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Tugas</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        File LHP</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Keterangan</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status</th>
-                                    <th
-                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Aksi</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tugas</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File LHP</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -5154,11 +5702,10 @@ $classes = ($active ?? false)
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             @if ($lhp->lhp_file)
-                                                <a href="{{ asset('storage/' . $lhp->lhp_file) }}" target="_blank"
-                                                    class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                <button @click="$dispatch('open-otp-modal', { lhpId: {{ $lhp->id }} })" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <i class="fas fa-file-download mr-2"></i>
                                                     Lihat LHP
-                                                </a>
+                                                </button>
                                             @else
                                                 <span class="text-gray-500">-</span>
                                             @endif
@@ -5167,48 +5714,36 @@ $classes = ($active ?? false)
                                             {{ $lhp->keterangan ?? '-' }}
                                         </td>
                                         <td class="pl-0 py-4 whitespace-nowrap text-sm text-center">
-                                            <span
-                                                class="inline-flex items-center justify-center px-1 py-1 text-xs font-semibold rounded-full 
+                                            <span class="inline-flex items-center justify-center px-1 py-1 text-xs font-semibold rounded-full 
                                                 {{ $lhp->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
                                                 {{ $lhp->status === 'disetujui' ? 'bg-green-100 text-green-800' : '' }}
                                                 {{ $lhp->status === 'ditolak' ? 'bg-red-100 text-red-800' : '' }}">
                                                 {{ ucfirst($lhp->status) }}
                                             </span>
                                         </td>
-
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
                                             @if (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur')
-                                                @if ($lhp->status !== 'disetujui') <!-- Tambahkan kondisi untuk status selain disetujui -->
-                                                    <a href="{{ route('lhp.edit', $lhp->id) }}"
-                                                        class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                                @if ($lhp->status !== 'disetujui')
+                                                    <a href="{{ route('lhp.edit', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                                                         <i class="fas fa-edit mr-2"></i>Edit
                                                     </a>
-                                                    <form action="{{ route('lhp.destroy', $lhp->id) }}" method="POST"
-                                                        class="inline-block"
-                                                        onsubmit="return confirm('Yakin ingin menghapus?')">
+                                                    <form action="{{ route('lhp.destroy', $lhp->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus?')">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit"
-                                                            class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
                                                             <i class="fas fa-trash-alt mr-2"></i>Hapus
                                                         </button>
                                                     </form>
                                                 @endif
                                             @endif
-                                        
-                                            @if (auth()->user()->role === 'inspektur' && $lhp->status !== 'disetujui') <!-- Pastikan acc dan tolak tidak muncul jika status disetujui -->
-                                                <!-- Tombol Acc -->
+                                            @if (auth()->user()->role === 'inspektur' && $lhp->status !== 'disetujui')
                                                 <form action="{{ route('lhp.acc', $lhp->id) }}" method="POST" class="inline-block mr-2">
                                                     @csrf
-                                                    <button type="submit"
-                                                        class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                                                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                                                         <i class="fas fa-check mr-2"></i>Acc
                                                     </button>
                                                 </form>
-                                        
-                                                <!-- Tombol Tolak dengan Alasan -->
-                                                <button onclick="showRejectModal({{ $lhp->id }})"
-                                                    class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                                <button onclick="showRejectModal({{ $lhp->id }})" class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
                                                     <i class="fas fa-times mr-2"></i>Tolak
                                                 </button>
                                             @endif
@@ -5216,8 +5751,7 @@ $classes = ($active ?? false)
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6"
-                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
                                             Tidak ada LHP.
                                         </td>
                                     </tr>
@@ -5226,7 +5760,6 @@ $classes = ($active ?? false)
                         </table>
                     </div>
 
-                    <!-- Pagination dengan Tailwind -->
                     <div class="mt-6">
                         {{ $lhps->links('pagination::tailwind') }}
                     </div>
@@ -5235,10 +5768,106 @@ $classes = ($active ?? false)
         </div>
     </div>
 
-    <!-- Integrasi FontAwesome untuk Ikon Download -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-pHg+2V8clVjoTjvJkZGJZmS98fLAV6qKQtwEyn7VEl8dvU+8MznRycAI+pNnLOfRlGxhQcaYDFs/jX1H5Z1vQA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        function showRejectModal(id) {
+            document.getElementById('lhp_id').value = id;
+            document.getElementById('rejectModal').classList.remove('hidden');
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').classList.add('hidden');
+        }
+
+        function otpModal() {
+            return {
+                show: false,
+                loading: false,
+                error: false,
+                message: '',
+                lhpId: null,
+                otp: '',
+                init() {
+                    window.addEventListener('open-otp-modal', event => {
+                        this.reset();
+                        this.lhpId = event.detail.lhpId;
+                        this.show = true;
+                        this.sendOtp();
+                    });
+                },
+                reset() {
+                    this.loading = false;
+                    this.error = false;
+                    this.message = '';
+                    this.lhpId = null;
+                    this.otp = '';
+                },
+                sendOtp() {
+                    this.loading = true;
+                    this.message = 'Mengirim OTP...';
+                    fetch(`/lhp/${this.lhpId}/send-otp`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Accept': 'application/json',
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.loading = false;
+                        if (data.success) {
+                            this.error = false;
+                            this.message = data.success;
+                        } else {
+                            this.error = true;
+                            this.message = data.error || 'Gagal mengirim OTP.';
+                        }
+                    }).catch(() => {
+                        this.loading = false;
+                        this.error = true;
+                        this.message = 'Terjadi kesalahan. Coba lagi.';
+                    });
+                },
+                verifyOtp() {
+                    this.loading = true;
+                    this.message = '';
+                    fetch(`/lhp/${this.lhpId}/verify-otp`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                        },
+                        body: JSON.stringify({ otp: this.otp })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        this.loading = false;
+                        if (data.success) {
+                            this.error = false;
+                            this.message = data.success;
+                            // Buka file di tab baru
+                            window.open(data.redirect_url, '_blank');
+                            this.show = false;
+                        } else {
+                            this.error = true;
+                            this.message = data.error || 'Terjadi kesalahan.';
+                        }
+                    }).catch(() => {
+                        this.loading = false;
+                        this.error = true;
+                        this.message = 'Terjadi kesalahan. Coba lagi.';
+                    });
+                }
+            }
+        }
+
+        // Pastikan event listener untuk Alpine.js sudah siap
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('otpModal', otpModal);
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pHg+2V8clVjoTjvJkZGJZmS98fLAV6qKQtwEyn7VEl8dvU+8MznRycAI+pNnLOfRlGxhQcaYDFs/jX1H5Z1vQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </x-app-layout>
 
 ===== resources\views\pelaksanaan\create.blade.php =====
@@ -8408,22 +9037,28 @@ $classes = ($active ?? false)
 ===== resources\views\dashboard.blade.php =====
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-                {{ __('Dashboard') }}
-            </h2>
-
-        </div>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Welcome Card -->
-            <div class="p-6 bg-white shadow-lg rounded-lg flex items-center justify-center">
-                <h3 class="text-3xl font-semibold text-gray-800">
-                    {{ __('Selamat Datang, ') }}{{ Auth::user()->name }}!
-                </h3>
+            
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                <div class="p-6 text-gray-900">
+                    Selamat Datang Kembali, {{ Auth::user()->name }}!
+                </div>
             </div>
+
+            @if(Auth::user()->role === 'admin')
+                @include('dashboard.admin', ['data' => $data])
+            @elseif(Auth::user()->role === 'sekretaris')
+                @include('dashboard.sekretaris', ['data' => $data])
+            @elseif(Auth::user()->role === 'inspektur')
+                @include('dashboard.inspektur', ['data' => $data])
+            @endif
+
         </div>
     </div>
 </x-app-layout>
