@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Carbon\Carbon;
-use App\Models\SPT;
+use App\Models\Spt;
 use App\Models\Task;
 use App\Models\Orang;
 use Illuminate\Http\Request;
@@ -63,83 +63,83 @@ class SekretarisController extends Controller
 
     // Menangani data form dan menghasilkan PDF
     public function createPdfWithData(Request $request, $taskId)
-{
-    // Validasi input form
-    $validated = $request->validate([
-        'nomor' => 'required|string|max:255',
-        'tanggal' => 'required|date',
-        'kepada' => 'required|string|max:255',
-        'maksud' => 'required|string',
-        'waktu' => 'required|string|max:255',
-    ]);
-    $formattedDate = Carbon::parse($validated['tanggal'])->format('d-m-Y');
+    {
+        // Validasi input form
+        $validated = $request->validate([
+            'nomor' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'kepada' => 'required|string|max:255',
+            'maksud' => 'required|string',
+            'waktu' => 'required|string|max:255',
+        ]);
+        $formattedDate = Carbon::parse($validated['tanggal'])->format('d-m-Y');
 
-    // Ambil tugas berdasarkan ID
-    $task = Task::findOrFail($taskId);
+        // Ambil tugas berdasarkan ID
+        $task = Task::findOrFail($taskId);
 
-    // Ambil semua data orang berdasarkan ID dari tabel 'orang'
-    $orang = Orang::pluck('nama', 'id')->toArray(); // Hanya mengambil nama
+        // Ambil semua data orang berdasarkan ID dari tabel 'orang'
+        $orang = Orang::pluck('nama', 'id')->toArray(); // Hanya mengambil nama
 
-    // Mengolah data komposisi tim
-    $teamComposition = json_decode($task->team_composition, true);
-    
-    // Array untuk daftar petugas dalam format yang sesuai untuk tabel
-    $petugas = [];
+        // Mengolah data komposisi tim
+        $teamComposition = json_decode($task->team_composition, true);
 
-    // Loop melalui team_composition dan siapkan data petugas
-    foreach ($teamComposition as $jabatan => $anggota) {
-        if (is_array($anggota)) {
-            // Jika ada banyak anggota dalam satu peran (array)
-            foreach ($anggota as $id) {
+        // Array untuk daftar petugas dalam format yang sesuai untuk tabel
+        $petugas = [];
+
+        // Loop melalui team_composition dan siapkan data petugas
+        foreach ($teamComposition as $jabatan => $anggota) {
+            if (is_array($anggota)) {
+                // Jika ada banyak anggota dalam satu peran (array)
+                foreach ($anggota as $id) {
+                    $petugas[] = [
+                        'nama' => $orang[$id] ?? "Tidak Ditemukan",
+                        'jabatan' => ucwords(str_replace('_', ' ', $jabatan)), // Format lebih rapi
+                    ];
+                }
+            } else {
+                // Jika hanya satu anggota dalam satu peran (string)
                 $petugas[] = [
-                    'nama' => $orang[$id] ?? "Tidak Ditemukan",
-                    'jabatan' => ucwords(str_replace('_', ' ', $jabatan)), // Format lebih rapi
+                    'nama' => $orang[$anggota] ?? "Tidak Ditemukan",
+                    'jabatan' => ucwords(str_replace('_', ' ', $jabatan)),
                 ];
             }
-        } else {
-            // Jika hanya satu anggota dalam satu peran (string)
-            $petugas[] = [
-                'nama' => $orang[$anggota] ?? "Tidak Ditemukan",
-                'jabatan' => ucwords(str_replace('_', ' ', $jabatan)),
-            ];
         }
+
+        // Urutan jabatan yang diinginkan
+        $urutan_jabatan = [
+            'Penanggung Jawab',
+            'Wakil Penanggung Jawab',
+            'Pengendali Teknis',
+            'Ketua Tim',
+            'Anggota Tim',
+            'Penunjang'
+        ];
+
+        // Sorting petugas berdasarkan jabatan tertinggi
+        usort($petugas, function ($a, $b) use ($urutan_jabatan) {
+            return array_search($a['jabatan'], $urutan_jabatan) - array_search($b['jabatan'], $urutan_jabatan);
+        });
+
+        // Siapkan data untuk view PDF
+        $data = [
+            'task' => $task,
+            'petugas' => $petugas, // Data petugas sudah terurut
+            'nomor' => $validated['nomor'],
+            'tanggal' => $formattedDate,
+            'kepada' => $validated['kepada'],
+            'maksud' => $validated['maksud'],
+            'waktu' => $validated['waktu'],
+        ];
+
+        // Debugging (jika perlu cek urutan sebelum generate PDF)
+        // dd($data);
+
+        // Render PDF menggunakan view
+        $pdf = PDF::loadView('tasks.pdf.team_composition_with_data', $data);
+
+        // Unduh PDF
+        return $pdf->stream('komposisi_tim_' . $task->id . '.pdf');
     }
-
-    // Urutan jabatan yang diinginkan
-    $urutan_jabatan = [
-        'Penanggung Jawab',
-        'Wakil Penanggung Jawab',
-        'Pengendali Teknis',
-        'Ketua Tim',
-        'Anggota Tim',
-        'Penunjang'
-    ];
-
-    // Sorting petugas berdasarkan jabatan tertinggi
-    usort($petugas, function ($a, $b) use ($urutan_jabatan) {
-        return array_search($a['jabatan'], $urutan_jabatan) - array_search($b['jabatan'], $urutan_jabatan);
-    });
-
-    // Siapkan data untuk view PDF
-    $data = [
-        'task' => $task,
-        'petugas' => $petugas, // Data petugas sudah terurut
-        'nomor' => $validated['nomor'],
-        'tanggal' => $formattedDate,
-        'kepada' => $validated['kepada'],
-        'maksud' => $validated['maksud'],
-        'waktu' => $validated['waktu'],
-    ];
-
-    // Debugging (jika perlu cek urutan sebelum generate PDF)
-    // dd($data);
-
-    // Render PDF menggunakan view
-    $pdf = PDF::loadView('tasks.pdf.team_composition_with_data', $data);
-
-    // Unduh PDF
-    return $pdf->stream('komposisi_tim_' . $task->id . '.pdf');
-}
 
 
 
