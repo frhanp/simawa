@@ -19,9 +19,9 @@ class TaskController extends Controller
         $pengendaliTeknis     = Orang::where('jabatan', 'Pengendali Teknis')->get();
         $penunjang            = Orang::where('jabatan', 'Penunjang')->get();
 
-        // 🔒 cari ID yang sudah dipakai di task aktif
+        // Menggunakan scope `active()` dari model Task
         $lockedIds = Task::query()
-            ->whereIn('status', ['pending', 'Disetujui Inspektur']) // status aktif
+            ->active() // Mengganti whereIn('status', ...) dengan scope
             ->get('team_composition')
             ->flatMap(function ($t) {
                 $tc = json_decode($t->team_composition, true) ?? [];
@@ -148,9 +148,10 @@ class TaskController extends Controller
             : ($task->team_composition ?? []);
 
         // [HITUNG TERKUNCI]
+        // Menggunakan scope `active()` dari model Task
         $lockedIds = Task::query()
             ->where('id', '!=', $task->id)
-            ->whereIn('status', ['pending', 'Disetujui Inspektur'])
+            ->active() // Mengganti whereIn('status', ...) dengan scope
             ->get('team_composition')
             ->flatMap(function ($t) {
                 $tc = is_string($t->team_composition)

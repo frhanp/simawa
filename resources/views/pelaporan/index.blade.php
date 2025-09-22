@@ -66,9 +66,9 @@
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Konsep LHP</th>
-                                    <th
+                                    {{-- <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        EXPOSE Pelaporan</th>
+                                        EXPOSE Pelaporan</th> --}}
 
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -160,7 +160,7 @@
                                         </td>
 
                                         <!-- Exposé Pelaporan -->
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             @if ($pelaporan->expose_pelaporan)
                                                 <a href="{{ asset('storage/' . $pelaporan->expose_pelaporan) }}"
                                                     target="_blank"
@@ -171,7 +171,7 @@
                                             @else
                                                 <span class="text-gray-500">-</span>
                                             @endif
-                                        </td>
+                                        </td> --}}
 
                                         <!-- Tanggal Expose -->
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">

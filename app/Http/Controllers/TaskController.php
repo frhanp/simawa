@@ -50,7 +50,7 @@ class TaskController extends Controller
 
         // 🔒 cari ID yang sudah dipakai di task aktif
         $lockedIds = Task::query()
-            ->whereIn('status', ['pending', 'Disetujui Inspektur']) // status aktif
+            ->active() // Mengganti whereIn('status', ...) dengan scope
             ->get('team_composition')
             ->flatMap(function ($t) {
                 $tc = json_decode($t->team_composition, true) ?? [];
@@ -134,72 +134,71 @@ class TaskController extends Controller
 
 
     public function edit($id)
-{
-    // [AMBIL TASK]
-    $task = \App\Models\Task::findOrFail($id);
+    {
+        // [AMBIL TASK]
+        $task = \App\Models\Task::findOrFail($id);
 
-    // [PARSE KOMPOSISI TIM] kolom bisa string JSON atau sudah array
-    $tcCurrent = is_string($task->team_composition)
-        ? (json_decode($task->team_composition, true) ?? [])
-        : ($task->team_composition ?? []);
+        // [PARSE KOMPOSISI TIM] kolom bisa string JSON atau sudah array
+        $tcCurrent = is_string($task->team_composition)
+            ? (json_decode($task->team_composition, true) ?? [])
+            : ($task->team_composition ?? []);
 
-    // [HITUNG TERKUNCI] personel yang sedang terpakai di tugas AKTIF lain (selain PJ/WPJ)
-    // Aktif = pending / Disetujui Inspektur (samakan dengan logika store/update)
-    $lockedIds = \App\Models\Task::query()
-        ->where('id', '!=', $task->id)                       // exclude task ini
-        ->whereIn('status', ['pending', 'Disetujui Inspektur'])
-        ->get('team_composition')
-        ->flatMap(function ($t) {
-            $tc = is_string($t->team_composition)
-                ? (json_decode($t->team_composition, true) ?? [])
-                : ($t->team_composition ?? []);
-            return collect([
-                $tc['ketua_tim'] ?? null,
-                ...((array)($tc['pengendali_teknis'] ?? [])),
-                ...((array)($tc['anggota_tim'] ?? [])),
-                ...((array)($tc['penunjang'] ?? [])),
-            ]);
-        })
-        ->filter()
-        ->map(fn($v) => (string)$v)       // <-- konsisten string
-        ->unique()
-        ->values();
+        // [HITUNG TERKUNCI] personel yang sedang terpakai di tugas AKTIF lain (selain PJ/WPJ)
+        // Aktif = pending / Disetujui Inspektur (samakan dengan logika store/update)
+        // Menggunakan scope `active()` dari model Task
+        $lockedIds = \App\Models\Task::query()
+            ->where('id', '!=', $task->id)
+            ->active() // Mengganti whereIn('status', ...) dengan scope
+            ->get('team_composition')
+            ->flatMap(function ($t) {
+                $tc = is_string($t->team_composition)
+                    ? (json_decode($t->team_composition, true) ?? [])
+                    : ($t->team_composition ?? []);
+                return collect([
+                    $tc['ketua_tim'] ?? null,
+                    ...((array)($tc['pengendali_teknis'] ?? [])),
+                    ...((array)($tc['anggota_tim'] ?? [])),
+                    ...((array)($tc['penunjang'] ?? [])),
+                ]);
+            })
+            ->filter()
+            ->map(fn($v) => (string)$v)
+            ->unique()
+            ->values();
+        $selectedHere = collect([
+            $tcCurrent['ketua_tim'] ?? null,
+            ...((array)($tcCurrent['pengendali_teknis'] ?? [])),
+            ...((array)($tcCurrent['anggota_tim'] ?? [])),
+            ...((array)($tcCurrent['penunjang'] ?? [])),
+        ])->filter()
+            ->map(fn($v) => (string)$v)         // <-- konsisten string
+            ->unique()
+            ->values();
 
-    // [YANG SUDAH TERPILIH DI TASK INI] tetap boleh tampil/dipilih di form edit
-    $selectedHere = collect([
-        $tcCurrent['ketua_tim'] ?? null,
-        ...((array)($tcCurrent['pengendali_teknis'] ?? [])),
-        ...((array)($tcCurrent['anggota_tim'] ?? [])),
-        ...((array)($tcCurrent['penunjang'] ?? [])),
-    ])->filter()
-      ->map(fn($v) => (string)$v)         // <-- konsisten string
-      ->unique()
-      ->values();
+        // kunci akhir = terkunci minus yang sudah terpilih di task ini
+        $lockedIds = $lockedIds->diff($selectedHere)->values();
 
-    // kunci akhir = terkunci minus yang sudah terpilih di task ini
-    $lockedIds = $lockedIds->diff($selectedHere)->values();
+        // [DATA DROPDOWN] (silakan sesuaikan filter jabatan bila perlu)
+        $penanggungJawab       = \App\Models\Orang::where('jabatan', 'Penanggung Jawab')->get();
+        $wakilPenanggungJawab  = \App\Models\Orang::where('jabatan', 'Wakil Penanggung Jawab')->get();
+        $ketuaTim              = \App\Models\Orang::where('jabatan', 'Ketua Tim')->get();
+        $pengendaliTeknis      = \App\Models\Orang::where('jabatan', 'Pengendali Teknis')->get();
+        $anggotaTim            = \App\Models\Orang::where('jabatan', 'Anggota Tim')->get();
+        $penunjang             = \App\Models\Orang::where('jabatan', 'Penunjang')->get();
 
-    // [DATA DROPDOWN] (silakan sesuaikan filter jabatan bila perlu)
-    $penanggungJawab       = \App\Models\Orang::where('jabatan', 'Penanggung Jawab')->get();
-    $wakilPenanggungJawab  = \App\Models\Orang::where('jabatan', 'Wakil Penanggung Jawab')->get();
-    $ketuaTim              = \App\Models\Orang::where('jabatan', 'Ketua Tim')->get();
-    $pengendaliTeknis      = \App\Models\Orang::where('jabatan', 'Pengendali Teknis')->get();
-    $anggotaTim            = \App\Models\Orang::where('jabatan', 'Anggota Tim')->get();
-    $penunjang             = \App\Models\Orang::where('jabatan', 'Penunjang')->get();
-
-    // [KIRIM KE VIEW]
-    return view('task.edit', compact(
-        'task',
-        'tcCurrent',
-        'lockedIds',
-        'penanggungJawab',
-        'wakilPenanggungJawab',
-        'ketuaTim',
-        'pengendaliTeknis',
-        'anggotaTim',
-        'penunjang'
-    ));
-}
+        // [KIRIM KE VIEW]
+        return view('task.edit', compact(
+            'task',
+            'tcCurrent',
+            'lockedIds',
+            'penanggungJawab',
+            'wakilPenanggungJawab',
+            'ketuaTim',
+            'pengendaliTeknis',
+            'anggotaTim',
+            'penunjang'
+        ));
+    }
 
 
 

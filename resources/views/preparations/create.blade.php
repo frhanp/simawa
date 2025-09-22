@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            {{ __('Buat Persiapan SPT') }}
+            {{ __('Buat Persiapan Tugas') }}
         </h2>
     </x-slot>
 
@@ -46,7 +46,7 @@
                         @csrf
 
                         <!-- Informasi SPT -->
-                        <div class="bg-gray-50 p-6 rounded-md shadow-inner">
+                        {{-- <div class="bg-gray-50 p-6 rounded-md shadow-inner">
                             <h3 class="text-xl font-semibold text-gray-900 mb-6">Informasi SPT</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- Nomor SPT -->
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Upload PKA -->
                         <div>

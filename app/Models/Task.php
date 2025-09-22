@@ -63,6 +63,29 @@ class Task extends Model
         return $this->hasMany(KM4::class);
     }
 
+    // --- [MODIFIKASI] ---
+    /**
+     * Relasi ke LHP. Sebuah tugas bisa memiliki satu LHP.
+     */
+    public function lhp()
+    {
+        return $this->hasOne(LHP::class);
+    }
+
+    /**
+     * Scope untuk mengambil hanya tugas yang masih aktif.
+     * Tugas dianggap aktif jika belum punya LHP, atau LHP-nya belum disetujui.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where(function ($q) {
+            $q->whereDoesntHave('lhp')
+              ->orWhereHas('lhp', function ($subQ) {
+                  $subQ->where('status', '!=', 'disetujui');
+              });
+        });
+    }
+
     // Relasi ke EntryMeeting
     
 }

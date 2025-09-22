@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar Persiapan SPT - Admin') }}
+            {{ __('Daftar Persiapan Tugas - Admin') }}
         </h2>
     </x-slot>
 
@@ -26,7 +26,7 @@
 
                     <!-- Header dan Aksi Tambahan -->
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-medium text-gray-700">Persiapan SPT</h3>
+                        <h3 class="text-lg font-medium text-gray-700">Persiapan Tugas</h3>
                         {{-- <!-- Tombol Refresh atau Aksi Lainnya (Opsional) -->
                         <a href="{{ route('admin.preparations') }}"
                             class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
@@ -55,11 +55,11 @@
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        PKA Path
+                                        PKA 
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Formulir KM 4 Path
+                                        Formulir KM 4 
                                     </th>
                                     <th
                                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">

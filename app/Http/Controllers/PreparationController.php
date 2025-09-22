@@ -91,7 +91,7 @@ class PreparationController extends Controller
 
         // Optional: Kirim notifikasi ke Inspektur
 
-        return redirect()->route('spt.index')->with('success', 'Persiapan SPT berhasil dibuat dan dikirim ke Inspektur.');
+        return redirect()->route('spt.index')->with('success', 'Persiapan Tugas berhasil dibuat dan dikirim ke Inspektur.');
     }
 
     /**
@@ -137,7 +137,7 @@ class PreparationController extends Controller
 
         // Optional: Kirim notifikasi ke pengguna terkait
 
-        return redirect()->route('inspektur.preparations.index')->with('success', 'Persiapan SPT telah disetujui.');
+        return redirect()->route('inspektur.preparations.index')->with('success', 'Persiapan Tugas telah disetujui.');
     }
 
     /**

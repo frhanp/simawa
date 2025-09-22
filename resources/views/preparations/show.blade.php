@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            {{ __('Detail Persiapan SPT') }}
+            {{ __('Detail Persiapan Tugas') }}
         </h2>
     </x-slot>
 
@@ -11,8 +11,8 @@
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="p-8">
                     <!-- Informasi SPT -->
-                    <div class="mb-8">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Informasi SPT</h3>
+                    {{-- <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Informasi Persiapan Tugas</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <!-- Nomor SPT -->
                             <div class="flex items-center">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- File yang Diunggah -->
                     <div class="mb-8">
