@@ -99,14 +99,14 @@ class TaskController extends Controller
 
         // 3. Buat notifikasi untuk setiap pengguna unik
         foreach ($uniqueUserIds as $userId) {
-            // Pastikan user ID valid sebelum membuat notifikasi
-            if ($userId) {
-                Notification::create([
-                    'user_id' => $userId,
-                    'message' => 'Anda ditugaskan pada tugas baru: "' . $task->assignment_type . '".',
-                    'url' => route('inspektur.tasks.index'), // Arahkan ke daftar tugas inspektur
-                ]);
-            }
+            // // Pastikan user ID valid sebelum membuat notifikasi
+            // if ($userId) {
+            //     Notification::create([
+            //         'user_id' => $userId,
+            //         'message' => 'Anda ditugaskan pada tugas baru: "' . $task->assignment_type . '".',
+            //         'url' => route('dashboard'), // Arahkan ke daftar tugas inspektur
+            //     ]);
+            // }
         }
         // --- AKHIR TAMBAHAN ---
 
