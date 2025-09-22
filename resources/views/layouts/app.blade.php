@@ -66,11 +66,69 @@
             {{-- Optional header (desktop only) --}}
             @isset($header)
                 <header class="bg-white shadow hidden md:block">
-                    <div class="px-6 py-7">
-                        {{ $header }}
+                    <div class="px-6 py-8 flex justify-between items-center">
+                        {{-- Judul Halaman (tetap di kiri) --}}
+                        <div>
+                            {{ $header }}
+                        </div>
+
+                        {{-- Notifikasi & Profil (pindah ke kanan) --}}
+                        <div class="flex items-center gap-4">
+                            <div x-data="{ open: false }" class="relative">
+                                <button @click="open = ! open"
+                                    class="relative text-gray-600 hover:text-gray-800 focus:outline-none">
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                    </svg>
+                                    @if (isset($unreadCount) && $unreadCount > 0)
+                                        <span
+                                            class="absolute -top-2 -right-2 inline-flex items-center justify-center h-5 w-5 text-xs font-bold text-white bg-red-500 rounded-full">{{ $unreadCount }}</span>
+                                    @endif
+                                </button>
+                                <div x-show="open" x-cloak @click.away="open = false"
+                                    class="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50 border max-h-96 overflow-y-auto">
+                                    <div class="py-2 px-4 font-bold border-b text-gray-800">Notifikasi</div>
+                                    @if (isset($notifications) && $notifications->count() > 0)
+                                        @foreach ($notifications as $notification)
+                                            <a href="{{ route('notifications.read', $notification->id) }}"
+                                               class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-b-0">
+                                                <p>{{ $notification->message }}</p>
+                                                <p class="text-xs text-gray-500 mt-1">{{ $notification->created_at->diffForHumans() }}</p>
+                                            </a>
+                                        @endforeach
+                                    @else
+                                        <p class="px-4 py-3 text-sm text-gray-500">Tidak ada notifikasi baru.</p>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div x-data="{ open: false }">
+                                <button @click="open = !open"
+                                    class="flex items-center gap-2 text-sm font-medium text-left text-gray-700 rounded-lg hover:text-gray-900 focus:outline-none">
+                                    <span>{{ Auth::user()->name }}</span>
+                                    <svg :class="{ 'rotate-180': open }" class="w-4 h-4 transform transition-transform" fill="none"
+                                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-cloak @click.away="open = false" class="absolute right-6 mt-2 w-48 bg-white rounded-lg shadow-lg z-50 border py-1">
+                                    <a href="{{ route('profile.edit') }}"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('Profile') }}</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-full text-left px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50">
+                                            {{ __('Log Out') }}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </header>
+                    </header>
             @endisset
+
 
             {{-- Page content --}}
             <main class="flex-1 p-6">

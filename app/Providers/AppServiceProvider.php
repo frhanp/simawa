@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // --- TAMBAHAN: View Composer untuk Notifikasi ---
-        View::composer('layouts.navigation', function ($view) {
+        View::composer('layouts.app', function ($view) {
             if (Auth::check()) {
                 $user = Auth::user();
                 $notifications = Notification::where('user_id', $user->id)
