@@ -40,18 +40,20 @@ class DashboardController extends Controller
                 ->groupBy('status')
                 ->pluck('total', 'status');
         } elseif ($user->role === 'inspektur') {
-            $userId = $user->id;
-            $data['myActiveTasks'] = Task::whereJsonContains('team_composition', $userId)
-                ->where('status', '!=', 'selesai')
-                ->count();
+            // Menghitung tugas yang perlu disetujui
+            $data['tasksForApprovalCount'] = \App\Models\Task::where('status', 'Disetujui Sekretaris')->count();
+            
+            // Menghitung persiapan yang perlu disetujui
+            $data['preparationsForApprovalCount'] = \App\Models\Preparation::where('status', 'Pending')->count();
 
-            $myLhps = LHP::whereHas('task', function ($query) use ($userId) {
-                $query->whereJsonContains('team_composition', $userId);
-            })->select('status', DB::raw('count(*) as total'))
-                ->groupBy('status')
-                ->pluck('total', 'status');
-
-            $data['myLhpStatus'] = $myLhps;
+            // Menghitung pelaporan yang perlu ditinjau
+            $data['reportsForReviewCount'] = \App\Models\Pelaporan::where('status', 'Menunggu Inspektur')->count();
+            
+            // Menghitung LHP yang perlu disetujui
+            $data['lhpsForApprovalCount'] = \App\Models\LHP::where('status', 'pending')->count();
+            
+            // Menghitung total personel
+            $data['totalPersonnelCount'] = \App\Models\Orang::count();
         }
 
         return view('dashboard', compact('data'));
