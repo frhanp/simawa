@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'), // password default: "password"
             'role' => 'admin',
+            'phone_number' => '085342513758',
         ]);
 
         User::create([
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'email' => 'sekretaris@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'sekretaris',
+            'phone_number' => '085342513758',
         ]);
 
         User::create([
@@ -35,6 +37,7 @@ class UserSeeder extends Seeder
             'email' => 'inspektur@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'inspektur',
+            'phone_number' => '085342513758',
         ]);
 
         User::create([
@@ -42,6 +45,7 @@ class UserSeeder extends Seeder
             'email' => 'farhanpalilati01@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
+            'phone_number' => '085342513758',
         ]);
 
         User::create([
@@ -49,6 +53,7 @@ class UserSeeder extends Seeder
             'email' => 'irban1@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
+            'phone_number' => '085342513758',
         ]);
     }
     }
