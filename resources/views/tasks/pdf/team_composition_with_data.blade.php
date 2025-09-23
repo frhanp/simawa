@@ -9,7 +9,7 @@
             body {
                 font-family: "Times New Roman", serif;
                 font-size: 12pt;
-                margin: 30px;
+                margin: 5px;
             }
 
             .container {
@@ -47,7 +47,11 @@
             .footer-note {
                 text-align: left;
                 font-style: italic;
-                margin-top: 15px;
+                font-size: 10pt;
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
+                right: 0cm;
             }
 
             .signature {
@@ -103,9 +107,13 @@
             <!-- Content -->
             <div class="content">
                 <h2 style="margin-top: -10px;">SURAT PERINTAH TUGAS</h2>
-                <p>Nomor: {{ $nomor }}</p>
-                <p>Tanggal: {{ $tanggal }}</p>
-                <p>Inspektur Kota Gorontalo Menugaskan Kepada: {{ $kepada }}</p>
+                <div style="text-align: center;">
+                    <p>Nomor: {{ $nomor }}</p>
+                    <p>Tanggal: {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('d F Y') }}
+                    </p>
+                </div>
+
+                <p>Inspektur Kota Gorontalo Menugaskan Kepada:</p>
 
                 <!-- Tabel Petugas -->
                 <table>
@@ -127,20 +135,13 @@
                     </tbody>
                 </table>
 
-                <p>Maksud: {{ $maksud }}</p>
+                <p style="text-align: justify; padding-left:70px; text-indent:-70px;">
+                    Maksud: {{ $maksud }}
+                </p>
+
                 <p>Waktu: {{ $waktu }}</p>
 
-                <hr style="border-top: 2px solid black; margin-top: 30px;">
 
-                <!-- Footer Note -->
-                <div class="footer-note">
-                    <p>
-                        Layanan Pengaduan/Website: <br>
-                        Apabila Pegawai Inspektorat Kota Gorontalo menerima / meminta gratifikasi dan suap,
-                        dapat dilaporkan melalui mekanisme penyampaian pengaduan pada
-                        <a href="http://inspektorat.gorontalokota.go.id">wbs.inspektorat.gorontalokota.go.id</a>
-                    </p>
-                </div>
 
                 <!-- Ketentuan -->
                 <div style="font-size: 12pt; text-align: justify; margin-top: 10px;">
@@ -160,13 +161,25 @@
                     <td style="width: 60%;"></td>
                     <td style="text-align: center;">
                         <p style="font-size: 16px; font-weight: bold;">INSPEKTUR</p>
-                        <br><br><br><br><br> <!-- Untuk jarak tanda tangan -->
+                        <br><br><br> <!-- Untuk jarak tanda tangan -->
                         <p class="name">MOHAMAD TAUFIQ DUNGGIO, SE</p>
                         <p class="nip">PEMBINA UTAMA MUDA</p>
                         <p class="nip">NIP. 19660712 200003 1 006</p>
                     </td>
                 </tr>
             </table>
+
+            {{-- <hr style="border-top: 2px solid black; margin-top: 30px;"> --}}
+
+            <!-- Footer Note -->
+            <div class="footer-note">
+                <p>
+                    Layanan Pengaduan/Website: <br>
+                    Apabila Pegawai Inspektorat Kota Gorontalo menerima / meminta gratifikasi dan suap,
+                    dapat dilaporkan melalui mekanisme penyampaian pengaduan pada
+                    <a href="http://inspektorat.gorontalokota.go.id">wbs.inspektorat.gorontalokota.go.id</a>
+                </p>
+            </div>
         </div>
     </body>
 

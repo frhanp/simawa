@@ -26,11 +26,11 @@
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
                         </div>
                     
-                        <div class="mb-4">
+                        {{-- <div class="mb-4">
                             <label for="kepada" class="block text-sm font-medium text-gray-700">Kepada</label>
                             <input type="text" id="kepada" name="kepada" value="{{ old('kepada') }}" required
                                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
-                        </div>
+                        </div> --}}
                     
                         <div class="mb-4">
                             <label for="maksud" class="block text-sm font-medium text-gray-700">Maksud</label>

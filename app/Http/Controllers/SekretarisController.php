@@ -68,7 +68,7 @@ class SekretarisController extends Controller
         $validated = $request->validate([
             'nomor' => 'required|string|max:255',
             'tanggal' => 'required|date',
-            'kepada' => 'required|string|max:255',
+            'kepada' => 'nullable|string|max:255',
             'maksud' => 'required|string',
             'waktu' => 'required|string|max:255',
         ]);
@@ -126,7 +126,7 @@ class SekretarisController extends Controller
             'petugas' => $petugas, // Data petugas sudah terurut
             'nomor' => $validated['nomor'],
             'tanggal' => $formattedDate,
-            'kepada' => $validated['kepada'],
+            'kepada' => $validated['kepada'] ?? 'Inspektur Kota Gorontalo',
             'maksud' => $validated['maksud'],
             'waktu' => $validated['waktu'],
         ];
@@ -192,9 +192,6 @@ class SekretarisController extends Controller
 
     public function createSPT(Task $task)
     {
-        // Pastikan task ada
-        // Anda bisa menambahkan pengecekan otorisasi jika diperlukan
-
         return view('sekretaris.spt.upload', compact('task'));
     }
 
