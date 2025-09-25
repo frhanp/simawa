@@ -24,7 +24,7 @@
 
                         {{-- Jenis Penugasan --}}
                         <div>
-                            <label class="block text-sm mb-1">Jenis Penugasan</label>
+                            <label class="block text-sm mb-1">Nama Penugasan</label>
                             <input type="text" name="assignment_type" class="block w-full border-gray-300 rounded-md"
                                 value="{{ old('assignment_type') }}">
                         </div>

@@ -19,12 +19,15 @@
             @endif
 
             <!-- Daftar Pelaksanaan -->
+            
+            @if (auth()->user() && auth()->user()->role === 'admin')
             <div class="mb-4 flex justify-end">
                 <a href="{{ route('pelaksanaan.create') }}"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">
                     Tambah Pelaksanaan
                 </a>
             </div>
+            @endif
             <table class="min-w-full bg-white border border-gray-200 rounded-md shadow">
                 <thead class="bg-gray-100">
                     <tr>
