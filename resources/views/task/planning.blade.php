@@ -30,30 +30,49 @@
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {{-- Penanggung Jawab --}}
+                            
                             <div>
                                 <label class="block text-sm mb-1">Penanggung Jawab</label>
-                                <select name="penanggung_jawab" class="w-full border-gray-300 rounded-md">
-                                    <option value="">-- Pilih --</option>
-                                    @foreach ($penanggungJawab as $o)
-                                        <option value="{{ $o->id }}" @selected(old('penanggung_jawab') == $o->id)>
-                                            {{ $o->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                @if ($penanggungJawab->count() > 1)
+                                    {{-- Jika lebih dari 1, tampilkan dropdown --}}
+                                    <select name="penanggung_jawab" class="w-full border-gray-300 rounded-md">
+                                        <option value="">-- Pilih --</option>
+                                        @foreach ($penanggungJawab as $o)
+                                            <option value="{{ $o->id }}" @selected(old('penanggung_jawab') == $o->id)>
+                                                {{ $o->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    {{-- Jika hanya 1, tampilkan sebagai teks dan hidden input --}}
+                                    @php $pj = $penanggungJawab->first(); @endphp
+                                    <div class="block w-full border-gray-300 rounded-md bg-gray-100 px-3 py-2 text-gray-700">
+                                        {{ $pj->nama }}
+                                    </div>
+                                    <input type="hidden" name="penanggung_jawab" value="{{ $pj->id }}">
+                                @endif
                             </div>
 
-                            {{-- Wakil Penanggung Jawab --}}
                             <div>
                                 <label class="block text-sm mb-1">Wakil Penanggung Jawab</label>
-                                <select name="wakil_penanggung_jawab" class="w-full border-gray-300 rounded-md">
-                                    <option value="">-- Pilih --</option>
-                                    @foreach ($wakilPenanggungJawab as $o)
-                                        <option value="{{ $o->id }}" @selected(old('wakil_penanggung_jawab') == $o->id)>
-                                            {{ $o->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                @if ($wakilPenanggungJawab->count() > 1)
+                                    {{-- Jika lebih dari 1, tampilkan dropdown --}}
+                                    <select name="wakil_penanggung_jawab" class="w-full border-gray-300 rounded-md">
+                                        <option value="">-- Pilih --</option>
+                                        @foreach ($wakilPenanggungJawab as $o)
+                                            <option value="{{ $o->id }}" @selected(old('wakil_penanggung_jawab') == $o->id)>
+                                                {{ $o->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    {{-- Jika hanya 1, tampilkan sebagai teks dan hidden input --}}
+                                    @php $wpj = $wakilPenanggungJawab->first(); @endphp
+                                    <div class="block w-full border-gray-300 rounded-md bg-gray-100 px-3 py-2 text-gray-700">
+                                        {{ $wpj->nama }}
+                                    </div>
+                                    <input type="hidden" name="wakil_penanggung_jawab" value="{{ $wpj->id }}">
+                                @endif
                             </div>
 
                             {{-- Ketua Tim --}}

@@ -31,7 +31,7 @@
             <table class="min-w-full bg-white border border-gray-200 rounded-md shadow">
                 <thead class="bg-gray-100">
                     <tr>
-                        <th class="py-2 px-4 border-b">ID</th>
+                        <th class="py-2 px-4 border-b">No</th>
                         <th class="py-2 px-4 border-b">Nama Tugas</th>
                         <th class="py-2 px-4 border-b">Foto Entry</th>
                         <th class="py-2 px-4 border-b">Berita Acara Entry</th>

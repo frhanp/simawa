@@ -5,9 +5,7 @@
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
                 {{ __('Edit Pelaksanaan') }}
             </h2>
-            <a href="{{ route('pelaksanaan.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Kembali
-            </a>
+
         </div>
     </x-slot>
 
@@ -33,19 +31,17 @@
                     <!-- Pilih Task -->
                     <div class="mb-4">
                         <label for="task_id" class="block text-gray-700">Pilih Tugas</label>
-                        <select name="task_id" id="task_id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
-                            <option value="">-- Pilih Task --</option>
-                            @foreach($taskList->groupBy('assignment_type') as $assignmentType => $tasks)
-                                <optgroup label="{{ $assignmentType }}">
-                                    @foreach($tasks as $task)
-                                        <option value="{{ $task->id }}" {{ (old('task_id', $pelaksanaan->task_id) == $task->id) ? 'selected' : '' }}>
-                                            {{ $task->id }} - {{ $task->assignment_type }}
-                                        </option>
-                                    @endforeach
-                                </optgroup>
+                        <select name="task_id" id="task_id"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
+                            <option value="">-- Pilih Tugas --</option>
+                            @foreach($taskList as $task)
+                                <option value="{{ $task->id }}" {{ (old('task_id', $pelaksanaan->task_id) == $task->id) ? 'selected' : '' }}>
+                                    {{ $task->id }} - {{ $task->assignment_type }}
+                                </option>
                             @endforeach
-                        </select>
+                        </select>na
                     </div>
+                    
 
                     <!-- Entry Meeting -->
                     <h3 class="text-xl font-semibold mb-2">Entry Meeting</h3>
@@ -90,10 +86,16 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div>
-                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                    <div class="flex space-x-2">
+                        <button type="submit"
+                            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                             Perbarui
                         </button>
+                    
+                        <a href="{{ route('pelaksanaan.index') }}"
+                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                            Kembali
+                        </a>
                     </div>
                 </form>
             </div>

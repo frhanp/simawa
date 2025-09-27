@@ -55,11 +55,12 @@
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        PKA 
+                                        Program Kerja Audit
+ 
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Formulir KM 4 
+                                        Formulir Kendali Mutu 4 
                                     </th>
                                     <th
                                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -94,7 +95,8 @@
                                                             stroke-width="2"
                                                             d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
                                                     </svg>
-                                                    Download PKA
+                                                    Download Program Kerja Audit
+
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">Tidak Ada File</span>
@@ -113,7 +115,7 @@
                                                             stroke-width="2"
                                                             d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
                                                     </svg>
-                                                    Download Formulir KM 4
+                                                    Download Formulir Kendali Mutu 4
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">Tidak Ada File</span>
@@ -144,7 +146,7 @@
                                     <tr>
                                         <td colspan="5"
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada persiapan SPT.
+                                            Tidak ada persiapan Surat Perintah Tugas.
                                         </td>
                                     </tr>
                                 @endforelse

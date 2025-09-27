@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar SPT') }}
+            {{ __('Daftar Surat Perintah Tugas') }}
         </h2>
     </x-slot>
 
@@ -36,9 +36,9 @@
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Tanggal</th>
-                                    <th
+                                    {{-- <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Deskripsi</th>
+                                        Deskripsi</th> --}}
                                     <th
                                         class="w-1/5 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Aksi
@@ -57,22 +57,22 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ \Carbon\Carbon::parse($spt->tanggal)->format('d-m-Y') }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ optional($spt->task)->status }}
-                                        </td>
+                                        </td> --}}
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             <div class="flex space-x-2 justify-center">
                                                 @if ($spt->file_path)
                                                     <a href="{{ asset('storage/' . $spt->file_path) }}" target="_blank"
                                                        class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition"
-                                                       aria-label="Download SPT">
+                                                       aria-label="Download Surat Perintah Tugas">
                                                         <!-- Ikon Download -->
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
                                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2" d="M12 16v-8m8-8H4v16h16z" />
                                                         </svg>
-                                                        Download SPT
+                                                        Download Surat Perintah Tugas
                                                     </a>
                                                 @else
                                                     <button
@@ -114,7 +114,7 @@
                                     <tr>
                                         <td colspan="5"
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada data SPT.
+                                            Tidak ada data Surat Perintah Tugas.
                                         </td>
                                     </tr>
                                 @endforelse

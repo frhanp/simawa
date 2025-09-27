@@ -8,7 +8,7 @@
         <p class="text-3xl font-semibold text-gray-800">{{ $data['totalTasks'] ?? 0 }}</p>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <h3 class="text-gray-500 text-sm font-medium">Total LHP</h3>
+        <h3 class="text-gray-500 text-sm font-medium">Total Laporan Hasil Pelaksanaan</h3>
         <p class="text-3xl font-semibold text-gray-800">{{ $data['totalLhps'] ?? 0 }}</p>
     </div>
 </div>
@@ -28,7 +28,7 @@
         </ul>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Status LHP</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Status Laporan Hasil Pelaksanaan</h3>
         <div class="overflow-x-auto">
             <table class="min-w-full">
                 @forelse($data['recentLhps'] as $lhp)

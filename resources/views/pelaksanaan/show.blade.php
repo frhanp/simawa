@@ -5,9 +5,6 @@
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
                 {{ __('Detail Pelaksanaan') }}
             </h2>
-            <a href="{{ route('pelaksanaan.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Kembali
-            </a>
         </div>
     </x-slot>
 
@@ -15,7 +12,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Detail Pelaksanaan -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <strong>ID Pelaksanaan:</strong> {{ $pelaksanaan->id }}
                 </div>
                 <div class="mb-4">
@@ -27,7 +24,7 @@
                     @endif
                 </div>
 
-                <hr class="my-4">
+                <hr class="my-4"> --}}
 
                 <h3 class="text-xl font-semibold mb-2">Entry Meeting</h3>
                 <div class="mb-4">
@@ -77,6 +74,12 @@
                 </div>
                 <div class="mb-4">
                     <strong>Diperbarui Pada:</strong> {{ $pelaksanaan->updated_at->format('d-m-Y H:i') }}
+                </div>
+                <div class="flex space-x-2 mt-6">
+                    <a href="{{ route('pelaksanaan.index') }}"
+                       class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                        Kembali
+                    </a>
                 </div>
             </div>
         </div>

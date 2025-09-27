@@ -56,16 +56,16 @@
                                         Tugas</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        KM 8</th>
+                                        Kendali Mutu 8</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        KM 10</th>
+                                        Kendali Mutu 10</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Kertas Kerja AT</th>
+                                        Kertas Kerja AT (Anggota Tim)</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Konsep LHP</th>
+                                        Konsep Laporan Hasil Pelaksanaan</th>
                                     {{-- <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         EXPOSE Pelaporan</th> --}}
@@ -111,7 +111,7 @@
                                                 <a href="{{ asset('storage/' . $pelaporan->km8) }}" target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat KM 8
+                                                    Lihat Kendali Mutu 8
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -124,7 +124,7 @@
                                                 <a href="{{ asset('storage/' . $pelaporan->km10) }}" target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat KM 10
+                                                    Lihat Kendali Mutu 10
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -138,7 +138,7 @@
                                                     target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Kertas Kerja AT
+                                                    Lihat Kertas Kerja Anggota Tim
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -152,7 +152,7 @@
                                                     target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Konsep LHP
+                                                    Lihat Konsep Laporan Hasil Pelaksanaan
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
