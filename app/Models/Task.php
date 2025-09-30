@@ -14,6 +14,7 @@ class Task extends Model
 
     // Field yang boleh diisi secara massal
     protected $fillable = [
+        'jenis_penugasan',
         'assignment_type',
         'team_composition',
         'number_of_days',

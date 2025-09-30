@@ -34,6 +34,9 @@
                                         Jenis Penugasan
                                     </th>
                                     <th class="w-1/4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Nama Penugasan
+                                    </th>
+                                    <th class="w-1/4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Komposisi Tim
                                     </th>
                                     <th class="w-1/4 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -47,6 +50,9 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($tasks as $task)
                                     <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {{ $task->jenis_penugasan }}
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $task->assignment_type }}
                                         </td>

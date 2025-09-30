@@ -25,6 +25,13 @@
                 </div>
 
                 <hr class="my-4"> --}}
+                <div class="mb-4">
+                    <strong>Jenis Penugasan:</strong> {{ $pelaksanaan->task->jenis_penugasan ?? '-' }}
+                </div>
+                <div class="mb-4">
+                    <strong>Nama Tugas:</strong> {{ $pelaksanaan->task->assignment_type ?? '-' }}
+                </div>
+                <hr class="my-4">
 
                 <h3 class="text-xl font-semibold mb-2">Entry Meeting</h3>
                 <div class="mb-4">

@@ -33,8 +33,8 @@
                             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
                             <option value="">-- Pilih Tugas --</option>
                             @foreach ($taskList as $task)
-                                <option value="{{ $task->id }}" {{ old('task_id') == $task->id ? 'selected' : '' }}>
-                                    {{ $task->id }} - {{ $task->assignment_type }}
+                                <option value="{{ $task->id }}" {{ (old('task_id') ?? $pelaksanaan->task_id ?? '') == $task->id ? 'selected' : '' }}>
+                                    {{ $task->jenis_penugasan }} - {{ $task->assignment_type }}
                                 </option>
                             @endforeach
                         </select>

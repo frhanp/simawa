@@ -39,7 +39,7 @@
                                     {{ $task->id }} - {{ $task->assignment_type }}
                                 </option>
                             @endforeach
-                        </select>na
+                        </select>
                     </div>
                     
 

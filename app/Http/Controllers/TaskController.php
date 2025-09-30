@@ -41,6 +41,7 @@ class TaskController extends Controller
 
     public function planning()
     {
+        $jenisPenugasanOptions = [ 'Audit', 'Evaluasi', 'Review', 'Monitor', 'Konsalting' ];
         $penanggungJawab      = Orang::where('jabatan', 'Penanggung Jawab')->get();
         $ketuaTim             = Orang::where('jabatan', 'Ketua Tim')->get();
         $wakilPenanggungJawab = Orang::where('jabatan', 'Wakil Penanggung Jawab')->get();
@@ -72,7 +73,8 @@ class TaskController extends Controller
             'anggotaTim',
             'pengendaliTeknis',
             'penunjang',
-            'lockedIds'
+            'lockedIds',
+            'jenisPenugasanOptions'
         ));
     }
 
@@ -85,6 +87,7 @@ class TaskController extends Controller
     {
         // Validasi tanpa kolom 'status'
         $validatedData = $request->validate([
+            'jenis_penugasan' => 'required|string|max:255',
             'assignment_type' => 'required|string|max:255',
             'penanggung_jawab' => 'required|exists:orang,id',
             'ketua_tim' => 'required|exists:orang,id',
@@ -110,6 +113,7 @@ class TaskController extends Controller
 
         // Memasukkan data ke dalam table tasks
         $task = Task::create([
+            'jenis_penugasan' => $validatedData['jenis_penugasan'],
             'assignment_type' => $validatedData['assignment_type'],
             'team_composition' => json_encode($teamComposition), // Menyimpan dalam format JSON
             'number_of_days' => $validatedData['number_of_days'],
@@ -206,6 +210,7 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
+            'jenis_penugasan'        => 'required|string|max:255',
             'assignment_type'        => 'required|string|max:255',
             'penanggung_jawab'       => 'required|integer|exists:orang,id',
             'wakil_penanggung_jawab' => 'required|integer|exists:orang,id',
@@ -255,6 +260,7 @@ class TaskController extends Controller
             return back()->withErrors(['anggota' => 'Ada personel (selain PJ/WPJ) yang sudah terikat di tugas aktif.'])->withInput();
         }
 
+        $task->jenis_penugasan   = $validated['jenis_penugasan'];
         $task->assignment_type   = $validated['assignment_type'];
         $task->team_composition  = json_encode($teamComposition);
         $task->number_of_days    = $validated['number_of_days'];

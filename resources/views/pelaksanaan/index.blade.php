@@ -32,6 +32,7 @@
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="py-2 px-4 border-b">No</th>
+                        <th class="py-2 px-4 border-b">Jenis Penugasan</th>
                         <th class="py-2 px-4 border-b">Nama Tugas</th>
                         <th class="py-2 px-4 border-b">Foto Entry</th>
                         <th class="py-2 px-4 border-b">Berita Acara Entry</th>
@@ -46,6 +47,13 @@
                         <tr>
                             <td class="py-2 px-4 border-b">{{ $item->id }}</td>
                             <td class="py-2 px-4 border-b text-center">
+                                @if ($item->task)
+                                    {{ $item->task->jenis_penugasan }}
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td class="py-2 px-4 border-b">
                                 @if ($item->task)
                                     {{ $item->task->assignment_type }}
                                 @else
@@ -86,19 +94,27 @@
                             </td>
 
                             <td class="py-2 px-4 border-b">
-                                <a href="{{ route('pelaksanaan.show', $item->id) }}"
-                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">Lihat</a>
-                                <a href="{{ route('pelaksanaan.edit', $item->id) }}"
-                                    class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">Edit</a>
-                                <form action="{{ route('pelaksanaan.destroy', $item->id) }}" method="POST"
-                                    class="inline-block"
-                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus ini?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Hapus</button>
-                                </form>
+                                <div class="flex items-center space-x-2">
+                                    <a href="{{ route('pelaksanaan.show', $item->id) }}"
+                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
+                                        Lihat
+                                    </a>
+                                    <a href="{{ route('pelaksanaan.edit', $item->id) }}"
+                                        class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">
+                                        Edit
+                                    </a>
+                                    <form action="{{ route('pelaksanaan.destroy', $item->id) }}" method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
+                            
                         </tr>
                     @endforeach
                     @if ($pelaksanaan->isEmpty())

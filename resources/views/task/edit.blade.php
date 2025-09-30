@@ -13,6 +13,16 @@
             <form method="POST" action="{{ Auth::user()->role === 'admin' ? route('task.update', $task->id) : route('sekretaris.task.update', $task->id) }}" class="space-y-6">
               @csrf
               @method('PUT')
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Penugasan</label>
+                <select name="jenis_penugasan" class="block w-full border-gray-300 rounded-md" required>
+                    <option value="">-- Pilih Jenis --</option>
+                    @foreach($jenisPenugasanOptions as $option)
+                        <option value="{{ $option }}" @selected(old('jenis_penugasan', $task->jenis_penugasan) == $option)>{{ $option }}</option>
+                    @endforeach
+                </select>
+                @error('jenis_penugasan') <p class="text-xs text-red-600 mt-1">{{ $message }}</p> @enderror
+              </div>
   
               {{-- Jenis Penugasan --}}
               <div>

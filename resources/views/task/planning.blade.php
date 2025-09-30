@@ -21,6 +21,15 @@
                         action="{{ Auth::user()->role === 'admin' ? route('task.store') : route('sekretaris.task.store') }}"
                         class="space-y-6">
                         @csrf
+                        <div>
+                            <label class="block text-sm mb-1">Jenis Penugasan</label>
+                            <select name="jenis_penugasan" class="block w-full border-gray-300 rounded-md" required>
+                                <option value="">-- Pilih Jenis --</option>
+                                @foreach($jenisPenugasanOptions as $option)
+                                    <option value="{{ $option }}" @selected(old('jenis_penugasan') == $option)>{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         {{-- Jenis Penugasan --}}
                         <div>
