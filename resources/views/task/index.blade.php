@@ -135,7 +135,7 @@
                                             @if ($task->status === 'pending')
                                                 <span
                                                     class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                                    {{ __('Pending') }}
+                                                    {{ __('Menunggu persetujuan') }}
                                                 </span>
                                             @elseif ($task->status === 'Disetujui Sekretaris')
                                                 <span

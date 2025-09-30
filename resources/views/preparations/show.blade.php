@@ -135,7 +135,7 @@
                                     @else
                                         bg-gray-100 text-gray-800 @endif
                                 ">
-                                    {{ $preparation->status }}
+                                    {{ $preparation->status === 'Pending' ? 'Menunggu persetujuan' : $preparation->status }}
                                 </span>
                             </p>
                             @if ($preparation->note)

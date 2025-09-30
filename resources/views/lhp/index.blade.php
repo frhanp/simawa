@@ -109,11 +109,17 @@
                                             {{ $lhp->keterangan ?? '-' }}
                                         </td> --}}
                                         <td class="pl-0 py-4 whitespace-nowrap text-sm text-center">
+                                            @php
+                                                $statusText = $lhp->status;
+                                                if ($statusText === 'pending') {
+                                                    $statusText = 'Menunggu persetujuan';
+                                                }
+                                            @endphp
                                             <span class="inline-flex items-center justify-center px-1 py-1 text-xs font-semibold rounded-full 
                                                 {{ $lhp->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
                                                 {{ $lhp->status === 'disetujui' ? 'bg-green-100 text-green-800' : '' }}
                                                 {{ $lhp->status === 'ditolak' ? 'bg-red-100 text-red-800' : '' }}">
-                                                {{ ucfirst($lhp->status) }}
+                                                {{ ucfirst($statusText) }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center">

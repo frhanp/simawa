@@ -19,7 +19,7 @@
     </div>
 
     <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-        <h3 class="text-gray-500 text-sm font-medium">LHP Perlu Persetujuan</h3>
+        <h3 class="text-gray-500 text-sm font-medium">Laporan Hasil Pelaksanaan Perlu Persetujuan</h3>
         <p class="text-5xl font-semibold text-green-600 my-4">{{ $data['lhpsForApprovalCount'] ?? 0 }}</p>
         <a href="{{ route('lhp.index') }}" class="text-green-500 hover:underline">Lihat Detail</a>
     </div>

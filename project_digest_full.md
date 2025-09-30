@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-09-27 09:34:25_
+_Generated: 2025-09-30 15:12:02_
 **Root:** D:\Laragon\www\simawa
 
 
@@ -555,7 +555,7 @@ storage\framework\cache\data\5d\fc
 storage\framework\cache\data\6b\c5
 storage\framework\cache\data\dc\4a
 storage\framework\sessions\.gitignore
-storage\framework\sessions\lDUQLCgevTvFwQ5hzBmjZv51JES77IXgp1oM7Hrl
+storage\framework\sessions\dYGqFO7Opn7B9j20LtYFHvHOwpmzZN8oSx5763dQ
 storage\framework\testing\.gitignore
 storage\framework\views\.gitignore
 storage\framework\views\001cb81e1afba3b8d5675e0496c5347d.php
@@ -675,11 +675,11 @@ Branch:
 main
 
 Last 5 commits:
+1b88e2a fix penamaan singkat jadi panjang
 75c405d change jenis penugasan jadi nama
 f500dc1 deploy pelaksanaan
 a0aa39e ubah nav pelaksanaan jadi create
 05425fc aping fix no, spt
-b57bcc2 perbagus landing
 ```
 
 
@@ -1015,118 +1015,118 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / .................................................................................................................. 
-  GET|HEAD        _debugbar/assets/javascript ............................ debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets ......................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} ................... debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} .................. debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open ............................. debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain ................. debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  POST            _ignition/execute-solution ........... ignition.executeSolution ΓÇ║ Spatie\LaravelIgnition ΓÇ║ ExecuteSolutionController
-  GET|HEAD        _ignition/health-check ....................... ignition.healthCheck ΓÇ║ Spatie\LaravelIgnition ΓÇ║ HealthCheckController
-  POST            _ignition/update-config .................... ignition.updateConfig ΓÇ║ Spatie\LaravelIgnition ΓÇ║ UpdateConfigController
-  GET|HEAD        admin/admin/entry-meeting ....................................... admin.entry-meeting ΓÇ║ AdminController@entryMeeting
-  POST            admin/admin/entry-meeting/store ...................... admin.entry-meeting.store ΓÇ║ AdminController@storeEntryMeeting
-  GET|HEAD        admin/admin/km4 .................................................................... admin.km4 ΓÇ║ AdminController@km4
-  POST            admin/admin/km4/store ................................................... admin.km4.store ΓÇ║ AdminController@storeKM4
-  POST            admin/admin/persiapan/store ................................. admin.persiapan.store ΓÇ║ AdminController@storePersiapan
-  GET|HEAD        admin/admin/persiapan/{id} ............................................. admin.persiapan ΓÇ║ AdminController@persiapan
-  GET|HEAD        admin/admin/pka .................................................................... admin.pka ΓÇ║ AdminController@pka
-  POST            admin/admin/pka/store ................................................... admin.pka.store ΓÇ║ AdminController@storePKA
-  GET|HEAD        admin/preparations ................................................. preparations ΓÇ║ PreparationController@adminIndex
-  GET|HEAD        admin/spt ..................................................................... spt.index ΓÇ║ AdminController@indexSPT
-  GET|HEAD        admin/spt/view ............................................................... task.ViewSpt ΓÇ║ TaskController@viewSPT
-  GET|HEAD        admin/task/planning ........................................................ task.planning ΓÇ║ TaskController@planning
-  POST            admin/task/store ................................................................. task.store ΓÇ║ TaskController@store
-  GET|HEAD        admin/task/view ................................................................... task.index ΓÇ║ TaskController@view
-  PUT             admin/tasks/{id} ............................................................... task.update ΓÇ║ TaskController@update
-  DELETE          admin/tasks/{id} ............................................................. task.destroy ΓÇ║ TaskController@destroy
-  GET|HEAD        admin/tasks/{id}/edit .............................................................. task.edit ΓÇ║ TaskController@edit
-  GET|HEAD        api/user ........................................................................................................... 
-  GET|HEAD        confirm-password ........................................ password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password .......................................................... Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard .................................................................... dashboard ΓÇ║ DashboardController@index
-  POST            email/verification-notification ............. verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password ......................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password ............................................ password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        inspektur/approve ............................... inspektur.approve_inspektur ΓÇ║ InspekturController@approveInspektur
-  GET|HEAD        inspektur/approve-task/{id} .................................... inspektur.approve ΓÇ║ InspekturController@approveTask
-  GET|HEAD        inspektur/orang ...................................................... inspektur.orang.index ΓÇ║ OrangController@index
-  POST            inspektur/orang ...................................................... inspektur.orang.store ΓÇ║ OrangController@store
-  GET|HEAD        inspektur/orang/create ............................................. inspektur.orang.create ΓÇ║ OrangController@create
-  PUT|PATCH       inspektur/orang/{orang} ............................................ inspektur.orang.update ΓÇ║ OrangController@update
-  DELETE          inspektur/orang/{orang} .......................................... inspektur.orang.destroy ΓÇ║ OrangController@destroy
-  GET|HEAD        inspektur/orang/{orang}/edit ........................................... inspektur.orang.edit ΓÇ║ OrangController@edit
-  POST            inspektur/pelaporan/reject ................................. inspektur.pelaporan.reject ΓÇ║ InspekturController@reject
-  POST            inspektur/pelaporan/{id}/acc ..................................... inspektur.pelaporan.acc ΓÇ║ InspekturController@acc
-  POST            inspektur/pelaporan/{id}/confirm ......................... inspektur.pelaporan.confirm ΓÇ║ PelaporanController@confirm
-  POST            inspektur/pelaporan/{id}/reschedule ................ inspektur.pelaporan.reschedule ΓÇ║ PelaporanController@reschedule
-  GET|HEAD        inspektur/penugasan .................................................. inspektur.penugasan ΓÇ║ TaskController@planning
-  GET|HEAD        inspektur/penugasan/list ............................................ inspektur.penugasan.list ΓÇ║ TaskController@view
-  GET|HEAD        inspektur/preparations .................................. inspektur.preparations.index ΓÇ║ PreparationController@index
-  GET|HEAD        inspektur/preparations/{preparation} ...................... inspektur.preparations.show ΓÇ║ PreparationController@show
-  POST            inspektur/preparations/{preparation}/approve ........ inspektur.preparations.approve ΓÇ║ PreparationController@approve
-  POST            inspektur/preparations/{preparation}/reject ........... inspektur.preparations.reject ΓÇ║ PreparationController@reject
-  POST            inspektur/reject-task ............................................ inspektur.reject ΓÇ║ InspekturController@rejectTask
-  GET|HEAD        lhp ................................................................................ lhp.index ΓÇ║ LHPController@index
-  POST            lhp ................................................................................ lhp.store ΓÇ║ LHPController@store
-  GET|HEAD        lhp/create ....................................................................... lhp.create ΓÇ║ LHPController@create
-  POST            lhp/reject ....................................................................... lhp.reject ΓÇ║ LHPController@reject
-  POST            lhp/{id}/acc ........................................................................... lhp.acc ΓÇ║ LHPController@acc
-  GET|HEAD        lhp/{lhp} ............................................................................ lhp.show ΓÇ║ LHPController@show
-  PUT|PATCH       lhp/{lhp} ........................................................................ lhp.update ΓÇ║ LHPController@update
-  DELETE          lhp/{lhp} ...................................................................... lhp.destroy ΓÇ║ LHPController@destroy
-  GET|HEAD        lhp/{lhp}/edit ....................................................................... lhp.edit ΓÇ║ LHPController@edit
-  POST            lhp/{lhp}/send-otp ............................................................. lhp.sendOtp ΓÇ║ LHPController@sendOtp
-  POST            lhp/{lhp}/verify-otp ....................................................... lhp.verifyOtp ΓÇ║ LHPController@verifyOtp
-  GET|HEAD        lhp/{lhp}/view-file .......................................................... lhp.viewFile ΓÇ║ LHPController@viewFile
-  GET|HEAD        login ........................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login .................................................................... Auth\AuthenticatedSessionController@store
-  POST            logout ........................................................ logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  GET|HEAD        notifications/{notification}/read ........................... notifications.read ΓÇ║ NotificationController@markAsRead
-  PUT             password .......................................................... password.update ΓÇ║ Auth\PasswordController@update
-  GET|HEAD        pdf ................................................................................................................ 
-  GET|HEAD        pelaksanaan ........................................................ pelaksanaan.index ΓÇ║ PelaksanaanController@index
-  POST            pelaksanaan ........................................................ pelaksanaan.store ΓÇ║ PelaksanaanController@store
-  GET|HEAD        pelaksanaan/create ............................................... pelaksanaan.create ΓÇ║ PelaksanaanController@create
-  GET|HEAD        pelaksanaan/{pelaksanaan} ............................................ pelaksanaan.show ΓÇ║ PelaksanaanController@show
-  PUT|PATCH       pelaksanaan/{pelaksanaan} ........................................ pelaksanaan.update ΓÇ║ PelaksanaanController@update
-  DELETE          pelaksanaan/{pelaksanaan} ...................................... pelaksanaan.destroy ΓÇ║ PelaksanaanController@destroy
-  GET|HEAD        pelaksanaan/{pelaksanaan}/edit ....................................... pelaksanaan.edit ΓÇ║ PelaksanaanController@edit
-  GET|HEAD        pelaporan .............................................................. pelaporan.index ΓÇ║ PelaporanController@index
-  POST            pelaporan .............................................................. pelaporan.store ΓÇ║ PelaporanController@store
-  GET|HEAD        pelaporan/create ..................................................... pelaporan.create ΓÇ║ PelaporanController@create
-  GET|HEAD        pelaporan/{pelaporan} .................................................... pelaporan.show ΓÇ║ PelaporanController@show
-  PUT|PATCH       pelaporan/{pelaporan} ................................................ pelaporan.update ΓÇ║ PelaporanController@update
-  DELETE          pelaporan/{pelaporan} .............................................. pelaporan.destroy ΓÇ║ PelaporanController@destroy
-  GET|HEAD        pelaporan/{pelaporan}/edit ............................................... pelaporan.edit ΓÇ║ PelaporanController@edit
-  GET|HEAD        penugasan/planning ................................... sekretaris.task.planning ΓÇ║ Sekretaris\TaskController@planning
-  POST            penugasan/store ............................................ sekretaris.task.store ΓÇ║ Sekretaris\TaskController@store
-  GET|HEAD        penugasan/view ............................................... sekretaris.task.view ΓÇ║ Sekretaris\TaskController@view
-  PUT             penugasan/{task} ......................................... sekretaris.task.update ΓÇ║ Sekretaris\TaskController@update
-  DELETE          penugasan/{task} ....................................... sekretaris.task.destroy ΓÇ║ Sekretaris\TaskController@destroy
-  GET|HEAD        penugasan/{task}/edit ........................................ sekretaris.task.edit ΓÇ║ Sekretaris\TaskController@edit
-  GET|HEAD        pertimbangan ...................................................... pertimbangan ΓÇ║ SekretarisController@pertimbangan
-  GET|HEAD        profile ...................................................................... profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile .................................................................. profile.update ΓÇ║ ProfileController@update
-  DELETE          profile ................................................................ profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ........................................................... register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register ....................................................................... Auth\RegisteredUserController@store
-  POST            reset-password ................................................... password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} .......................................... password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        sanctum/csrf-cookie .............................. sanctum.csrf-cookie ΓÇ║ Laravel\Sanctum ΓÇ║ CsrfCookieController@show
-  GET|HEAD        spt/upload/{task} ........................................... sekretaris.spt.upload ΓÇ║ SekretarisController@createSPT
-  POST            spt/upload/{task} ............................................. sekretaris.spt.store ΓÇ║ SekretarisController@storeSPT
-  POST            spt/{spt}/preparations ............................................ preparations.store ΓÇ║ PreparationController@store
-  GET|HEAD        spt/{spt}/preparations/create ................................... preparations.create ΓÇ║ PreparationController@create
-  POST            task/sekretaris/reject .................................... task.sekretaris.reject ΓÇ║ TaskController@rejectWithReason
-  GET|HEAD        task/sekretaris/{id}/accept ............................ task.sekretaris.accept ΓÇ║ TaskController@acceptForSekretaris
-  GET|HEAD        tasks/{task}/create-pdf ................................. task.sekretaris.create_pdf ΓÇ║ SekretarisController@showForm
-  POST            tasks/{task}/create-pdf .............. task.sekretaris.create_pdf_with_data ΓÇ║ SekretarisController@createPdfWithData
-  GET|HEAD        verify-email .......................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} .......................................... verification.verify ΓÇ║ Auth\VerifyEmailController
+  GET|HEAD        / ....................................................................................................... 
+  GET|HEAD        _debugbar/assets/javascript ................. debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets .............. debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} ........ debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} ....... debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open .................. debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ...... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  POST            _ignition/execute-solution ignition.executeSolution ΓÇ║ Spatie\LaravelIgnition ΓÇ║ ExecuteSolutionController
+  GET|HEAD        _ignition/health-check ............ ignition.healthCheck ΓÇ║ Spatie\LaravelIgnition ΓÇ║ HealthCheckController
+  POST            _ignition/update-config ......... ignition.updateConfig ΓÇ║ Spatie\LaravelIgnition ΓÇ║ UpdateConfigController
+  GET|HEAD        admin/admin/entry-meeting ............................ admin.entry-meeting ΓÇ║ AdminController@entryMeeting
+  POST            admin/admin/entry-meeting/store ........... admin.entry-meeting.store ΓÇ║ AdminController@storeEntryMeeting
+  GET|HEAD        admin/admin/km4 ......................................................... admin.km4 ΓÇ║ AdminController@km4
+  POST            admin/admin/km4/store ........................................ admin.km4.store ΓÇ║ AdminController@storeKM4
+  POST            admin/admin/persiapan/store ...................... admin.persiapan.store ΓÇ║ AdminController@storePersiapan
+  GET|HEAD        admin/admin/persiapan/{id} .................................. admin.persiapan ΓÇ║ AdminController@persiapan
+  GET|HEAD        admin/admin/pka ......................................................... admin.pka ΓÇ║ AdminController@pka
+  POST            admin/admin/pka/store ........................................ admin.pka.store ΓÇ║ AdminController@storePKA
+  GET|HEAD        admin/preparations ...................................... preparations ΓÇ║ PreparationController@adminIndex
+  GET|HEAD        admin/spt .......................................................... spt.index ΓÇ║ AdminController@indexSPT
+  GET|HEAD        admin/spt/view .................................................... task.ViewSpt ΓÇ║ TaskController@viewSPT
+  GET|HEAD        admin/task/planning ............................................. task.planning ΓÇ║ TaskController@planning
+  POST            admin/task/store ...................................................... task.store ΓÇ║ TaskController@store
+  GET|HEAD        admin/task/view ........................................................ task.index ΓÇ║ TaskController@view
+  PUT             admin/tasks/{id} .................................................... task.update ΓÇ║ TaskController@update
+  DELETE          admin/tasks/{id} .................................................. task.destroy ΓÇ║ TaskController@destroy
+  GET|HEAD        admin/tasks/{id}/edit ................................................... task.edit ΓÇ║ TaskController@edit
+  GET|HEAD        api/user ................................................................................................ 
+  GET|HEAD        confirm-password ............................. password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password ............................................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ......................................................... dashboard ΓÇ║ DashboardController@index
+  POST            email/verification-notification .. verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password .............................. password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password ................................. password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        inspektur/approve .................... inspektur.approve_inspektur ΓÇ║ InspekturController@approveInspektur
+  GET|HEAD        inspektur/approve-task/{id} ......................... inspektur.approve ΓÇ║ InspekturController@approveTask
+  GET|HEAD        inspektur/orang ........................................... inspektur.orang.index ΓÇ║ OrangController@index
+  POST            inspektur/orang ........................................... inspektur.orang.store ΓÇ║ OrangController@store
+  GET|HEAD        inspektur/orang/create .................................. inspektur.orang.create ΓÇ║ OrangController@create
+  PUT|PATCH       inspektur/orang/{orang} ................................. inspektur.orang.update ΓÇ║ OrangController@update
+  DELETE          inspektur/orang/{orang} ............................... inspektur.orang.destroy ΓÇ║ OrangController@destroy
+  GET|HEAD        inspektur/orang/{orang}/edit ................................ inspektur.orang.edit ΓÇ║ OrangController@edit
+  POST            inspektur/pelaporan/reject ...................... inspektur.pelaporan.reject ΓÇ║ InspekturController@reject
+  POST            inspektur/pelaporan/{id}/acc .......................... inspektur.pelaporan.acc ΓÇ║ InspekturController@acc
+  POST            inspektur/pelaporan/{id}/confirm .............. inspektur.pelaporan.confirm ΓÇ║ PelaporanController@confirm
+  POST            inspektur/pelaporan/{id}/reschedule ..... inspektur.pelaporan.reschedule ΓÇ║ PelaporanController@reschedule
+  GET|HEAD        inspektur/penugasan ....................................... inspektur.penugasan ΓÇ║ TaskController@planning
+  GET|HEAD        inspektur/penugasan/list ................................. inspektur.penugasan.list ΓÇ║ TaskController@view
+  GET|HEAD        inspektur/preparations ....................... inspektur.preparations.index ΓÇ║ PreparationController@index
+  GET|HEAD        inspektur/preparations/{preparation} ........... inspektur.preparations.show ΓÇ║ PreparationController@show
+  POST            inspektur/preparations/{preparation}/approve inspektur.preparations.approve ΓÇ║ PreparationController@apprΓÇª
+  POST            inspektur/preparations/{preparation}/reject inspektur.preparations.reject ΓÇ║ PreparationController@reject
+  POST            inspektur/reject-task ................................. inspektur.reject ΓÇ║ InspekturController@rejectTask
+  GET|HEAD        lhp ..................................................................... lhp.index ΓÇ║ LHPController@index
+  POST            lhp ..................................................................... lhp.store ΓÇ║ LHPController@store
+  GET|HEAD        lhp/create ............................................................ lhp.create ΓÇ║ LHPController@create
+  POST            lhp/reject ............................................................ lhp.reject ΓÇ║ LHPController@reject
+  POST            lhp/{id}/acc ................................................................ lhp.acc ΓÇ║ LHPController@acc
+  GET|HEAD        lhp/{lhp} ................................................................. lhp.show ΓÇ║ LHPController@show
+  PUT|PATCH       lhp/{lhp} ............................................................. lhp.update ΓÇ║ LHPController@update
+  DELETE          lhp/{lhp} ........................................................... lhp.destroy ΓÇ║ LHPController@destroy
+  GET|HEAD        lhp/{lhp}/edit ............................................................ lhp.edit ΓÇ║ LHPController@edit
+  POST            lhp/{lhp}/send-otp .................................................. lhp.sendOtp ΓÇ║ LHPController@sendOtp
+  POST            lhp/{lhp}/verify-otp ............................................ lhp.verifyOtp ΓÇ║ LHPController@verifyOtp
+  GET|HEAD        lhp/{lhp}/view-file ............................................... lhp.viewFile ΓÇ║ LHPController@viewFile
+  GET|HEAD        login ................................................ login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login ......................................................... Auth\AuthenticatedSessionController@store
+  POST            logout ............................................. logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  GET|HEAD        notifications/{notification}/read ................ notifications.read ΓÇ║ NotificationController@markAsRead
+  PUT             password ............................................... password.update ΓÇ║ Auth\PasswordController@update
+  GET|HEAD        pdf ..................................................................................................... 
+  GET|HEAD        pelaksanaan ............................................. pelaksanaan.index ΓÇ║ PelaksanaanController@index
+  POST            pelaksanaan ............................................. pelaksanaan.store ΓÇ║ PelaksanaanController@store
+  GET|HEAD        pelaksanaan/create .................................... pelaksanaan.create ΓÇ║ PelaksanaanController@create
+  GET|HEAD        pelaksanaan/{pelaksanaan} ................................. pelaksanaan.show ΓÇ║ PelaksanaanController@show
+  PUT|PATCH       pelaksanaan/{pelaksanaan} ............................. pelaksanaan.update ΓÇ║ PelaksanaanController@update
+  DELETE          pelaksanaan/{pelaksanaan} ........................... pelaksanaan.destroy ΓÇ║ PelaksanaanController@destroy
+  GET|HEAD        pelaksanaan/{pelaksanaan}/edit ............................ pelaksanaan.edit ΓÇ║ PelaksanaanController@edit
+  GET|HEAD        pelaporan ................................................... pelaporan.index ΓÇ║ PelaporanController@index
+  POST            pelaporan ................................................... pelaporan.store ΓÇ║ PelaporanController@store
+  GET|HEAD        pelaporan/create .......................................... pelaporan.create ΓÇ║ PelaporanController@create
+  GET|HEAD        pelaporan/{pelaporan} ......................................... pelaporan.show ΓÇ║ PelaporanController@show
+  PUT|PATCH       pelaporan/{pelaporan} ..................................... pelaporan.update ΓÇ║ PelaporanController@update
+  DELETE          pelaporan/{pelaporan} ................................... pelaporan.destroy ΓÇ║ PelaporanController@destroy
+  GET|HEAD        pelaporan/{pelaporan}/edit .................................... pelaporan.edit ΓÇ║ PelaporanController@edit
+  GET|HEAD        penugasan/planning ........................ sekretaris.task.planning ΓÇ║ Sekretaris\TaskController@planning
+  POST            penugasan/store ................................. sekretaris.task.store ΓÇ║ Sekretaris\TaskController@store
+  GET|HEAD        penugasan/view .................................... sekretaris.task.view ΓÇ║ Sekretaris\TaskController@view
+  PUT             penugasan/{task} .............................. sekretaris.task.update ΓÇ║ Sekretaris\TaskController@update
+  DELETE          penugasan/{task} ............................ sekretaris.task.destroy ΓÇ║ Sekretaris\TaskController@destroy
+  GET|HEAD        penugasan/{task}/edit ............................. sekretaris.task.edit ΓÇ║ Sekretaris\TaskController@edit
+  GET|HEAD        pertimbangan ........................................... pertimbangan ΓÇ║ SekretarisController@pertimbangan
+  GET|HEAD        profile ........................................................... profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile ....................................................... profile.update ΓÇ║ ProfileController@update
+  DELETE          profile ..................................................... profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ................................................ register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ............................................................ Auth\RegisteredUserController@store
+  POST            reset-password ........................................ password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ............................... password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        sanctum/csrf-cookie ................... sanctum.csrf-cookie ΓÇ║ Laravel\Sanctum ΓÇ║ CsrfCookieController@show
+  GET|HEAD        spt/upload/{task} ................................ sekretaris.spt.upload ΓÇ║ SekretarisController@createSPT
+  POST            spt/upload/{task} .................................. sekretaris.spt.store ΓÇ║ SekretarisController@storeSPT
+  POST            spt/{spt}/preparations ................................. preparations.store ΓÇ║ PreparationController@store
+  GET|HEAD        spt/{spt}/preparations/create ........................ preparations.create ΓÇ║ PreparationController@create
+  POST            task/sekretaris/reject ......................... task.sekretaris.reject ΓÇ║ TaskController@rejectWithReason
+  GET|HEAD        task/sekretaris/{id}/accept ................. task.sekretaris.accept ΓÇ║ TaskController@acceptForSekretaris
+  GET|HEAD        tasks/{task}/create-pdf ...................... task.sekretaris.create_pdf ΓÇ║ SekretarisController@showForm
+  POST            tasks/{task}/create-pdf ... task.sekretaris.create_pdf_with_data ΓÇ║ SekretarisController@createPdfWithData
+  GET|HEAD        verify-email ............................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ............................... verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                                  Showing [110] routes
+                                                                                                       Showing [110] routes
 
 ```
 
@@ -4341,7 +4341,7 @@ class Task extends Model
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar SPT') }}
+            {{ __('Daftar Surat PerintahÂ Tugas') }}
         </h2>
     </x-slot>
 
@@ -4405,14 +4405,14 @@ class Task extends Model
                                                 @if ($spt->file_path)
                                                     <a href="{{ asset('storage/' . $spt->file_path) }}" target="_blank"
                                                        class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition"
-                                                       aria-label="Download SPT">
+                                                       aria-label="Download Surat PerintahÂ Tugas">
                                                         <!-- Ikon Download -->
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
                                                              fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                   stroke-width="2" d="M12 16v-8m8-8H4v16h16z" />
                                                         </svg>
-                                                        Download SPT
+                                                        Download Surat PerintahÂ Tugas
                                                     </a>
                                                 @else
                                                     <button
@@ -4454,7 +4454,7 @@ class Task extends Model
                                     <tr>
                                         <td colspan="5"
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada data SPT.
+                                            Tidak ada data Surat PerintahÂ Tugas.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -4924,7 +4924,7 @@ $classes = ($active ?? false)
         <p class="text-3xl font-semibold text-gray-800">{{ $data['totalTasks'] ?? 0 }}</p>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <h3 class="text-gray-500 text-sm font-medium">Total LHP</h3>
+        <h3 class="text-gray-500 text-sm font-medium">Total Laporan Hasil Pelaksanaan</h3>
         <p class="text-3xl font-semibold text-gray-800">{{ $data['totalLhps'] ?? 0 }}</p>
     </div>
 </div>
@@ -4935,7 +4935,7 @@ $classes = ($active ?? false)
         <ul>
             @forelse($data['taskStatusSummary'] as $status => $total)
                 <li class="flex justify-between py-2 border-b">
-                    <span class="text-gray-600">{{ ucfirst($status) }}</span>
+                    <span class="text-gray-600">{{ $status === 'pending' ? 'Menunggu persetujuan' : ucfirst($status) }}</span>
                     <span class="font-bold text-gray-800">{{ $total }}</span>
                 </li>
             @empty
@@ -4944,7 +4944,7 @@ $classes = ($active ?? false)
         </ul>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-sm">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Status LHP</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Status Laporan Hasil Pelaksanaan</h3>
         <div class="overflow-x-auto">
             <table class="min-w-full">
                 @forelse($data['recentLhps'] as $lhp)
@@ -4992,7 +4992,7 @@ $classes = ($active ?? false)
     </div>
 
     <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-        <h3 class="text-gray-500 text-sm font-medium">LHP Perlu Persetujuan</h3>
+        <h3 class="text-gray-500 text-sm font-medium">Laporan Hasil Pelaksanaan Perlu Persetujuan</h3>
         <p class="text-5xl font-semibold text-green-600 my-4">{{ $data['lhpsForApprovalCount'] ?? 0 }}</p>
         <a href="{{ route('lhp.index') }}" class="text-green-500 hover:underline">Lihat Detail</a>
     </div>
@@ -5717,7 +5717,7 @@ $classes = ($active ?? false)
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <span>{{ __('Lihat SPT') }}</span>
+                <span>{{ __('Lihat Surat Perintah Tugas') }}</span>
             </x-nav-link>
             <x-nav-link :href="route('preparations')" :active="request()->routeIs('preparations')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -5748,7 +5748,7 @@ $classes = ($active ?? false)
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{ __('LHP') }}</span>
+                <span>{{ __('Laporan Hasil Pelaksanaan') }}</span>
             </x-nav-link>
         @endif
 
@@ -5819,7 +5819,7 @@ $classes = ($active ?? false)
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{ __('Lihat LHP') }}</span>
+                <span>{{ __('Lihat Laporan Hasil Pelaksanaan') }}</span>
             </x-nav-link>
             <x-nav-link :href="route('inspektur.orang.index')" :active="request()->routeIs('inspektur.orang.*')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -6032,7 +6032,7 @@ $classes = ($active ?? false)
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar LHP') }}
+            {{ __('Daftar Laporan Hasil Pelaksanaan') }}
         </h2>
     </x-slot>
 
@@ -6092,12 +6092,12 @@ $classes = ($active ?? false)
                 <div class="p-6">
                     @if (auth()->user()->role !== 'inspektur')
                         <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-lg font-medium text-gray-700">LHP</h3>
+                            <h3 class="text-lg font-medium text-gray-700">Laporan Hasil Pelaksanaan</h3>
                             <a href="{{ route('lhp.create') }}" class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                 </svg>
-                                Tambah LHP
+                                Tambah Laporan Hasil Pelaksanaan
                             </a>
                         </div>
                     @endif
@@ -6108,7 +6108,7 @@ $classes = ($active ?? false)
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tugas</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File LHP</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Hasil Pelaksanaan</th>
                                     {{-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th> --}}
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
@@ -6130,7 +6130,7 @@ $classes = ($active ?? false)
                                             @if ($lhp->lhp_file)
                                                 <button @click="$dispatch('open-otp-modal', { lhpId: {{ $lhp->id }} })" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat LHP
+                                                    Lihat Laporan Hasil Pelaksanaan
                                                 </button>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -6140,11 +6140,17 @@ $classes = ($active ?? false)
                                             {{ $lhp->keterangan ?? '-' }}
                                         </td> --}}
                                         <td class="pl-0 py-4 whitespace-nowrap text-sm text-center">
+                                            @php
+                                                $statusText = $lhp->status;
+                                                if ($statusText === 'pending') {
+                                                    $statusText = 'Menunggu persetujuan';
+                                                }
+                                            @endphp
                                             <span class="inline-flex items-center justify-center px-1 py-1 text-xs font-semibold rounded-full 
                                                 {{ $lhp->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
                                                 {{ $lhp->status === 'disetujui' ? 'bg-green-100 text-green-800' : '' }}
                                                 {{ $lhp->status === 'ditolak' ? 'bg-red-100 text-red-800' : '' }}">
-                                                {{ ucfirst($lhp->status) }}
+                                                {{ ucfirst($statusText) }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
@@ -6178,7 +6184,7 @@ $classes = ($active ?? false)
                                 @empty
                                     <tr>
                                         <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada LHP.
+                                            Tidak ada Laporan Hasil Pelaksanaan.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -6415,9 +6421,7 @@ $classes = ($active ?? false)
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
                 {{ __('Edit Pelaksanaan') }}
             </h2>
-            <a href="{{ route('pelaksanaan.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Kembali
-            </a>
+
         </div>
     </x-slot>
 
@@ -6443,19 +6447,17 @@ $classes = ($active ?? false)
                     <!-- Pilih Task -->
                     <div class="mb-4">
                         <label for="task_id" class="block text-gray-700">Pilih Tugas</label>
-                        <select name="task_id" id="task_id" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
-                            <option value="">-- Pilih Task --</option>
-                            @foreach($taskList->groupBy('assignment_type') as $assignmentType => $tasks)
-                                <optgroup label="{{ $assignmentType }}">
-                                    @foreach($tasks as $task)
-                                        <option value="{{ $task->id }}" {{ (old('task_id', $pelaksanaan->task_id) == $task->id) ? 'selected' : '' }}>
-                                            {{ $task->id }} - {{ $task->assignment_type }}
-                                        </option>
-                                    @endforeach
-                                </optgroup>
+                        <select name="task_id" id="task_id"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
+                            <option value="">-- Pilih Tugas --</option>
+                            @foreach($taskList as $task)
+                                <option value="{{ $task->id }}" {{ (old('task_id', $pelaksanaan->task_id) == $task->id) ? 'selected' : '' }}>
+                                    {{ $task->id }} - {{ $task->assignment_type }}
+                                </option>
                             @endforeach
-                        </select>
+                        </select>na
                     </div>
+                    
 
                     <!-- Entry Meeting -->
                     <h3 class="text-xl font-semibold mb-2">Entry Meeting</h3>
@@ -6500,10 +6502,16 @@ $classes = ($active ?? false)
                     </div>
 
                     <!-- Submit Button -->
-                    <div>
-                        <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                    <div class="flex space-x-2">
+                        <button type="submit"
+                            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                             Perbarui
                         </button>
+                    
+                        <a href="{{ route('pelaksanaan.index') }}"
+                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                            Kembali
+                        </a>
                     </div>
                 </form>
             </div>
@@ -6545,7 +6553,7 @@ $classes = ($active ?? false)
             <table class="min-w-full bg-white border border-gray-200 rounded-md shadow">
                 <thead class="bg-gray-100">
                     <tr>
-                        <th class="py-2 px-4 border-b">ID</th>
+                        <th class="py-2 px-4 border-b">No</th>
                         <th class="py-2 px-4 border-b">Nama Tugas</th>
                         <th class="py-2 px-4 border-b">Foto Entry</th>
                         <th class="py-2 px-4 border-b">Berita Acara Entry</th>
@@ -6637,9 +6645,6 @@ $classes = ($active ?? false)
             <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
                 {{ __('Detail Pelaksanaan') }}
             </h2>
-            <a href="{{ route('pelaksanaan.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Kembali
-            </a>
         </div>
     </x-slot>
 
@@ -6647,7 +6652,7 @@ $classes = ($active ?? false)
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Detail Pelaksanaan -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <div class="mb-4">
+                {{-- <div class="mb-4">
                     <strong>ID Pelaksanaan:</strong> {{ $pelaksanaan->id }}
                 </div>
                 <div class="mb-4">
@@ -6659,7 +6664,7 @@ $classes = ($active ?? false)
                     @endif
                 </div>
 
-                <hr class="my-4">
+                <hr class="my-4"> --}}
 
                 <h3 class="text-xl font-semibold mb-2">Entry Meeting</h3>
                 <div class="mb-4">
@@ -6709,6 +6714,12 @@ $classes = ($active ?? false)
                 </div>
                 <div class="mb-4">
                     <strong>Diperbarui Pada:</strong> {{ $pelaksanaan->updated_at->format('d-m-Y H:i') }}
+                </div>
+                <div class="flex space-x-2 mt-6">
+                    <a href="{{ route('pelaksanaan.index') }}"
+                       class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                        Kembali
+                    </a>
                 </div>
             </div>
         </div>
@@ -7110,16 +7121,16 @@ $classes = ($active ?? false)
                                         Tugas</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        KM 8</th>
+                                        Kendali Mutu 8</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        KM 10</th>
+                                        Kendali Mutu 10</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Kertas Kerja AT</th>
+                                        Kertas Kerja ATÂ (AnggotaÂ Tim)</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Konsep LHP</th>
+                                        Konsep Laporan Hasil Pelaksanaan</th>
                                     {{-- <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         EXPOSE Pelaporan</th> --}}
@@ -7165,7 +7176,7 @@ $classes = ($active ?? false)
                                                 <a href="{{ asset('storage/' . $pelaporan->km8) }}" target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat KM 8
+                                                    Lihat Kendali Mutu 8
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -7178,7 +7189,7 @@ $classes = ($active ?? false)
                                                 <a href="{{ asset('storage/' . $pelaporan->km10) }}" target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat KM 10
+                                                    Lihat Kendali Mutu 10
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -7192,7 +7203,7 @@ $classes = ($active ?? false)
                                                     target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Kertas Kerja AT
+                                                    Lihat Kertas Kerja Anggota Tim
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -7206,7 +7217,7 @@ $classes = ($active ?? false)
                                                     target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Konsep LHP
+                                                    Lihat Konsep Laporan Hasil Pelaksanaan
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -7431,11 +7442,12 @@ $classes = ($active ?? false)
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        PKA 
+                                        Program Kerja Audit
+ 
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Formulir KM 4 
+                                        Formulir Kendali Mutu 4 
                                     </th>
                                     <th
                                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -7470,7 +7482,8 @@ $classes = ($active ?? false)
                                                             stroke-width="2"
                                                             d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
                                                     </svg>
-                                                    Download PKA
+                                                    Download Program Kerja Audit
+
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">Tidak Ada File</span>
@@ -7489,7 +7502,7 @@ $classes = ($active ?? false)
                                                             stroke-width="2"
                                                             d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
                                                     </svg>
-                                                    Download Formulir KM 4
+                                                    Download Formulir Kendali Mutu 4
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">Tidak Ada File</span>
@@ -7520,7 +7533,7 @@ $classes = ($active ?? false)
                                     <tr>
                                         <td colspan="5"
                                             class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada persiapan SPT.
+                                            Tidak ada persiapan Surat PerintahÂ Tugas.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -7834,7 +7847,7 @@ $classes = ($active ?? false)
                                 @empty
                                     <tr>
                                         <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada persiapan SPT yang pending.
+                                            Tidak ada persiapan Surat PerintahÂ Tugas yang pending.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -7990,7 +8003,7 @@ $classes = ($active ?? false)
                                     @else
                                         bg-gray-100 text-gray-800 @endif
                                 ">
-                                    {{ $preparation->status }}
+                                    {{ $preparation->status === 'Pending' ? 'Menunggu persetujuan' : $preparation->status }}
                                 </span>
                             </p>
                             @if ($preparation->note)
@@ -8705,7 +8718,7 @@ $classes = ($active ?? false)
                                             @if ($task->status === 'pending')
                                                 <span
                                                     class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                                    {{ __('Pending') }}
+                                                    {{ __('Menunggu persetujuan') }}
                                                 </span>
                                             @elseif ($task->status === 'Disetujui Sekretaris')
                                                 <span
@@ -8960,17 +8973,17 @@ $classes = ($active ?? false)
                                                     <div class="flex justify-center space-x-4">
                                                         <a href="{{ route('sekretaris.spt.upload', $task->id) }}"
                                                             class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md shadow hover:bg-purple-700 transition">
-                                                            Unggah SPT
+                                                            Unggah Surat PerintahÂ Tugas
                                                         </a>
                                                         <!-- Tombol Buat PDF Komposisi Tim -->
                                                         <a href="{{ route('task.sekretaris.create_pdf', $task->id) }}"
                                                             class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
-                                                            Buat SPT
+                                                            Buat Surat PerintahÂ Tugas
                                                         </a>
                                                     </div>
                                                 @else
                                                     <div class="flex items-center justify-center text-gray-500">
-                                                        <span>SPT Sudah Dibuat</span>
+                                                        <span>Surat PerintahÂ Tugas Sudah Dibuat</span>
                                                     </div>
                                                 @endif
                                             @else

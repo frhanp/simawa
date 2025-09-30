@@ -153,17 +153,17 @@
                                                     <div class="flex justify-center space-x-4">
                                                         <a href="{{ route('sekretaris.spt.upload', $task->id) }}"
                                                             class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md shadow hover:bg-purple-700 transition">
-                                                            Unggah SPT
+                                                            Unggah Surat Perintah Tugas
                                                         </a>
                                                         <!-- Tombol Buat PDF Komposisi Tim -->
                                                         <a href="{{ route('task.sekretaris.create_pdf', $task->id) }}"
                                                             class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
-                                                            Buat SPT
+                                                            Buat Surat Perintah Tugas
                                                         </a>
                                                     </div>
                                                 @else
                                                     <div class="flex items-center justify-center text-gray-500">
-                                                        <span>SPT Sudah Dibuat</span>
+                                                        <span>Surat Perintah Tugas Sudah Dibuat</span>
                                                     </div>
                                                 @endif
                                             @else

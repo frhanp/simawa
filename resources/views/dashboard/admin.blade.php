@@ -19,7 +19,7 @@
         <ul>
             @forelse($data['taskStatusSummary'] as $status => $total)
                 <li class="flex justify-between py-2 border-b">
-                    <span class="text-gray-600">{{ ucfirst($status) }}</span>
+                    <span class="text-gray-600">{{ $status === 'pending' ? 'Menunggu persetujuan' : ucfirst($status) }}</span>
                     <span class="font-bold text-gray-800">{{ $total }}</span>
                 </li>
             @empty
