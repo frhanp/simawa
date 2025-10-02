@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit LHP') }}
+            {{ __('Edit Laporan Hasil Pemeriksaan') }}
         </h2>
     </x-slot>
 
@@ -53,13 +53,13 @@
 
                         <!-- Upload File LHP -->
                         <div class="mb-4">
-                            <label for="lhp_file" class="block text-sm font-medium text-gray-700">Upload File LHP</label>
+                            <label for="lhp_file" class="block text-sm font-medium text-gray-700">Upload File Laporan Hasil Pemeriksaan</label>
                             @if($lhp->lhp_file)
                                 <div class="mb-2">
                                     <a href="{{ asset('storage/' . $lhp->lhp_file) }}" target="_blank"
                                         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <i class="fas fa-file-download mr-2"></i>
-                                        Lihat File LHP Saat Ini
+                                        Lihat File Laporan Hasil Pemeriksaan Saat Ini
                                     </a>
                                 </div>
                             @endif

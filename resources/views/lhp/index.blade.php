@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar Laporan Hasil Pelaksanaan') }}
+            {{ __('Daftar Laporan Hasil Pemeriksaan') }}
         </h2>
     </x-slot>
 
@@ -61,12 +61,12 @@
                 <div class="p-6">
                     @if (auth()->user()->role !== 'inspektur')
                         <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-lg font-medium text-gray-700">Laporan Hasil Pelaksanaan</h3>
+                            <h3 class="text-lg font-medium text-gray-700">Laporan Hasil Pemeriksaan</h3>
                             <a href="{{ route('lhp.create') }}" class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                 </svg>
-                                Tambah Laporan Hasil Pelaksanaan
+                                Tambah Laporan Hasil Pemeriksaan
                             </a>
                         </div>
                     @endif
@@ -78,7 +78,7 @@
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Penugasan</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Tugas</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Hasil Pelaksanaan</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Hasil Pemeriksaan</th>
                                     {{-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th> --}}
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
@@ -103,7 +103,7 @@
                                             @if ($lhp->lhp_file)
                                                 <button @click="$dispatch('open-otp-modal', { lhpId: {{ $lhp->id }} })" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Laporan Hasil Pelaksanaan
+                                                    Lihat Laporan Hasil Pemeriksaan
                                                 </button>
                                             @else
                                                 <span class="text-gray-500">-</span>
@@ -157,7 +157,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada Laporan Hasil Pelaksanaan.
+                                            Tidak ada Laporan Hasil Pemeriksaan.
                                         </td>
                                     </tr>
                                 @endforelse

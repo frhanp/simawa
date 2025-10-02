@@ -138,7 +138,7 @@
                                             @endphp
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $statusClass }}">
-                                                {{ $preparation->status }}
+                                                {{ $preparation->status === 'Pending' ? 'Menunggu persetujuan' : $preparation->status }}
                                             </span>
                                         </td>
                                     </tr>

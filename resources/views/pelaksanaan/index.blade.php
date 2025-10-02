@@ -99,19 +99,22 @@
                                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
                                         Lihat
                                     </a>
-                                    <a href="{{ route('pelaksanaan.edit', $item->id) }}"
-                                        class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">
-                                        Edit
-                                    </a>
-                                    <form action="{{ route('pelaksanaan.destroy', $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                    
+                                    {{-- Tampilkan tombol Edit dan Hapus hanya jika bukan Inspektur --}}
+                                    @if (auth()->user()->role !== 'inspektur')
+                                        <a href="{{ route('pelaksanaan.edit', $item->id) }}"
+                                            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">
+                                            Edit
+                                        </a>
+                                        <form action="{{ route('pelaksanaan.destroy', $item->id) }}" method="POST"
+                                            class="inline-block"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Hapus</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                             

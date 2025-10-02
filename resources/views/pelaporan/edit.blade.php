@@ -59,7 +59,7 @@
                                     <a href="{{ asset('storage/' . $pelaporan->km8) }}" target="_blank"
                                         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <i class="fas fa-file-download mr-2"></i>
-                                        Lihat KM 8 Saat Ini
+                                        Lihat Kendali Mutu 8 Saat Ini
                                     </a>
                                 </div>
                             @endif
@@ -80,7 +80,7 @@
                                     <a href="{{ asset('storage/' . $pelaporan->km10) }}" target="_blank"
                                         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <i class="fas fa-file-download mr-2"></i>
-                                        Lihat KM 10 Saat Ini
+                                        Lihat Kendali Mutu 10 Saat Ini
                                     </a>
                                 </div>
                             @endif
@@ -101,7 +101,7 @@
                                     <a href="{{ asset('storage/' . $pelaporan->kertas_kerja_at) }}" target="_blank"
                                         class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                                         <i class="fas fa-file-download mr-2"></i>
-                                        Lihat Kertas Kerja AT Saat Ini
+                                        Lihat Kertas Kerja Anggota Tim Saat Ini
                                     </a>
                                 </div>
                             @endif
@@ -122,7 +122,7 @@
                                     <a href="{{ asset('storage/' . $pelaporan->konsep_lhp) }}" target="_blank"
                                         class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                                         <i class="fas fa-file-download mr-2"></i>
-                                        Lihat Konsep LHP Saat Ini
+                                        Lihat Konsep Laporan Hasil Pelaksanaan Saat Ini
                                     </a>
                                 </div>
                             @endif

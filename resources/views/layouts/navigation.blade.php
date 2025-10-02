@@ -87,7 +87,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{ __('Laporan Hasil Pelaksanaan') }}</span>
+                <span>{{ __('Laporan Hasil Pemeriksaan') }}</span>
             </x-nav-link>
         @endif
 
@@ -158,7 +158,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>{{ __('Lihat Laporan Hasil Pelaksanaan') }}</span>
+                <span>{{ __('Lihat Laporan Hasil Pemeriksaan') }}</span>
             </x-nav-link>
             <x-nav-link :href="route('inspektur.orang.index')" :active="request()->routeIs('inspektur.orang.*')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"

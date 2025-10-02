@@ -51,7 +51,7 @@
 
                         <!-- Upload KM 8 -->
                         <div class="mb-4">
-                            <label for="km8" class="block text-sm font-medium text-gray-700">Upload KM 8</label>
+                            <label for="km8" class="block text-sm font-medium text-gray-700">Upload Kendali Mutu 8</label>
                             <input type="file" name="km8" id="km8"
                                 class="mt-1 block w-full text-sm text-gray-500
                                 file:mr-4 file:py-2 file:px-4
@@ -63,7 +63,7 @@
 
                         <!-- Upload KM 10 -->
                         <div class="mb-4">
-                            <label for="km10" class="block text-sm font-medium text-gray-700">Upload KM 10</label>
+                            <label for="km10" class="block text-sm font-medium text-gray-700">Upload Kendali Mutu 10</label>
                             <input type="file" name="km10" id="km10"
                                 class="mt-1 block w-full text-sm text-gray-500
                                 file:mr-4 file:py-2 file:px-4
@@ -76,7 +76,7 @@
                         <!-- Upload Kertas Kerja AT -->
                         <div class="mb-4">
                             <label for="kertas_kerja_at" class="block text-sm font-medium text-gray-700">Upload Kertas
-                                Kerja AT</label>
+                                Kerja Anggota Tim</label>
                             <input type="file" name="kertas_kerja_at" id="kertas_kerja_at"
                                 class="mt-1 block w-full text-sm text-gray-500
                                 file:mr-4 file:py-2 file:px-4
@@ -89,7 +89,7 @@
                         <!-- Upload Konsep LHP -->
                         <div class="mb-4">
                             <label for="konsep_lhp" class="block text-sm font-medium text-gray-700">Upload Konsep
-                                LHP (Setelah review berjenjang)</label>
+                                Laporan Hasil Pemeriksaan (Setelah review berjenjang)</label>
                             <input type="file" name="konsep_lhp" id="konsep_lhp"
                                 class="mt-1 block w-full text-sm text-gray-500
                                 file:mr-4 file:py-2 file:px-4

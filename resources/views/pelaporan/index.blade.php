@@ -68,7 +68,7 @@
                                         Kertas Kerja AT (Anggota Tim)</th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Konsep Laporan Hasil Pelaksanaan</th>
+                                        Konsep Laporan Hasil Pemeriksaan</th>
                                     {{-- <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         EXPOSE Pelaporan</th> --}}
@@ -158,7 +158,7 @@
                                                     target="_blank"
                                                     class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                                                     <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Konsep Laporan Hasil Pelaksanaan
+                                                    Lihat Konsep Laporan Hasil Pemeriksaan
                                                 </a>
                                             @else
                                                 <span class="text-gray-500">-</span>

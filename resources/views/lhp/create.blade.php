@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah LHP') }}
+            {{ __('Tambah Laporan Hasil Pemeriksaan') }}
         </h2>
     </x-slot>
 
@@ -37,7 +37,7 @@
 
                         <!-- Pilih Task -->
                         <div class="mb-4">
-                            <label for="task_id" class="block text-sm font-medium text-gray-700">Pilih Task</label>
+                            <label for="task_id" class="block text-sm font-medium text-gray-700">Pilih Tugas</label>
                             <select id="task_id" name="task_id" required
                                 class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
                                 <option value="">-- Pilih Tugas --</option>
@@ -51,7 +51,7 @@
 
                         <!-- Upload LHP File -->
                         <div class="mb-4">
-                            <label for="lhp_file" class="block text-sm font-medium text-gray-700">Upload File LHP</label>
+                            <label for="lhp_file" class="block text-sm font-medium text-gray-700">Upload File Laporan Hasil Pemeriksaan</label>
                             <input type="file" name="lhp_file" id="lhp_file"
                                 class="mt-1 block w-full text-sm text-gray-500
                                 file:mr-4 file:py-2 file:px-4
