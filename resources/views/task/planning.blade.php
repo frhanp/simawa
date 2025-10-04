@@ -16,7 +16,7 @@
                             {{ $errors->first('anggota') }}
                         </div>
                     @endif
-
+                    
                     <form method="POST"
                         action="{{ Auth::user()->role === 'admin' ? route('task.store') : route('sekretaris.task.store') }}"
                         class="space-y-6">
@@ -25,8 +25,9 @@
                             <label class="block text-sm mb-1">Jenis Penugasan</label>
                             <select name="jenis_penugasan" class="block w-full border-gray-300 rounded-md" required>
                                 <option value="">-- Pilih Jenis --</option>
-                                @foreach($jenisPenugasanOptions as $option)
-                                    <option value="{{ $option }}" @selected(old('jenis_penugasan') == $option)>{{ $option }}</option>
+                                @foreach ($jenisPenugasanOptions as $option)
+                                    <option value="{{ $option }}" @selected(old('jenis_penugasan') == $option)>{{ $option }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,9 +38,18 @@
                             <input type="text" name="assignment_type" class="block w-full border-gray-300 rounded-md"
                                 value="{{ old('assignment_type') }}">
                         </div>
+                        {{-- Letakkan setelah div "Nama Penugasan" --}}
+                        <div class="flex items-center pt-2">
+                            <input id="is_berjenjang" name="is_berjenjang" type="checkbox" value="1"
+                                @if (old('is_berjenjang')) checked @endif
+                                class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                            <label for="is_berjenjang" class="ml-2 block text-sm text-gray-900">
+                                Penugasan Berjenjang (Buka semua kunci personel)
+                            </label>
+                        </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            
+
                             <div>
                                 <label class="block text-sm mb-1">Penanggung Jawab</label>
                                 @if ($penanggungJawab->count() > 1)
@@ -55,7 +65,8 @@
                                 @else
                                     {{-- Jika hanya 1, tampilkan sebagai teks dan hidden input --}}
                                     @php $pj = $penanggungJawab->first(); @endphp
-                                    <div class="block w-full border-gray-300 rounded-md bg-gray-100 px-3 py-2 text-gray-700">
+                                    <div
+                                        class="block w-full border-gray-300 rounded-md bg-gray-100 px-3 py-2 text-gray-700">
                                         {{ $pj->nama }}
                                     </div>
                                     <input type="hidden" name="penanggung_jawab" value="{{ $pj->id }}">
@@ -77,7 +88,8 @@
                                 @else
                                     {{-- Jika hanya 1, tampilkan sebagai teks dan hidden input --}}
                                     @php $wpj = $wakilPenanggungJawab->first(); @endphp
-                                    <div class="block w-full border-gray-300 rounded-md bg-gray-100 px-3 py-2 text-gray-700">
+                                    <div
+                                        class="block w-full border-gray-300 rounded-md bg-gray-100 px-3 py-2 text-gray-700">
                                         {{ $wpj->nama }}
                                     </div>
                                     <input type="hidden" name="wakil_penanggung_jawab" value="{{ $wpj->id }}">
@@ -95,10 +107,12 @@
                                             $isSelectedK = (string) old('ketua_tim') === (string) $o->id;
                                         @endphp
                                         @if ($isSelectedK)
-                                            <option value="{{ $o->id }}" selected>{{ $o->nama }}</option>
-                                        @elseif($isLocked)
-                                            <option value="{{ $o->id }}" disabled>🔒 {{ $o->nama }}
+                                            <option value="{{ $o->id }}" selected
+                                                data-locked="{{ $isLocked ? 'true' : 'false' }}">{{ $o->nama }}
                                             </option>
+                                        @elseif($isLocked)
+                                            <option value="{{ $o->id }}" disabled data-locked="true">🔒
+                                                {{ $o->nama }}</option>
                                         @else
                                             <option value="{{ $o->id }}">{{ $o->nama }}</option>
                                         @endif
@@ -131,17 +145,16 @@
                                             $isSel = $selectedPengtek->contains((string) $o->id);
                                         @endphp
                                         @if ($isSel)
-                                            <option value="{{ $o->id }}" selected>{{ $o->nama }}</option>
+                                            <option value="{{ $o->id }}" selected data-locked="{{ $isLocked ? 'true' : 'false' }}">{{ $o->nama }}</option>
                                         @elseif($isLocked)
-                                            <option value="{{ $o->id }}" disabled>🔒 {{ $o->nama }}
-                                            </option>
+                                            <option value="{{ $o->id }}" disabled data-locked="true"> {{ $o->nama }}</option>
                                         @else
-                                            <option value="{{ $o->id }}">{{ $o->nama }}</option>
+                                            <option value="{{ $o->id }}" data-locked="false">{{ $o->nama }}</option>
                                         @endif
                                     @endforeach
                                 </select>
                             </div>
-
+                        
                             {{-- Anggota Tim --}}
                             @php
                                 $selectedAnggota = collect(old('anggota_tim', []))->map(fn($v) => (string) $v);
@@ -156,17 +169,16 @@
                                             $isSel = $selectedAnggota->contains((string) $o->id);
                                         @endphp
                                         @if ($isSel)
-                                            <option value="{{ $o->id }}" selected>{{ $o->nama }}</option>
+                                            <option value="{{ $o->id }}" selected data-locked="{{ $isLocked ? 'true' : 'false' }}">{{ $o->nama }}</option>
                                         @elseif($isLocked)
-                                            <option value="{{ $o->id }}" disabled>🔒 {{ $o->nama }}
-                                            </option>
+                                            <option value="{{ $o->id }}" disabled data-locked="true"> {{ $o->nama }}</option>
                                         @else
-                                            <option value="{{ $o->id }}">{{ $o->nama }}</option>
+                                            <option value="{{ $o->id }}" data-locked="false">{{ $o->nama }}</option>
                                         @endif
                                     @endforeach
                                 </select>
                             </div>
-
+                        
                             {{-- Penunjang --}}
                             @php
                                 $selectedPenunjang = collect(old('penunjang', []))->map(fn($v) => (string) $v);
@@ -181,17 +193,17 @@
                                             $isSel = $selectedPenunjang->contains((string) $o->id);
                                         @endphp
                                         @if ($isSel)
-                                            <option value="{{ $o->id }}" selected>{{ $o->nama }}</option>
+                                            <option value="{{ $o->id }}" selected data-locked="{{ $isLocked ? 'true' : 'false' }}">{{ $o->nama }}</option>
                                         @elseif($isLocked)
-                                            <option value="{{ $o->id }}" disabled>🔒 {{ $o->nama }}
-                                            </option>
+                                            <option value="{{ $o->id }}" disabled data-locked="true"> {{ $o->nama }}</option>
                                         @else
-                                            <option value="{{ $o->id }}">{{ $o->nama }}</option>
+                                            <option value="{{ $o->id }}" data-locked="false">{{ $o->nama }}</option>
                                         @endif
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        
 
                         <div class="flex justify-end gap-3 pt-2">
                             <a href="{{ route('task.index') }}"
@@ -205,16 +217,70 @@
                     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
-                            const common = {
+                            const commonConfig = {
                                 plugins: ['remove_button'],
                                 persist: false,
-                                create: false
+                                create: false,
+                                render: {
+                                    option: function(data, escape) {
+                                        const originalOption = this.input.querySelector(
+                                            `option[value="${escape(data.value)}"]`
+                                        );
+                                        const isLocked = originalOption && originalOption.dataset.locked === 'true' &&
+                                            !document.getElementById('is_berjenjang').checked;
+                                        return `<div>${isLocked ? '🔒 ' : ''}${escape(data.text)}</div>`;
+                                    }
+                                }
                             };
-                            new TomSelect('#pengendali_teknis', common);
-                            new TomSelect('#anggota_tim', common);
-                            new TomSelect('#penunjang', common);
+                        
+                            const checkbox = document.getElementById('is_berjenjang');
+                            const selectIds = ['#pengendali_teknis', '#anggota_tim', '#penunjang'];
+                            const ketuaSelect = document.querySelector('select[name="ketua_tim"]');
+                            let tomSelects = {};
+                        
+                            // 🔁 Fungsi untuk (re)init TomSelect
+                            function initTomSelects() {
+                                // Hancurkan instance lama
+                                for (const id in tomSelects) {
+                                    tomSelects[id].destroy();
+                                }
+                                tomSelects = {};
+                        
+                                const isBerjenjang = checkbox.checked;
+                        
+                                // 🧩 Atur ulang <select> Ketua Tim (bukan TomSelect)
+                                if (ketuaSelect) {
+                                    for (const option of ketuaSelect.options) {
+                                        const isLocked = option.dataset.locked === 'true';
+                                        option.disabled = !isBerjenjang && isLocked;
+                                    }
+                                }
+                        
+                                // 🧩 Buat ulang semua TomSelect (3 kolom)
+                                selectIds.forEach(id => {
+                                    const el = document.querySelector(id);
+                                    if (!el) return;
+                        
+                                    for (const option of el.options) {
+                                        const isLocked = option.dataset.locked === 'true';
+                                        option.disabled = !isBerjenjang && isLocked;
+                                    }
+                        
+                                    tomSelects[id] = new TomSelect(id, commonConfig);
+                                });
+                            }
+                        
+                            // Jalankan pertama kali
+                            initTomSelects();
+                        
+                            // Jalankan ulang saat checkbox berubah
+                            checkbox.addEventListener('change', () => {
+                                initTomSelects();
+                            });
                         });
-                    </script>
+                        </script>
+                        
+                        
 
                 </div>
             </div>

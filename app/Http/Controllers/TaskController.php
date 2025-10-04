@@ -85,6 +85,7 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        
         // Validasi tanpa kolom 'status'
         $validatedData = $request->validate([
             'jenis_penugasan' => 'required|string|max:255',
@@ -96,7 +97,35 @@ class TaskController extends Controller
             'pengendali_teknis' => 'required|array',
             'penunjang' => 'required|array',
             'number_of_days' => 'required|integer|min:1',
+            'is_berjenjang' => 'nullable',
         ]);
+
+        if (!$request->has('is_berjenjang')) {
+            $cekIds = collect([
+                $validatedData['ketua_tim'],
+                ...$validatedData['pengendali_teknis'],
+                ...$validatedData['anggota_tim'],
+                ...$validatedData['penunjang'],
+            ])->filter()->unique();
+    
+            if ($cekIds->isNotEmpty()) {
+                $konflik = Task::query()
+                    ->active()
+                    ->where(function ($q) use ($cekIds) {
+                        foreach ($cekIds as $id) {
+                            $q->orWhereJsonContains('team_composition->ketua_tim', (string)$id)
+                                ->orWhereJsonContains('team_composition->pengendali_teknis', (string)$id)
+                                ->orWhereJsonContains('team_composition->anggota_tim', (string)$id)
+                                ->orWhereJsonContains('team_composition->penunjang', (string)$id);
+                        }
+                    })
+                    ->exists();
+    
+                if ($konflik) {
+                    return back()->withErrors(['anggota' => 'Ada personel yang sudah terikat di tugas aktif. Centang "Penugasan Berjenjang" untuk mengabaikan.'])->withInput();
+                }
+            }
+        }
 
         // Menambahkan ID user yang sedang login ke 'created_by'
         $validatedData['created_by'] = auth()->id(); // Ambil ID user yang login
@@ -118,6 +147,7 @@ class TaskController extends Controller
             'team_composition' => json_encode($teamComposition), // Menyimpan dalam format JSON
             'number_of_days' => $validatedData['number_of_days'],
             'created_by' => $validatedData['created_by'],
+            'is_berjenjang' => $request->has('is_berjenjang'),
         ]);
 
         $secretaries = User::where('role', 'sekretaris')->get();

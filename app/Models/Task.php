@@ -22,6 +22,7 @@ class Task extends Model
         'created_by',
         'supervisor_id',
         'rejection_reason',
+        'is_berjenjang',
 
     ];
 
