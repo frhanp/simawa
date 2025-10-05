@@ -108,12 +108,13 @@
             <div class="content">
                 <h2 style="margin-top: -10px;">SURAT PERINTAH TUGAS</h2>
                 <div style="text-align: center; margin-top: 10px;">
-                    <div style="display: inline-block; text-align: left;">
+                    <div style="display: inline-block; text-align: left; transform: translateX(-28px);">
                         <p style="margin: 0;">Nomor&nbsp;&nbsp;&nbsp;: {{ $nomor }}</p>
                         <p style="margin: 0;">Tanggal&nbsp;:
                             {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('d F Y') }}</p>
                     </div>
                 </div>
+
 
 
 
