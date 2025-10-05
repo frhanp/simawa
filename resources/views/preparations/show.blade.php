@@ -93,7 +93,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7" />
                                         </svg>
-                                        Formulir PKA
+                                        Formulir Program Kerja Audit
                                     </a>
                                 </div>
                             @endif
@@ -112,7 +112,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M5 13l4 4L19 7" />
                                         </svg>
-                                        Formulir KM 4
+                                        Formulir Kerja Mutu 4
                                     </a>
                                 </div>
                             @endif
@@ -135,7 +135,7 @@
                                     @else
                                         bg-gray-100 text-gray-800 @endif
                                 ">
-                                    {{ $preparation->status === 'Pending' ? 'Menunggu persetujuan' : $preparation->status }}
+                                    {{ $preparation->status === 'Pending' ? 'Menunggu Persetujuan' : $preparation->status }}
                                 </span>
                             </p>
                             @if ($preparation->note)

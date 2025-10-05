@@ -63,7 +63,7 @@
                                             {{ \Carbon\Carbon::parse($preparation->spt->tanggal)->format('d-m-Y') }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            {{ $preparation->status }}
+                                            {{ $preparation->status == 'pending' ? 'Menunggu Persetujuan' : $preparation->status }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             <div class="flex space-x-2 justify-center">
@@ -86,7 +86,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
-                                            Tidak ada persiapan Surat Perintah Tugas yang pending.
+                                            Tidak ada persiapan Surat Perintah Tugas yang Menunggu Persetujuan.
                                         </td>
                                     </tr>
                                 @endforelse
