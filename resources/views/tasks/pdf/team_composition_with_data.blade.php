@@ -107,11 +107,15 @@
             <!-- Content -->
             <div class="content">
                 <h2 style="margin-top: -10px;">SURAT PERINTAH TUGAS</h2>
-                <div style="text-align: center;">
-                    <p>Nomor: {{ $nomor }}</p>
-                    <p>Tanggal: {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('d F Y') }}
-                    </p>
+                <div style="text-align: center; margin-top: 10px;">
+                    <div style="display: inline-block; text-align: left;">
+                        <p style="margin: 0;">Nomor&nbsp;&nbsp;&nbsp;: {{ $nomor }}</p>
+                        <p style="margin: 0;">Tanggal&nbsp;:
+                            {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('d F Y') }}</p>
+                    </div>
                 </div>
+
+
 
                 <p>Inspektur Kota Gorontalo Menugaskan Kepada:</p>
 
@@ -172,7 +176,7 @@
             {{-- <hr style="border-top: 2px solid black; margin-top: 30px;"> --}}
 
             <!-- Footer Note -->
-            <div class="footer-note">
+            <div class="footer-note" style="text-align: center; margin-top: 10px;">
                 <p>
                     Layanan Pengaduan/Website: <br>
                     Apabila Pegawai Inspektorat Kota Gorontalo menerima / meminta gratifikasi dan suap,
@@ -180,6 +184,7 @@
                     <a href="http://inspektorat.gorontalokota.go.id">wbs.inspektorat.gorontalokota.go.id</a>
                 </p>
             </div>
+
         </div>
     </body>
 

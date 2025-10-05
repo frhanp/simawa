@@ -133,27 +133,22 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {{-- Pengendali Teknis --}}
                             @php
-                                $selectedPengtek = collect(old('pengendali_teknis', []))->map(fn($v) => (string) $v);
-                            @endphp
-                            <div>
-                                <label class="block text-sm mb-1">Pengendali Teknis</label>
-                                <select name="pengendali_teknis[]" id="pengendali_teknis" multiple
-                                    class="w-full border-gray-300 rounded-md">
-                                    @foreach ($pengendaliTeknis as $o)
-                                        @php
-                                            $isLocked = $lockedIds->contains((string) $o->id);
-                                            $isSel = $selectedPengtek->contains((string) $o->id);
-                                        @endphp
-                                        @if ($isSel)
-                                            <option value="{{ $o->id }}" selected data-locked="{{ $isLocked ? 'true' : 'false' }}">{{ $o->nama }}</option>
-                                        @elseif($isLocked)
-                                            <option value="{{ $o->id }}" disabled data-locked="true"> {{ $o->nama }}</option>
-                                        @else
-                                            <option value="{{ $o->id }}" data-locked="false">{{ $o->nama }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
+    $selectedPengtek = collect(old('pengendali_teknis', []))->map(fn($v) => (string) $v);
+@endphp
+<div>
+    <label class="block text-sm mb-1">Pengendali Teknis</label>
+    <select name="pengendali_teknis[]" id="pengendali_teknis" multiple
+        class="w-full border-gray-300 rounded-md">
+        @foreach ($pengendaliTeknis as $o)
+            <option value="{{ $o->id }}"
+                @selected($selectedPengtek->contains((string) $o->id))>
+                {{ $o->nama }}
+            </option>
+        @endforeach
+    </select>
+    <p class="text-xs text-gray-500 mt-1">Maksimal 1 orang.</p>
+</div>
+
                         
                             {{-- Anggota Tim --}}
                             @php
@@ -213,72 +208,74 @@
                     </form>
 
                     {{-- Tom Select --}}
-                    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
-                    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const commonConfig = {
-                                plugins: ['remove_button'],
-                                persist: false,
-                                create: false,
-                                render: {
-                                    option: function(data, escape) {
-                                        const originalOption = this.input.querySelector(
-                                            `option[value="${escape(data.value)}"]`
-                                        );
-                                        const isLocked = originalOption && originalOption.dataset.locked === 'true' &&
-                                            !document.getElementById('is_berjenjang').checked;
-                                        return `<div>${isLocked ? '🔒 ' : ''}${escape(data.text)}</div>`;
-                                    }
-                                }
-                            };
-                        
-                            const checkbox = document.getElementById('is_berjenjang');
-                            const selectIds = ['#pengendali_teknis', '#anggota_tim', '#penunjang'];
-                            const ketuaSelect = document.querySelector('select[name="ketua_tim"]');
-                            let tomSelects = {};
-                        
-                            // 🔁 Fungsi untuk (re)init TomSelect
-                            function initTomSelects() {
-                                // Hancurkan instance lama
-                                for (const id in tomSelects) {
-                                    tomSelects[id].destroy();
-                                }
-                                tomSelects = {};
-                        
-                                const isBerjenjang = checkbox.checked;
-                        
-                                // 🧩 Atur ulang <select> Ketua Tim (bukan TomSelect)
-                                if (ketuaSelect) {
-                                    for (const option of ketuaSelect.options) {
-                                        const isLocked = option.dataset.locked === 'true';
-                                        option.disabled = !isBerjenjang && isLocked;
-                                    }
-                                }
-                        
-                                // 🧩 Buat ulang semua TomSelect (3 kolom)
-                                selectIds.forEach(id => {
-                                    const el = document.querySelector(id);
-                                    if (!el) return;
-                        
-                                    for (const option of el.options) {
-                                        const isLocked = option.dataset.locked === 'true';
-                                        option.disabled = !isBerjenjang && isLocked;
-                                    }
-                        
-                                    tomSelects[id] = new TomSelect(id, commonConfig);
-                                });
-                            }
-                        
-                            // Jalankan pertama kali
-                            initTomSelects();
-                        
-                            // Jalankan ulang saat checkbox berubah
-                            checkbox.addEventListener('change', () => {
-                                initTomSelects();
-                            });
-                        });
-                        </script>
+                    {{-- Tom Select --}}
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const commonConfig = {
+        plugins: ['remove_button'],
+        persist: false,
+        create: false,
+        render: {
+            option: function(data, escape) {
+                const originalOption = this.input.querySelector(
+                    `option[value="${escape(data.value)}"]`
+                );
+                const isLocked = originalOption && originalOption.dataset.locked === 'true' &&
+                    !document.getElementById('is_berjenjang').checked;
+                return `<div>${isLocked ? '🔒 ' : ''}${escape(data.text)}</div>`;
+            }
+        }
+    };
+
+    const checkbox = document.getElementById('is_berjenjang');
+    const selectIds = ['#anggota_tim', '#penunjang']; // hanya yang dikunci
+    const ketuaSelect = document.querySelector('select[name="ketua_tim"]');
+    let tomSelects = {};
+
+    // === INIT pengendali_teknis terpisah (tidak terkunci, tapi max 1) ===
+    new TomSelect('#pengendali_teknis', {
+        maxItems: 1,
+        plugins: ['remove_button'],
+        persist: false,
+        create: false,
+    });
+
+    // === INIT untuk anggota & penunjang ===
+    function initTomSelects() {
+        for (const id in tomSelects) {
+            tomSelects[id].destroy();
+        }
+        tomSelects = {};
+
+        const isBerjenjang = checkbox.checked;
+
+        if (ketuaSelect) {
+            for (const option of ketuaSelect.options) {
+                const isLocked = option.dataset.locked === 'true';
+                option.disabled = !isBerjenjang && isLocked;
+            }
+        }
+
+        selectIds.forEach(id => {
+            const el = document.querySelector(id);
+            if (!el) return;
+
+            for (const option of el.options) {
+                const isLocked = option.dataset.locked === 'true';
+                option.disabled = !isBerjenjang && isLocked;
+            }
+
+            tomSelects[id] = new TomSelect(id, commonConfig);
+        });
+    }
+
+    initTomSelects();
+    checkbox.addEventListener('change', initTomSelects);
+});
+</script>
+    
                         
                         
 

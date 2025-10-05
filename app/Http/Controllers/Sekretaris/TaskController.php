@@ -208,71 +208,86 @@ class TaskController extends Controller
         ));
     }
 
-    public function update(Request $request, Task $task) // Menggunakan Route Model Binding
-    {
-        $validated = $request->validate([
-            'jenis_penugasan'        => 'required|string|max:255',
-            'assignment_type'        => 'required|string|max:255',
-            'penanggung_jawab'       => 'required|integer|exists:orang,id',
-            'wakil_penanggung_jawab' => 'required|integer|exists:orang,id',
-            'ketua_tim'              => 'required|integer|exists:orang,id',
-            'pengendali_teknis'      => 'array|nullable',
-            'pengendali_teknis.*'    => 'integer|exists:orang,id',
-            'anggota_tim'            => 'array|nullable',
-            'anggota_tim.*'          => 'integer|exists:orang,id',
-            'penunjang'              => 'array|nullable',
-            'penunjang.*'            => 'integer|exists:orang,id',
-            'number_of_days'         => 'required|integer|min:1',
-        ]);
+    public function update(Request $request, Task $task)
+{
+    // === 1️⃣ VALIDASI SAMA DENGAN STORE ===
+    $validated = $request->validate([
+        'jenis_penugasan'        => 'required|string|max:255',
+        'assignment_type'        => 'required|string|max:255',
+        'penanggung_jawab'       => 'required|exists:orang,id',
+        'wakil_penanggung_jawab' => 'required|exists:orang,id',
+        'ketua_tim'              => 'required|exists:orang,id',
+        'pengendali_teknis'      => 'required|array',
+        'pengendali_teknis.*'    => 'exists:orang,id',
+        'anggota_tim'            => 'required|array',
+        'anggota_tim.*'          => 'exists:orang,id',
+        'penunjang'              => 'required|array',
+        'penunjang.*'            => 'exists:orang,id',
+        'number_of_days'         => 'required|integer|min:1',
+        'is_berjenjang'          => 'nullable',
+    ]);
 
-        $teamComposition = [
-            'penanggung_jawab'       => (string) $validated['penanggung_jawab'],
-            'wakil_penanggung_jawab' => (string) $validated['wakil_penanggung_jawab'],
-            'ketua_tim'              => (string) $validated['ketua_tim'],
-            'pengendali_teknis'      => collect($validated['pengendali_teknis'] ?? [])->map(fn($v) => (string)$v)->all(),
-            'anggota_tim'            => collect($validated['anggota_tim'] ?? [])->map(fn($v) => (string)$v)->all(),
-            'penunjang'              => collect($validated['penunjang'] ?? [])->map(fn($v) => (string)$v)->all(),
-        ];
-
+    // === 2️⃣ CEK KONFLIK PERSONEL (Kecuali jika "Penugasan Berjenjang") ===
+    if (!$request->has('is_berjenjang')) {
         $cekIds = collect([
-            $teamComposition['ketua_tim'],
-            ...$teamComposition['pengendali_teknis'],
-            ...$teamComposition['anggota_tim'],
-            ...$teamComposition['penunjang'],
+            $validated['ketua_tim'],
+            ...$validated['pengendali_teknis'],
+            ...$validated['anggota_tim'],
+            ...$validated['penunjang'],
         ])->filter()->unique();
 
-        $konflik = Task::query()
-            ->where('id', '!=', $task->id)
-            ->whereIn('status', ['pending', 'Disetujui Inspektur'])
-            ->where(function ($q) use ($cekIds) {
-                foreach ($cekIds as $id) {
-                    $q->orWhereJsonContains('team_composition->ketua_tim', (string)$id)
-                        ->orWhereJsonContains('team_composition->pengendali_teknis', (string)$id)
-                        ->orWhereJsonContains('team_composition->anggota_tim', (string)$id)
-                        ->orWhereJsonContains('team_composition->penunjang', (string)$id);
-                }
-            })
-            ->exists();
+        if ($cekIds->isNotEmpty()) {
+            $konflik = Task::query()
+                ->active()
+                ->where('id', '!=', $task->id)
+                ->where(function ($q) use ($cekIds) {
+                    foreach ($cekIds as $person) {
+                        $q->orWhereJsonContains('team_composition->ketua_tim', (string)$person)
+                          ->orWhereJsonContains('team_composition->pengendali_teknis', (string)$person)
+                          ->orWhereJsonContains('team_composition->anggota_tim', (string)$person)
+                          ->orWhereJsonContains('team_composition->penunjang', (string)$person);
+                    }
+                })
+                ->exists();
 
-        if ($konflik) {
-            return back()->withErrors(['anggota' => 'Ada personel (selain PJ/WPJ) yang sudah terikat di tugas aktif.'])->withInput();
+            if ($konflik) {
+                return back()
+                    ->withErrors(['anggota' => 'Ada personel yang sudah terikat di tugas aktif. Centang "Penugasan Berjenjang" untuk mengabaikan.'])
+                    ->withInput();
+            }
         }
-
-        $task->jenis_penugasan  = $validated['jenis_penugasan'];
-        $task->assignment_type  = $validated['assignment_type'];
-        $task->team_composition = json_encode($teamComposition);
-        $task->number_of_days   = $validated['number_of_days'];
-
-        if (in_array($task->status, ['Ditolak Sekretaris', 'Ditolak Inspektur'], true)) {
-            $task->status = 'pending';
-            $task->rejection_reason = null;
-        }
-
-        $task->save();
-
-        // PERUBAHAN DI SINI
-        return redirect()->route('sekretaris.task.view')->with('success', 'Tugas berhasil diperbarui.');
     }
+
+    // === 3️⃣ SUSUN TEAM COMPOSITION DALAM JSON ===
+    $teamComposition = [
+        'penanggung_jawab'       => $validated['penanggung_jawab'],
+        'wakil_penanggung_jawab' => $validated['wakil_penanggung_jawab'],
+        'ketua_tim'              => $validated['ketua_tim'],
+        'pengendali_teknis'      => $validated['pengendali_teknis'],
+        'anggota_tim'            => $validated['anggota_tim'],
+        'penunjang'              => $validated['penunjang'],
+    ];
+
+    // === 4️⃣ UPDATE KOLOM TASK ===
+    $task->update([
+        'jenis_penugasan'  => $validated['jenis_penugasan'],
+        'assignment_type'  => $validated['assignment_type'],
+        'team_composition' => json_encode($teamComposition),
+        'number_of_days'   => $validated['number_of_days'],
+        'is_berjenjang'    => $request->has('is_berjenjang'),
+    ]);
+
+    // === 5️⃣ RESET STATUS JIKA PERNAH DITOLAK ===
+    if (in_array($task->status, ['Ditolak Sekretaris', 'Ditolak Inspektur'], true)) {
+        $task->status = 'pending';
+        $task->rejection_reason = null;
+        $task->save();
+    }
+
+    // === 6️⃣ REDIRECT SESUAI ROLE SEKRETARIS ===
+    return redirect()->route('sekretaris.task.view')->with('success', 'Tugas berhasil diperbarui.');
+}
+
 
     public function destroy(Task $task) // Menggunakan Route Model Binding
     {

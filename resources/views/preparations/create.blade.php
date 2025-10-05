@@ -113,7 +113,7 @@
                         <!-- Upload PKA -->
                         <div>
                             <label for="pka" class="block text-sm font-medium text-gray-700 mb-2">
-                                Upload PKA <span class="text-red-500">*</span>
+                                Upload Program Kerja Audit <span class="text-red-500">*</span>
                             </label>
                         
                             <div class="flex items-center">
@@ -141,7 +141,7 @@
                         <!-- Upload Formulir KM 4 -->
                         <div>
                             <label for="formulir_km4" class="block text-sm font-medium text-gray-700 mb-2">
-                                Upload Formulir KM 4 <span class="text-red-500">*</span>
+                                Upload Formulir Kerja Mutu 4 <span class="text-red-500">*</span>
                             </label>
                             <div class="flex items-center">
                                 <label for="formulir_km4"
