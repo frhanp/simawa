@@ -111,7 +111,7 @@
                                                 data-locked="{{ $isLocked ? 'true' : 'false' }}">{{ $o->nama }}
                                             </option>
                                         @elseif($isLocked)
-                                            <option value="{{ $o->id }}" disabled data-locked="true">🔒
+                                            <option value="{{ $o->id }}" disabled data-locked="true">
                                                 {{ $o->nama }}</option>
                                         @else
                                             <option value="{{ $o->id }}">{{ $o->nama }}</option>
