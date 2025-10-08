@@ -129,9 +129,9 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
                                             @if (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur')
                                                 @if ($lhp->status !== 'disetujui')
-                                                    <a href="{{ route('lhp.edit', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                                    {{-- <a href="{{ route('lhp.edit', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                                                         <i class="fas fa-edit mr-2"></i>Edit
-                                                    </a>
+                                                    </a> --}}
                                                     <form action="{{ route('lhp.destroy', $lhp->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus?')">
                                                         @csrf
                                                         @method('DELETE')
