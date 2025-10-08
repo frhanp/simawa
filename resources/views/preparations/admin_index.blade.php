@@ -49,6 +49,10 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         No
                                     </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                                
+                                        Jenis Penugasan
+                                    </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nama Tugas
@@ -56,11 +60,11 @@
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Program Kerja Audit
- 
+
                                     </th>
                                     <th
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Formulir Kendali Mutu 4 
+                                        Formulir Kendali Mutu 4
                                     </th>
                                     <th
                                         class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -79,7 +83,10 @@
 
                                         <!-- Nama Tugas -->
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            {{ $preparation->spt->task->assignment_type ?? 'N/A' }}
+                                            {{ $preparation->spt->task->jenis_penugasan ?? '-' }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            {{ $preparation->spt->task->assignment_type ?? '-' }}
                                         </td>
 
                                         <!-- PKA Path -->
