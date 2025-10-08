@@ -39,9 +39,7 @@
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Tanggal</th>
-                                    {{-- <th
-                                        class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Deskripsi</th> --}}
+
                                     <th
                                         class="w-1/5 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Aksi
@@ -63,56 +61,47 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ \Carbon\Carbon::parse($spt->tanggal)->format('d-m-Y') }}
                                         </td>
-                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            {{ optional($spt->task)->status }}
-                                        </td> --}}
+
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             <div class="flex space-x-2 justify-center">
+                                                @if(auth()->user()->role === 'admin')
+                                                    @if ($spt->file_path)
+                                                        <a href="{{ asset('storage/' . $spt->file_path) }}" target="_blank"
+                                                           class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">
+                                                            Download SPT
+                                                        </a>
+                                                    @endif
+
+                                                    @if (!$spt->preparation)
+                                                        <a href="{{ route('preparations.create', $spt->id) }}" 
+                                                           class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition">
+                                                            Buat Persiapan
+                                                        </a>
+                                                    @else
+                                                        <span class="text-gray-500">Persiapan Dibuat</span>
+                                                    @endif
+                                                @elseif(auth()->user()->role === 'sekretaris')
                                                 @if ($spt->file_path)
-                                                    <a href="{{ asset('storage/' . $spt->file_path) }}" target="_blank"
-                                                       class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition"
-                                                       aria-label="Download Surat Perintah Tugas">
-                                                        <!-- Ikon Download -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
-                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M12 16v-8m8-8H4v16h16z" />
-                                                        </svg>
-                                                        Download Surat Perintah Tugas
+                                                        <a href="{{ asset('storage/' . $spt->file_path) }}" target="_blank"
+                                                           class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">
+                                                            Download SPT
+                                                        </a>
+                                                    @endif
+
+                                                    <a href="{{ route('sekretaris.spt.edit', $spt->id) }}" class="inline-flex items-center px-4 py-2 bg-yellow-500 text-white rounded-md font-semibold hover:bg-yellow-600">
+                                                        Edit
                                                     </a>
-                                                @else
-                                                    <button
-                                                        class="inline-flex items-center px-4 py-2 bg-gray-300 border border-transparent rounded-md font-semibold text-gray-700 cursor-not-allowed"
-                                                        aria-label="Tidak ada file" disabled>
-                                                        <!-- Ikon Tidak Ada File -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
-                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M9 12l2 2 4-4M7.5 7.5l9 9" />
-                                                        </svg>
-                                                        Tidak ada file
-                                                    </button>
-                                                @endif
-                                        
-                                                <!-- Tombol Buat Persiapan -->
-                                                @if (!$spt->preparation)
-                                                    <a href="{{ route('preparations.create', $spt->id) }}" 
-                                                       class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition"
-                                                       aria-label="Buat Persiapan">
-                                                        <!-- Ikon Persiapan -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2"
-                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2" d="M5 13l4 4L19 7" />
-                                                        </svg>
-                                                        Buat Persiapan
-                                                    </a>
-                                                @else
-                                                    <span class="text-gray-500">Persiapan Sudah Dibuat</span>
+                                                    <form action="{{ route('sekretaris.spt.destroy', $spt->id) }}" method="POST" onsubmit="return confirm('Anda yakin ingin menghapus SPT ini?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md font-semibold hover:bg-red-700">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             </div>
                                         </td>
-                                        
+
 
 
                                     </tr>

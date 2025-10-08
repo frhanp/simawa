@@ -14,10 +14,20 @@
                     <!-- Form untuk memasukkan data -->
                     <form method="POST" action="{{ route('task.sekretaris.create_pdf_with_data', $task->id) }}">
                         @csrf
-                        <div class="mb-4">
-                            <label for="nomor" class="block text-sm font-medium text-gray-700">Nomor</label>
-                            <input type="text" id="nomor" name="nomor" value="{{ old('nomor') }}" required
-                                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm">
+                        <div class="mb-4" x-data="{
+                            prefix: '{{ str_pad($task->id, 2, '0', STR_PAD_LEFT) }}',
+                            suffix: '{{ old('nomor_suffix', '/ST/P.KIN/INSP./' . date('m') . '/' . date('Y')) }}'
+                        }">
+                            <label for="nomor_suffix" class="block text-sm font-medium text-gray-700">Nomor</label>
+                            <div class="flex mt-1">
+                                <input type="text" id="nomor_prefix" x-model="prefix" disabled
+                                       class="w-16 text-center bg-gray-100 border-gray-300 rounded-l-md focus:ring-0 focus:border-gray-300">
+                                <input type="text" id="nomor_suffix" name="nomor_suffix" x-model="suffix" required
+                                       class="flex-1 block w-full border-gray-300 rounded-r-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            {{-- Input tersembunyi ini akan mengirim gabungan prefix dan suffix ke controller --}}
+                            <input type="hidden" name="nomor" :value="prefix + suffix">
+                            @error('nomor') <span class="text-red-500 text-sm mt-1">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="mb-4">

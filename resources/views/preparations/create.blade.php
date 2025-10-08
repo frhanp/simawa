@@ -46,69 +46,49 @@
                         @csrf
 
                         <!-- Informasi SPT -->
-                        {{-- <div class="bg-gray-50 p-6 rounded-md shadow-inner">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-6">Informasi SPT</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {{-- <div class="bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-8">Informasi SPT</h3>
+                        
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <!-- Nomor SPT -->
-                                <div class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 9h10m-10 4h10m-10 4h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-700">Nomor SPT</p>
-                                        <p class="text-lg font-semibold text-gray-900">{{ $spt->id }}</p>
-                                    </div>
+                                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:shadow-md transition">
+                                    <p class="text-sm text-gray-500 font-medium">Nomor Urut SPT</p>
+                                    <p class="text-xl font-semibold text-gray-900 mt-1">
+                                        {{ $spt->id }}
+                                    </p>
                                 </div>
-
+                        
                                 <!-- Tanggal -->
-                                <div class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 9h10m-10 4h10m-10 4h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-700">Tanggal</p>
-                                        <p class="text-lg font-semibold text-gray-900">
-                                            {{ \Carbon\Carbon::parse($spt->tanggal)->format('d-m-Y') }}</p>
-                                    </div>
+                                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:shadow-md transition">
+                                    <p class="text-sm text-gray-500 font-medium">Tanggal</p>
+                                    <p class="text-xl font-semibold text-gray-900 mt-1">
+                                        {{ \Carbon\Carbon::parse($spt->tanggal)->translatedFormat('d F Y') }}
+                                    </p>
                                 </div>
-
+                        
                                 <!-- Nama Tugas -->
-                                <div class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-700">Nama Tugas</p>
-                                        <p class="text-lg font-semibold text-gray-900">
-                                            {{ optional($spt->task)->assignment_type }}</p>
-                                    </div>
+                                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:shadow-md transition">
+                                    <p class="text-sm text-gray-500 font-medium">Nama Tugas</p>
+                                    <p class="text-xl font-semibold text-gray-900 mt-1">
+                                        {{ optional($spt->task)->assignment_type ?? '-' }}
+                                    </p>
                                 </div>
-
-                                <!-- Deskripsi -->
-                                <div class="flex items-start">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                    <div>
-                                        <p class="text-sm font-medium text-gray-700">Status</p>
-                                        <p class="text-lg font-semibold text-gray-900">
-                                            {{ optional($spt->task)->status }}</p>
-                                    </div>
+                        
+                                <!-- Status -->
+                                <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 hover:shadow-md transition">
+                                    <p class="text-sm text-gray-500 font-medium">Status</p>
+                                    <p class="text-xl font-semibold mt-1
+                                        @if(optional($spt->task)->status === 'Selesai') text-green-600
+                                        @elseif(optional($spt->task)->status === 'Proses') text-yellow-600
+                                        @elseif(optional($spt->task)->status === 'Pending') text-red-600
+                                        @else text-gray-900 @endif">
+                                        {{ optional($spt->task)->status ?? '-' }}
+                                    </p>
                                 </div>
                             </div>
                         </div> --}}
+                        
+                        
 
                         <!-- Upload PKA -->
                         <div>

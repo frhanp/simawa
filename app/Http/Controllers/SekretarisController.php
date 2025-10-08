@@ -249,4 +249,47 @@ class SekretarisController extends Controller
             return redirect()->back()->withErrors(['spt_file' => 'File SPT tidak ditemukan.'])->withInput();
         }
     }
+
+
+    public function editSPT(Spt $spt)
+    {
+        return view('sekretaris.spt.edit', compact('spt'));
+    }
+
+    // [DITAMBAHKAN] Method untuk memproses update (re-upload) SPT
+    public function updateSPT(Request $request, Spt $spt)
+    {
+        $request->validate([
+            'spt_file' => 'required|file|mimes:pdf,doc,docx|max:5120',
+        ]);
+
+        // Hapus file lama jika ada
+        if ($spt->file_path) {
+            Storage::disk('public')->delete($spt->file_path);
+        }
+
+        // Simpan file baru
+        $file = $request->file('spt_file');
+        $fileName = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+        $filePath = $file->storeAs('spt_files', $fileName, 'public');
+
+        $spt->update([
+            'file_name' => $fileName,
+            'file_path' => $filePath,
+            'uploaded_by' => auth()->id(),
+        ]);
+
+        return redirect()->route('sekretaris.spt.index')->with('success', 'SPT berhasil diperbarui.');
+    }
+
+    // [DITAMBAHKAN] Method untuk menghapus SPT
+    public function destroySPT(Spt $spt)
+    {
+        if ($spt->file_path) {
+            Storage::disk('public')->delete($spt->file_path);
+        }
+        $spt->delete();
+
+        return redirect()->route('sekretaris.spt.index')->with('success', 'SPT berhasil dihapus.');
+    }
 }

@@ -157,6 +157,7 @@ Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur
 });
 
 Route::middleware(['auth', 'isSekretaris'])->group(function () {
+    
     Route::get('/pertimbangan', [SekretarisController::class, 'pertimbangan'])->name('pertimbangan');
     // Route untuk menampilkan form upload SPT
     Route::get('spt/upload/{task}', [SekretarisController::class, 'createSPT'])->name('sekretaris.spt.upload');
@@ -179,6 +180,12 @@ Route::middleware(['auth', 'isSekretaris'])->group(function () {
     Route::get('/penugasan/{task}/edit', [App\Http\Controllers\Sekretaris\TaskController::class, 'edit'])->name('sekretaris.task.edit');
     Route::put('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'update'])->name('sekretaris.task.update');
     Route::delete('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'destroy'])->name('sekretaris.task.destroy');
+
+    
+    Route::get('/spt', [AdminController::class, 'indexSPT'])->name('sekretaris.spt.index');
+    Route::get('/spt/{spt}/edit', [SekretarisController::class, 'editSPT'])->name('sekretaris.spt.edit');
+    Route::put('/spt/{spt}', [SekretarisController::class, 'updateSPT'])->name('sekretaris.spt.update');
+    Route::delete('/spt/{spt}', [SekretarisController::class, 'destroySPT'])->name('sekretaris.spt.destroy');
 });
 
 
