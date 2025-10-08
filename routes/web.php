@@ -186,6 +186,8 @@ Route::middleware(['auth', 'isSekretaris'])->group(function () {
     Route::get('/spt/{spt}/edit', [SekretarisController::class, 'editSPT'])->name('sekretaris.spt.edit');
     Route::put('/spt/{spt}', [SekretarisController::class, 'updateSPT'])->name('sekretaris.spt.update');
     Route::delete('/spt/{spt}', [SekretarisController::class, 'destroySPT'])->name('sekretaris.spt.destroy');
+
+    Route::get('/spt/{task}/proses', [SekretarisController::class, 'showProsesForm'])->name('sekretaris.spt.proses');
 });
 
 

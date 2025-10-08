@@ -190,6 +190,11 @@ class SekretarisController extends Controller
         return redirect()->back()->with('success', 'Tugas berhasil ditolak.');
     }
 
+    public function showProsesForm(Task $task)
+    {
+        return view('sekretaris.spt.proses', compact('task'));
+    }
+
     public function createSPT(Task $task)
     {
         return view('sekretaris.spt.upload', compact('task'));

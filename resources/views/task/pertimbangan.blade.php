@@ -153,23 +153,16 @@
                                                         Tolak
                                                     </button>
                                                 </div>
-                                            @elseif ($task->status === 'Disetujui Inspektur')
-                                                @if ($task->spt->isEmpty()) <!-- Memeriksa apakah SPT tidak ada -->
-                                                    <!-- Tombol Buat SPT -->
-                                                    <div class="flex justify-center space-x-4">
-                                                        <a href="{{ route('sekretaris.spt.upload', $task->id) }}"
-                                                            class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md shadow hover:bg-purple-700 transition">
-                                                            Unggah Surat Perintah Tugas
-                                                        </a>
-                                                        <!-- Tombol Buat PDF Komposisi Tim -->
-                                                        <a href="{{ route('task.sekretaris.create_pdf', $task->id) }}"
-                                                            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
-                                                            Buat Surat Perintah Tugas
-                                                        </a>
-                                                    </div>
+                                                @elseif ($task->status === 'Disetujui Inspektur')
+                                                @if ($task->spt->isEmpty())
+                                                    {{-- Tombol Unggah & Buat PDF diganti menjadi satu tombol "Proses SPT" --}}
+                                                    <a href="{{ route('sekretaris.spt.proses', $task->id) }}"
+                                                        class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md shadow hover:bg-purple-700 transition">
+                                                        Proses Surat Perintah Tugas
+                                                    </a>
                                                 @else
                                                     <div class="flex items-center justify-center text-gray-500">
-                                                        <span>Surat Perintah Tugas Sudah Dibuat</span>
+                                                        <span>SPT Sudah Dibuat</span>
                                                     </div>
                                                 @endif
                                             @else
