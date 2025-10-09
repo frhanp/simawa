@@ -19,28 +19,28 @@
 
                 {{-- Pilihan Metode --}}
                 <div class="mb-6">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Metode Pembuatan SPT</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">pilih buat atau unggah Surat Perintah Tugas</label>
                     <div class="flex space-x-4">
                         <label class="flex items-center p-3 border rounded-md cursor-pointer flex-1" :class="{'bg-blue-50 border-blue-300': method === 'otomatis', 'bg-white': method !== 'otomatis'}">
                             <input type="radio" name="method" value="otomatis" x-model="method" class="h-4 w-4 text-blue-600 border-gray-300">
-                            <span class="ml-3 text-sm font-medium text-gray-800">Buat SPT</span>
+                            <span class="ml-3 text-sm font-medium text-gray-800">Buat Surat Perintah Tugas</span>
                         </label>
                         <label class="flex items-center p-3 border rounded-md cursor-pointer flex-1" :class="{'bg-blue-50 border-blue-300': method === 'manual', 'bg-white': method !== 'manual'}">
                             <input type="radio" name="method" value="manual" x-model="method" class="h-4 w-4 text-blue-600 border-gray-300">
-                            <span class="ml-3 text-sm font-medium text-gray-800">Unggah SPT</span>
+                            <span class="ml-3 text-sm font-medium text-gray-800">Unggah Surat Perintah Tugas</span>
                         </label>
                     </div>
                 </div>
 
                 {{-- FORM BUAT OTOMATIS --}}
                 <div x-show="method === 'otomatis'" x-cloak>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Buat SPT</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Buat Surat Perintah Tugas</h3>
                     @include('tasks.partials.create_pdf_form_partial')
                 </div>
 
                 {{-- FORM UNGGAH MANUAL --}}
                 <div x-show="method === 'manual'" x-cloak>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Unggah SPT</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Unggah Surat Perintah Tugas</h3>
                     @include('sekretaris.spt.partials.upload_form_partial')
                 </div>
             </div>
