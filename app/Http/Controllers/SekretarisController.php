@@ -258,7 +258,11 @@ class SekretarisController extends Controller
 
     public function editSPT(Spt $spt)
     {
-        return view('sekretaris.spt.edit', compact('spt'));
+        // Arahkan ke view proses gabungan, kirim data task dan spt yang ada
+        return view('sekretaris.spt.proses', [
+            'task' => $spt->task,
+            'spt' => $spt, // Variabel 'spt' ini akan menandakan kita dalam mode edit
+        ]);
     }
 
     // [DITAMBAHKAN] Method untuk memproses update (re-upload) SPT
