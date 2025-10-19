@@ -112,7 +112,7 @@
                                             </option>
                                         @elseif($isLocked)
                                             <option value="{{ $o->id }}" disabled data-locked="true">
-                                                {{ $o->nama }}</option>
+                                                {{ $o->nama }} 🔒</option>
                                         @else
                                             <option value="{{ $o->id }}">{{ $o->nama }}</option>
                                         @endif
