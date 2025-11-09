@@ -22,9 +22,6 @@
 
     {{-- Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    {{-- Alpine.js (punyamu di public/js) --}}
-    <script src="{{ asset('js/alpine.min.js') }}" defer></script>
 </head>
 
 <body x-data="{ sidebarOpen:false }" class="font-sans antialiased bg-gray-100">

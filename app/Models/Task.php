@@ -65,7 +65,7 @@ class Task extends Model
         return $this->hasMany(KM4::class);
     }
 
-    // --- [MODIFIKASI] ---
+    
     /**
      * Relasi ke LHP. Sebuah tugas bisa memiliki satu LHP.
      */
@@ -88,6 +88,51 @@ class Task extends Model
         });
     }
 
-    // Relasi ke EntryMeeting
+    public function getProgressPercentageAttribute()
+    {
+        // 1. Perencanaan (10%)
+        if (in_array($this->status, ['Ditolak Sekretaris', 'Ditolak Inspektur'])) {
+            return 0; // Ditolak = 0%
+        }
+        $progress = 10; // Default (Pending, Disetujui Sekretaris)
+
+        // 2. Persiapan (Tambah 10% -> Total 20%)
+        // Kita perlu eager load 'spt.preparation'
+        if ($this->spt->isEmpty()) {
+            return $progress; // Belum ada SPT, masih 10%
+        }
+
+        $persiapanDiterima = $this->spt->contains(function ($spt) {
+            return $spt->preparation && $spt->preparation->status === 'Diterima';
+        });
+
+        if (!$persiapanDiterima) {
+            // Jika status 'Disetujui Inspektur' tapi persiapan belum 'Diterima'
+            if ($this->status === 'Disetujui Inspektur') {
+                return 20; // Tahap Persiapan (Menunggu Persetujuan/Ditolak)
+            }
+            return $progress; // Tetap 10%
+        }
+        $progress = 20; // Persiapan Diterima
+
+        // 3. Pelaksanaan (Tambah 60% -> Total 80%)
+        // Kita perlu eager load 'pelaksanaan'
+        $pelaksanaanSelesai = $this->pelaksanaan->contains(function ($pelaksanaan) {
+            return $pelaksanaan->berita_acara_exit !== null;
+        });
+
+        if (!$pelaksanaanSelesai) {
+            return $progress; // Berhenti di 20% (karena 80% hanya jika pelaksanaan selesai)
+        }
+        $progress = 80;
+
+        // 4. LHP (Tambah 20% -> Total 100%)
+        // Kita perlu eager load 'lhp'
+        if ($this->lhp && $this->lhp->status === 'disetujui') {
+            $progress = 100;
+        }
+        
+        return $progress;
+    }
     
 }

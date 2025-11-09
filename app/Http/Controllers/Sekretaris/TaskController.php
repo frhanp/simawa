@@ -119,7 +119,7 @@ class TaskController extends Controller
 
     public function view()
     {
-        $tasks = Task::paginate(20);
+        $tasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->paginate(20);
 
         $tasks->transform(function ($task) {
             $teamComposition = json_decode($task->team_composition, true);

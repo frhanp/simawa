@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function view()
     {
         // Mengambil data dengan pagination
-        $tasks = Task::paginate(20);
+        $tasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->paginate(20);
 
         // Mengolah data untuk mengganti ID dengan nama
         $tasks->transform(function ($task) {

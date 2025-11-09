@@ -12,10 +12,46 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+
     public function index()
     {
         $user = Auth::user();
         $data = [];
+
+        // Logika Tracker Penugasan (shared untuk semua role)
+        // Kita Eager Load relasi yang dibutuhkan oleh Accessor
+        $allTasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->get();
+
+        // Kita gunakan Accessor untuk mengelompokkan
+        $taskProgressGroups = $allTasks->groupBy('progress_percentage');
+
+        // Ambil koleksi tugas untuk modal
+        $tasks10 = $taskProgressGroups->get(10, collect());
+        $tasks20 = $taskProgressGroups->get(20, collect());
+        $tasks80 = $taskProgressGroups->get(80, collect());
+        $tasks100 = $taskProgressGroups->get(100, collect());
+        $tasks0 = $taskProgressGroups->get(0, collect());
+
+        // Data untuk stepper (counts)
+        $data['progressTracker'] = [
+            'perencanaan' => $tasks10->count(),
+            'persiapan' => $tasks20->count(),
+            'pelaksanaan' => $tasks80->count(),
+            'lhp_selesai' => $tasks100->count(),
+            'ditolak' => $tasks0->count(),
+        ];
+
+        // Data untuk modal (daftar tugasnya)
+        // Kita ambil nama dan ID saja agar ringan
+        $pluckData = fn($task) => ['id' => $task->id, 'name' => $task->assignment_type];
+
+        $data['progressTasks'] = [
+            'perencanaan' => $tasks10->map($pluckData),
+            'persiapan'   => $tasks20->map($pluckData),
+            'pelaksanaan' => $tasks80->map($pluckData),
+            'lhp_selesai' => $tasks100->map($pluckData),
+            'ditolak'     => $tasks0->map($pluckData),
+        ];
 
         if ($user->role === 'admin') {
             $data['totalUsers'] = User::count();

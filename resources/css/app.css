@@ -1,3 +1,99 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.stepper-wrapper-modal {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.stepper-item-modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.stepper-item-modal::before {
+    position: absolute;
+    content: "";
+    border-bottom: 3px solid #e0e0e0; /* Garis abu-abu */
+    width: 100%;
+    top: 20px;
+    left: -50%;
+    z-index: 2;
+}
+
+.stepper-item-modal::after {
+    position: absolute;
+    content: "";
+    border-bottom: 3px solid #e0e0e0; /* Garis abu-abu */
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 2;
+}
+
+.stepper-item-modal .step-counter-modal {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e0e0e0; /* Abu-abu */
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #888;
+}
+
+/* Status Selesai (Completed) */
+.stepper-item-modal.completed .step-counter-modal {
+    background-color: #1976D2; /* Biru */
+    color: white;
+}
+.stepper-item-modal.completed::after {
+    position: absolute;
+    content: "";
+    border-bottom: 3px solid #1976D2; /* Garis Biru */
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 3;
+}
+
+/* Status Sedang Aktif (Active) */
+.stepper-item-modal.active .step-counter-modal {
+    background-color: #FFC107; /* Kuning */
+    color: black;
+    border: 3px solid #1976D2;
+}
+
+/* Status Ditolak (Rejected) */
+.stepper-item-modal.rejected .step-counter-modal {
+    background-color: #D32F2F; /* Merah */
+    color: white;
+}
+.stepper-item-modal.rejected::before,
+.stepper-item-modal.rejected::after {
+     border-bottom: 3px solid #D32F2F; /* Garis Merah */
+}
+
+
+.stepper-item-modal:first-child::before {
+    content: none;
+}
+.stepper-item-modal:last-child::after {
+    content: none;
+}
+.step-name-modal {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    color: #666;
+}
