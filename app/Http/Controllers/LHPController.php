@@ -22,8 +22,8 @@ class LHPController extends Controller
      */
     public function index()
     {
-        // Mengambil LHPs beserta task terkait dengan pagination
-        $lhps = LHP::with('task')->paginate(10);
+        // Mengambil LHPs beserta relasi task dan penemuans (untuk dropdown)
+        $lhps = LHP::with('task', 'penemuans')->paginate(10);
         return view('lhp.index', compact('lhps'));
     }
 
@@ -55,7 +55,7 @@ class LHPController extends Controller
             'lhp_file' => $filePath,
             'keterangan' => $request->keterangan,
         ]);
-        // --- [MODIFIKASI] ---
+        
         $task = Task::find($request->task_id);
         $inspekturs = User::where('role', 'inspektur')->get();
         foreach ($inspekturs as $inspektur) {
@@ -65,7 +65,7 @@ class LHPController extends Controller
                 'url'     => route('lhp.index'),
             ]);
         }
-        // --- [AKHIR MODIFIKASI] ---
+       
 
         return redirect()->route('lhp.index')->with('success', 'LHP berhasil ditambahkan.');
     }

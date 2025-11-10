@@ -78,7 +78,7 @@
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Penugasan</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Tugas</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Hasil Pemeriksaan</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Temuan dan Laporan Hasil Pemeriksaan</th>
                                     {{-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th> --}}
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
@@ -100,15 +100,39 @@
                                             {{ $lhp->task->assignment_type }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            @if ($lhp->lhp_file)
-                                                <button @click="$dispatch('open-otp-modal', { lhpId: {{ $lhp->id }} })" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                                    <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Laporan Hasil Pemeriksaan
-                                                </button>
-                                            @else
-                                                <span class="text-gray-500">-</span>
-                                            @endif
+                                            <div class="flex flex-wrap justify-between items-center gap-2">
+                                        
+                                                {{-- Kiri: Tombol LHP --}}
+                                                <div class="flex items-center gap-2">
+                                                    @if ($lhp->lhp_file)
+                                                        <button
+                                                            @click="$dispatch('open-otp-modal', { lhpId: {{ $lhp->id }} })"
+                                                            class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                            Lihat Laporan Hasil Pemeriksaan
+                                                        </button>
+                                                    @else
+                                                        <span class="text-gray-500">-</span>
+                                                    @endif
+                                                </div>
+                                        
+                                                {{-- Kanan: Tombol Laporan Temuan --}}
+                                                <div class="flex flex-wrap justify-end gap-2">
+                                                    @if ($lhp->status === 'disetujui' && (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur'))
+                                                        @if ($lhp->penemuans->isNotEmpty())
+                                                            @foreach ($lhp->penemuans as $index => $temuan)
+                                                                <a href="{{ route('penemuan.pdf', $temuan) }}"
+                                                                    target="_blank"
+                                                                    class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                                                    Lihat Laporan Temuan
+                                                                </a>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                        
+                                            </div>
                                         </td>
+                                        
                                         {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $lhp->keterangan ?? '-' }}
                                         </td> --}}
