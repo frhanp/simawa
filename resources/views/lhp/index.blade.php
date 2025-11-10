@@ -152,6 +152,12 @@
                                                     <i class="fas fa-times mr-2"></i>Tolak
                                                 </button>
                                             @endif
+
+                                            @if ($lhp->status === 'disetujui' && (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur'))
+                                                    <a href="{{ route('lhp.penemuan.index', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                                        Kelola Temuan
+                                                    </a>
+                                                @endif
                                         </td>
                                     </tr>
                                 @empty

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class DashboardController extends Controller
@@ -18,8 +19,6 @@ class DashboardController extends Controller
         $user = Auth::user();
         $data = [];
 
-        // Logika Tracker Penugasan (shared untuk semua role)
-        // Kita Eager Load relasi yang dibutuhkan oleh Accessor
         $allTasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->get();
 
         // Kita gunakan Accessor untuk mengelompokkan
@@ -42,7 +41,6 @@ class DashboardController extends Controller
         ];
 
         // Data untuk modal (daftar tugasnya)
-        // Kita ambil nama dan ID saja agar ringan
         $pluckData = fn($task) => ['id' => $task->id, 'name' => $task->assignment_type];
 
         $data['progressTasks'] = [
@@ -51,6 +49,47 @@ class DashboardController extends Controller
             'pelaksanaan' => $tasks80->map($pluckData),
             'lhp_selesai' => $tasks100->map($pluckData),
             'ditolak'     => $tasks0->map($pluckData),
+        ];
+
+        // 1. Data Pie Chart (Sebaran Jenis Penugasan)
+        // Kita gunakan $allTasks yang sudah diambil agar tidak query 2x
+        $pieChartData = $allTasks->groupBy('jenis_penugasan')->map->count();
+
+        $data['pieChart'] = [
+            'labels' => $pieChartData->keys(),
+            'data'   => $pieChartData->values(),
+        ];
+
+        // 2. Data Line Chart (Tren Tugas Selesai 12 Bulan Terakhir)
+        $lineChartData = LHP::query()
+            ->select(
+                DB::raw("DATE_FORMAT(updated_at, '%Y-%m') as month_year"),
+                DB::raw('count(*) as total')
+            )
+            ->where('status', 'disetujui')
+            ->where('updated_at', '>=', Carbon::now()->subMonths(11)->startOfMonth())
+            ->groupBy('month_year')
+            ->orderBy('month_year', 'asc')
+            ->pluck('total', 'month_year');
+
+        // Buat label 12 bulan terakhir (misal: "2024-12", "2025-01", ...)
+        $lineLabels = [];
+        $lineData = [];
+        $currentDate = Carbon::now()->subMonths(11)->startOfMonth();
+
+        for ($i = 0; $i < 12; $i++) {
+            $monthYear = $currentDate->format('Y-m');
+            $monthLabel = $currentDate->format('M Y'); // Label: "Nov 2024"
+
+            $lineLabels[] = $monthLabel;
+            $lineData[] = $lineChartData->get($monthYear, 0); // Ambil total, default 0
+
+            $currentDate->addMonth();
+        }
+
+        $data['lineChart'] = [
+            'labels' => $lineLabels,
+            'data'   => $lineData,
         ];
 
         if ($user->role === 'admin') {

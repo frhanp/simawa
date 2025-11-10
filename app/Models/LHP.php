@@ -24,4 +24,9 @@ class LHP extends Model
     {
         return $this->belongsTo(Task::class);
     }
+
+    public function penemuans()
+    {
+        return $this->hasMany(Penemuan::class, 'lhp_id');
+    }
 }

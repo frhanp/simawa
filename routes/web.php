@@ -13,6 +13,8 @@ use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\OrangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PenemuanController;
+
 
 
 /*
@@ -71,6 +73,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/lhp/{lhp}/send-otp', [LHPController::class, 'sendOtp'])->name('lhp.sendOtp');
     Route::post('/lhp/{lhp}/verify-otp', [LHPController::class, 'verifyOtp'])->name('lhp.verifyOtp');
     Route::get('/lhp/{lhp}/view-file', [LHPController::class, 'viewFile'])->name('lhp.viewFile');
+
+    Route::get('/lhp/{lhp}/penemuan', [PenemuanController::class, 'index'])->name('lhp.penemuan.index');
+    Route::get('/lhp/{lhp}/penemuan/create', [PenemuanController::class, 'create'])->name('lhp.penemuan.create'); // Rute Form Baru
+    Route::post('/lhp/{lhp}/penemuan', [PenemuanController::class, 'store'])->name('lhp.penemuan.store');
+    Route::delete('/penemuan/{penemuan}', [PenemuanController::class, 'destroy'])->name('penemuan.destroy');
+    Route::get('/penemuan/{penemuan}/pdf', [PenemuanController::class, 'downloadPDF'])->name('penemuan.pdf');
+    Route::get('/penemuan/{penemuan}/edit', [PenemuanController::class, 'edit'])->name('penemuan.edit');
+    Route::put('/penemuan/{penemuan}', [PenemuanController::class, 'update'])->name('penemuan.update');
 });
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     Route::get('/task/planning', [TaskController::class, 'planning'])->name('task.planning');
@@ -109,7 +119,7 @@ Route::prefix('admin')->middleware(['is_admin'])->group(function () {
 
 // Grup rute untuk Inspektur
 Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur.')->group(function () {
-    
+
     // Halaman persetujuan tugas
     Route::get('/approve', [InspekturController::class, 'approveInspektur'])->name('approve_inspektur');
 
@@ -157,7 +167,7 @@ Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur
 });
 
 Route::middleware(['auth', 'isSekretaris'])->group(function () {
-    
+
     Route::get('/pertimbangan', [SekretarisController::class, 'pertimbangan'])->name('pertimbangan');
     // Route untuk menampilkan form upload SPT
     Route::get('spt/upload/{task}', [SekretarisController::class, 'createSPT'])->name('sekretaris.spt.upload');
@@ -181,7 +191,7 @@ Route::middleware(['auth', 'isSekretaris'])->group(function () {
     Route::put('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'update'])->name('sekretaris.task.update');
     Route::delete('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'destroy'])->name('sekretaris.task.destroy');
 
-    
+
     Route::get('/spt', [AdminController::class, 'indexSPT'])->name('sekretaris.spt.index');
     Route::get('/spt/{spt}/edit', [SekretarisController::class, 'editSPT'])->name('sekretaris.spt.edit');
     Route::put('/spt/{spt}', [SekretarisController::class, 'updateSPT'])->name('sekretaris.spt.update');

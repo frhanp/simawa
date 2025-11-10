@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-11-06 20:21:25_
+_Generated: 2025-11-09 23:19:42_
 **Root:** D:\Laragon\www\simawa
 
 
@@ -504,9 +504,7 @@ storage\framework\cache\data\dc\4a
 storage\framework\cache\data\e1\76
 storage\framework\cache\data\e1\76\e176dcc05cdbc9a8a5e7ee02bcfad53f787583b8
 storage\framework\sessions\.gitignore
-storage\framework\sessions\1SciokBQXLcWXbHL7xpjrLxNhiQDvAdk7pkHx9XY
-storage\framework\sessions\A3JUKyLJxRiVmuhNxCIaUnhyhhdHCh812ISbOccm
-storage\framework\sessions\ptcLaMo7XrrSpfpdfgyiSmdT9o8litf32DKjznSP
+storage\framework\sessions\nJH9GVbFUiLR07VAOBQDLIviMAabaAsFCrtes9bL
 storage\framework\testing\.gitignore
 storage\framework\views\.gitignore
 storage\framework\views\001cb81e1afba3b8d5675e0496c5347d.php
@@ -630,11 +628,11 @@ Branch:
 main
 
 Last 5 commits:
+6d0c153 tracker penugasan
 984e460 fix wa v2 without auth info
 027491c fix wa v2
 a53c30f fix wa
 1367dff revisi komsat
-e7112ec deploy mayor edit spt
 ```
 
 
@@ -979,123 +977,123 @@ require __DIR__ . '/auth.php';
 ## Routes (from command)
 ```
 
-  GET|HEAD        / ............................................................................................................................ 
-  GET|HEAD        _debugbar/assets/javascript ...................................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
-  GET|HEAD        _debugbar/assets/stylesheets ................................... debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
-  DELETE          _debugbar/cache/{key}/{tags?} ............................. debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
-  GET|HEAD        _debugbar/clockwork/{id} ............................ debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
-  GET|HEAD        _debugbar/open ....................................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
-  POST            _debugbar/queries/explain ........................... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
-  POST            _ignition/execute-solution ..................... ignition.executeSolution ΓÇ║ Spatie\LaravelIgnition ΓÇ║ ExecuteSolutionController
-  GET|HEAD        _ignition/health-check ................................. ignition.healthCheck ΓÇ║ Spatie\LaravelIgnition ΓÇ║ HealthCheckController
-  POST            _ignition/update-config .............................. ignition.updateConfig ΓÇ║ Spatie\LaravelIgnition ΓÇ║ UpdateConfigController
-  GET|HEAD        admin/admin/entry-meeting ................................................. admin.entry-meeting ΓÇ║ AdminController@entryMeeting
-  POST            admin/admin/entry-meeting/store ................................ admin.entry-meeting.store ΓÇ║ AdminController@storeEntryMeeting
-  GET|HEAD        admin/admin/km4 .............................................................................. admin.km4 ΓÇ║ AdminController@km4
-  POST            admin/admin/km4/store ............................................................. admin.km4.store ΓÇ║ AdminController@storeKM4
-  POST            admin/admin/persiapan/store ........................................... admin.persiapan.store ΓÇ║ AdminController@storePersiapan
-  GET|HEAD        admin/admin/persiapan/{id} ....................................................... admin.persiapan ΓÇ║ AdminController@persiapan
-  GET|HEAD        admin/admin/pka .............................................................................. admin.pka ΓÇ║ AdminController@pka
-  POST            admin/admin/pka/store ............................................................. admin.pka.store ΓÇ║ AdminController@storePKA
-  GET|HEAD        admin/preparations ........................................................... preparations ΓÇ║ PreparationController@adminIndex
-  GET|HEAD        admin/spt ............................................................................... spt.index ΓÇ║ AdminController@indexSPT
-  GET|HEAD        admin/spt/view ......................................................................... task.ViewSpt ΓÇ║ TaskController@viewSPT
-  GET|HEAD        admin/task/planning .................................................................. task.planning ΓÇ║ TaskController@planning
-  POST            admin/task/store ........................................................................... task.store ΓÇ║ TaskController@store
-  GET|HEAD        admin/task/view ............................................................................. task.index ΓÇ║ TaskController@view
-  PUT             admin/tasks/{id} ......................................................................... task.update ΓÇ║ TaskController@update
-  DELETE          admin/tasks/{id} ....................................................................... task.destroy ΓÇ║ TaskController@destroy
-  GET|HEAD        admin/tasks/{id}/edit ........................................................................ task.edit ΓÇ║ TaskController@edit
-  GET|HEAD        api/user ..................................................................................................................... 
-  GET|HEAD        confirm-password .................................................. password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
-  POST            confirm-password .................................................................... Auth\ConfirmablePasswordController@store
-  GET|HEAD        dashboard .............................................................................. dashboard ΓÇ║ DashboardController@index
-  POST            email/verification-notification ....................... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
-  GET|HEAD        forgot-password ................................................... password.request ΓÇ║ Auth\PasswordResetLinkController@create
-  POST            forgot-password ...................................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
-  GET|HEAD        inspektur/approve ......................................... inspektur.approve_inspektur ΓÇ║ InspekturController@approveInspektur
-  GET|HEAD        inspektur/approve-task/{id} .............................................. inspektur.approve ΓÇ║ InspekturController@approveTask
-  GET|HEAD        inspektur/orang ................................................................ inspektur.orang.index ΓÇ║ OrangController@index
-  POST            inspektur/orang ................................................................ inspektur.orang.store ΓÇ║ OrangController@store
-  GET|HEAD        inspektur/orang/create ....................................................... inspektur.orang.create ΓÇ║ OrangController@create
-  PUT|PATCH       inspektur/orang/{orang} ...................................................... inspektur.orang.update ΓÇ║ OrangController@update
-  DELETE          inspektur/orang/{orang} .................................................... inspektur.orang.destroy ΓÇ║ OrangController@destroy
-  GET|HEAD        inspektur/orang/{orang}/edit ..................................................... inspektur.orang.edit ΓÇ║ OrangController@edit
-  POST            inspektur/pelaporan/reject ........................................... inspektur.pelaporan.reject ΓÇ║ InspekturController@reject
-  POST            inspektur/pelaporan/{id}/acc ............................................... inspektur.pelaporan.acc ΓÇ║ InspekturController@acc
-  POST            inspektur/pelaporan/{id}/confirm ................................... inspektur.pelaporan.confirm ΓÇ║ PelaporanController@confirm
-  POST            inspektur/pelaporan/{id}/reschedule .......................... inspektur.pelaporan.reschedule ΓÇ║ PelaporanController@reschedule
-  GET|HEAD        inspektur/penugasan ............................................................ inspektur.penugasan ΓÇ║ TaskController@planning
-  GET|HEAD        inspektur/penugasan/list ...................................................... inspektur.penugasan.list ΓÇ║ TaskController@view
-  GET|HEAD        inspektur/preparations ............................................ inspektur.preparations.index ΓÇ║ PreparationController@index
-  GET|HEAD        inspektur/preparations/{preparation} ................................ inspektur.preparations.show ΓÇ║ PreparationController@show
-  POST            inspektur/preparations/{preparation}/approve .................. inspektur.preparations.approve ΓÇ║ PreparationController@approve
-  POST            inspektur/preparations/{preparation}/reject ..................... inspektur.preparations.reject ΓÇ║ PreparationController@reject
-  POST            inspektur/reject-task ...................................................... inspektur.reject ΓÇ║ InspekturController@rejectTask
-  GET|HEAD        lhp .......................................................................................... lhp.index ΓÇ║ LHPController@index
-  POST            lhp .......................................................................................... lhp.store ΓÇ║ LHPController@store
-  GET|HEAD        lhp/create ................................................................................. lhp.create ΓÇ║ LHPController@create
-  POST            lhp/reject ................................................................................. lhp.reject ΓÇ║ LHPController@reject
-  POST            lhp/{id}/acc ..................................................................................... lhp.acc ΓÇ║ LHPController@acc
-  GET|HEAD        lhp/{lhp} ...................................................................................... lhp.show ΓÇ║ LHPController@show
-  PUT|PATCH       lhp/{lhp} .................................................................................. lhp.update ΓÇ║ LHPController@update
-  DELETE          lhp/{lhp} ................................................................................ lhp.destroy ΓÇ║ LHPController@destroy
-  GET|HEAD        lhp/{lhp}/edit ................................................................................. lhp.edit ΓÇ║ LHPController@edit
-  POST            lhp/{lhp}/send-otp ....................................................................... lhp.sendOtp ΓÇ║ LHPController@sendOtp
-  POST            lhp/{lhp}/verify-otp ................................................................. lhp.verifyOtp ΓÇ║ LHPController@verifyOtp
-  GET|HEAD        lhp/{lhp}/view-file .................................................................... lhp.viewFile ΓÇ║ LHPController@viewFile
-  GET|HEAD        login ..................................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
-  POST            login .............................................................................. Auth\AuthenticatedSessionController@store
-  POST            logout .................................................................. logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
-  GET|HEAD        notifications/{notification}/read ..................................... notifications.read ΓÇ║ NotificationController@markAsRead
-  PUT             password .................................................................... password.update ΓÇ║ Auth\PasswordController@update
-  GET|HEAD        pdf .......................................................................................................................... 
-  GET|HEAD        pelaksanaan .................................................................. pelaksanaan.index ΓÇ║ PelaksanaanController@index
-  POST            pelaksanaan .................................................................. pelaksanaan.store ΓÇ║ PelaksanaanController@store
-  GET|HEAD        pelaksanaan/create ......................................................... pelaksanaan.create ΓÇ║ PelaksanaanController@create
-  GET|HEAD        pelaksanaan/{pelaksanaan} ...................................................... pelaksanaan.show ΓÇ║ PelaksanaanController@show
-  PUT|PATCH       pelaksanaan/{pelaksanaan} .................................................. pelaksanaan.update ΓÇ║ PelaksanaanController@update
-  DELETE          pelaksanaan/{pelaksanaan} ................................................ pelaksanaan.destroy ΓÇ║ PelaksanaanController@destroy
-  GET|HEAD        pelaksanaan/{pelaksanaan}/edit ................................................. pelaksanaan.edit ΓÇ║ PelaksanaanController@edit
-  GET|HEAD        pelaporan ........................................................................ pelaporan.index ΓÇ║ PelaporanController@index
-  POST            pelaporan ........................................................................ pelaporan.store ΓÇ║ PelaporanController@store
-  GET|HEAD        pelaporan/create ............................................................... pelaporan.create ΓÇ║ PelaporanController@create
-  GET|HEAD        pelaporan/{pelaporan} .............................................................. pelaporan.show ΓÇ║ PelaporanController@show
-  PUT|PATCH       pelaporan/{pelaporan} .......................................................... pelaporan.update ΓÇ║ PelaporanController@update
-  DELETE          pelaporan/{pelaporan} ........................................................ pelaporan.destroy ΓÇ║ PelaporanController@destroy
-  GET|HEAD        pelaporan/{pelaporan}/edit ......................................................... pelaporan.edit ΓÇ║ PelaporanController@edit
-  GET|HEAD        penugasan/planning ............................................. sekretaris.task.planning ΓÇ║ Sekretaris\TaskController@planning
-  POST            penugasan/store ...................................................... sekretaris.task.store ΓÇ║ Sekretaris\TaskController@store
-  GET|HEAD        penugasan/view ......................................................... sekretaris.task.view ΓÇ║ Sekretaris\TaskController@view
-  PUT             penugasan/{task} ................................................... sekretaris.task.update ΓÇ║ Sekretaris\TaskController@update
-  DELETE          penugasan/{task} ................................................. sekretaris.task.destroy ΓÇ║ Sekretaris\TaskController@destroy
-  GET|HEAD        penugasan/{task}/edit .................................................. sekretaris.task.edit ΓÇ║ Sekretaris\TaskController@edit
-  GET|HEAD        pertimbangan ................................................................ pertimbangan ΓÇ║ SekretarisController@pertimbangan
-  GET|HEAD        profile ................................................................................ profile.edit ΓÇ║ ProfileController@edit
-  PATCH           profile ............................................................................ profile.update ΓÇ║ ProfileController@update
-  DELETE          profile .......................................................................... profile.destroy ΓÇ║ ProfileController@destroy
-  GET|HEAD        register ..................................................................... register ΓÇ║ Auth\RegisteredUserController@create
-  POST            register ................................................................................. Auth\RegisteredUserController@store
-  POST            reset-password ............................................................. password.store ΓÇ║ Auth\NewPasswordController@store
-  GET|HEAD        reset-password/{token} .................................................... password.reset ΓÇ║ Auth\NewPasswordController@create
-  GET|HEAD        sanctum/csrf-cookie ........................................ sanctum.csrf-cookie ΓÇ║ Laravel\Sanctum ΓÇ║ CsrfCookieController@show
-  GET|HEAD        spt .......................................................................... sekretaris.spt.index ΓÇ║ AdminController@indexSPT
-  GET|HEAD        spt/upload/{task} ..................................................... sekretaris.spt.upload ΓÇ║ SekretarisController@createSPT
-  POST            spt/upload/{task} ....................................................... sekretaris.spt.store ΓÇ║ SekretarisController@storeSPT
-  PUT             spt/{spt} ............................................................. sekretaris.spt.update ΓÇ║ SekretarisController@updateSPT
-  DELETE          spt/{spt} ........................................................... sekretaris.spt.destroy ΓÇ║ SekretarisController@destroySPT
-  GET|HEAD        spt/{spt}/edit ............................................................ sekretaris.spt.edit ΓÇ║ SekretarisController@editSPT
-  POST            spt/{spt}/preparations ...................................................... preparations.store ΓÇ║ PreparationController@store
-  GET|HEAD        spt/{spt}/preparations/create ............................................. preparations.create ΓÇ║ PreparationController@create
-  GET|HEAD        spt/{task}/proses ................................................ sekretaris.spt.proses ΓÇ║ SekretarisController@showProsesForm
-  POST            task/sekretaris/reject .............................................. task.sekretaris.reject ΓÇ║ TaskController@rejectWithReason
-  GET|HEAD        task/sekretaris/{id}/accept ...................................... task.sekretaris.accept ΓÇ║ TaskController@acceptForSekretaris
-  GET|HEAD        tasks/{task}/create-pdf ........................................... task.sekretaris.create_pdf ΓÇ║ SekretarisController@showForm
-  POST            tasks/{task}/create-pdf ........................ task.sekretaris.create_pdf_with_data ΓÇ║ SekretarisController@createPdfWithData
-  GET|HEAD        verify-email .................................................... verification.notice ΓÇ║ Auth\EmailVerificationPromptController
-  GET|HEAD        verify-email/{id}/{hash} .................................................... verification.verify ΓÇ║ Auth\VerifyEmailController
+  GET|HEAD        / .......................................................................................................... 
+  GET|HEAD        _debugbar/assets/javascript .................... debugbar.assets.js ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@js
+  GET|HEAD        _debugbar/assets/stylesheets ................. debugbar.assets.css ΓÇ║ Barryvdh\Debugbar ΓÇ║ AssetController@css
+  DELETE          _debugbar/cache/{key}/{tags?} ........... debugbar.cache.delete ΓÇ║ Barryvdh\Debugbar ΓÇ║ CacheController@delete
+  GET|HEAD        _debugbar/clockwork/{id} .......... debugbar.clockwork ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@clockwork
+  GET|HEAD        _debugbar/open ..................... debugbar.openhandler ΓÇ║ Barryvdh\Debugbar ΓÇ║ OpenHandlerController@handle
+  POST            _debugbar/queries/explain ......... debugbar.queries.explain ΓÇ║ Barryvdh\Debugbar ΓÇ║ QueriesController@explain
+  POST            _ignition/execute-solution ... ignition.executeSolution ΓÇ║ Spatie\LaravelIgnition ΓÇ║ ExecuteSolutionController
+  GET|HEAD        _ignition/health-check ............... ignition.healthCheck ΓÇ║ Spatie\LaravelIgnition ΓÇ║ HealthCheckController
+  POST            _ignition/update-config ............ ignition.updateConfig ΓÇ║ Spatie\LaravelIgnition ΓÇ║ UpdateConfigController
+  GET|HEAD        admin/admin/entry-meeting ............................... admin.entry-meeting ΓÇ║ AdminController@entryMeeting
+  POST            admin/admin/entry-meeting/store .............. admin.entry-meeting.store ΓÇ║ AdminController@storeEntryMeeting
+  GET|HEAD        admin/admin/km4 ............................................................ admin.km4 ΓÇ║ AdminController@km4
+  POST            admin/admin/km4/store ........................................... admin.km4.store ΓÇ║ AdminController@storeKM4
+  POST            admin/admin/persiapan/store ......................... admin.persiapan.store ΓÇ║ AdminController@storePersiapan
+  GET|HEAD        admin/admin/persiapan/{id} ..................................... admin.persiapan ΓÇ║ AdminController@persiapan
+  GET|HEAD        admin/admin/pka ............................................................ admin.pka ΓÇ║ AdminController@pka
+  POST            admin/admin/pka/store ........................................... admin.pka.store ΓÇ║ AdminController@storePKA
+  GET|HEAD        admin/preparations ......................................... preparations ΓÇ║ PreparationController@adminIndex
+  GET|HEAD        admin/spt ............................................................. spt.index ΓÇ║ AdminController@indexSPT
+  GET|HEAD        admin/spt/view ....................................................... task.ViewSpt ΓÇ║ TaskController@viewSPT
+  GET|HEAD        admin/task/planning ................................................ task.planning ΓÇ║ TaskController@planning
+  POST            admin/task/store ......................................................... task.store ΓÇ║ TaskController@store
+  GET|HEAD        admin/task/view ........................................................... task.index ΓÇ║ TaskController@view
+  PUT             admin/tasks/{id} ....................................................... task.update ΓÇ║ TaskController@update
+  DELETE          admin/tasks/{id} ..................................................... task.destroy ΓÇ║ TaskController@destroy
+  GET|HEAD        admin/tasks/{id}/edit ...................................................... task.edit ΓÇ║ TaskController@edit
+  GET|HEAD        api/user ................................................................................................... 
+  GET|HEAD        confirm-password ................................ password.confirm ΓÇ║ Auth\ConfirmablePasswordController@show
+  POST            confirm-password .................................................. Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ............................................................ dashboard ΓÇ║ DashboardController@index
+  POST            email/verification-notification ..... verification.send ΓÇ║ Auth\EmailVerificationNotificationController@store
+  GET|HEAD        forgot-password ................................. password.request ΓÇ║ Auth\PasswordResetLinkController@create
+  POST            forgot-password .................................... password.email ΓÇ║ Auth\PasswordResetLinkController@store
+  GET|HEAD        inspektur/approve ....................... inspektur.approve_inspektur ΓÇ║ InspekturController@approveInspektur
+  GET|HEAD        inspektur/approve-task/{id} ............................ inspektur.approve ΓÇ║ InspekturController@approveTask
+  GET|HEAD        inspektur/orang .............................................. inspektur.orang.index ΓÇ║ OrangController@index
+  POST            inspektur/orang .............................................. inspektur.orang.store ΓÇ║ OrangController@store
+  GET|HEAD        inspektur/orang/create ..................................... inspektur.orang.create ΓÇ║ OrangController@create
+  PUT|PATCH       inspektur/orang/{orang} .................................... inspektur.orang.update ΓÇ║ OrangController@update
+  DELETE          inspektur/orang/{orang} .................................. inspektur.orang.destroy ΓÇ║ OrangController@destroy
+  GET|HEAD        inspektur/orang/{orang}/edit ................................... inspektur.orang.edit ΓÇ║ OrangController@edit
+  POST            inspektur/pelaporan/reject ......................... inspektur.pelaporan.reject ΓÇ║ InspekturController@reject
+  POST            inspektur/pelaporan/{id}/acc ............................. inspektur.pelaporan.acc ΓÇ║ InspekturController@acc
+  POST            inspektur/pelaporan/{id}/confirm ................. inspektur.pelaporan.confirm ΓÇ║ PelaporanController@confirm
+  POST            inspektur/pelaporan/{id}/reschedule ........ inspektur.pelaporan.reschedule ΓÇ║ PelaporanController@reschedule
+  GET|HEAD        inspektur/penugasan .......................................... inspektur.penugasan ΓÇ║ TaskController@planning
+  GET|HEAD        inspektur/penugasan/list .................................... inspektur.penugasan.list ΓÇ║ TaskController@view
+  GET|HEAD        inspektur/preparations .......................... inspektur.preparations.index ΓÇ║ PreparationController@index
+  GET|HEAD        inspektur/preparations/{preparation} .............. inspektur.preparations.show ΓÇ║ PreparationController@show
+  POST            inspektur/preparations/{preparation}/approve inspektur.preparations.approve ΓÇ║ PreparationController@approve
+  POST            inspektur/preparations/{preparation}/reject ... inspektur.preparations.reject ΓÇ║ PreparationController@reject
+  POST            inspektur/reject-task .................................... inspektur.reject ΓÇ║ InspekturController@rejectTask
+  GET|HEAD        lhp ........................................................................ lhp.index ΓÇ║ LHPController@index
+  POST            lhp ........................................................................ lhp.store ΓÇ║ LHPController@store
+  GET|HEAD        lhp/create ............................................................... lhp.create ΓÇ║ LHPController@create
+  POST            lhp/reject ............................................................... lhp.reject ΓÇ║ LHPController@reject
+  POST            lhp/{id}/acc ................................................................... lhp.acc ΓÇ║ LHPController@acc
+  GET|HEAD        lhp/{lhp} .................................................................... lhp.show ΓÇ║ LHPController@show
+  PUT|PATCH       lhp/{lhp} ................................................................ lhp.update ΓÇ║ LHPController@update
+  DELETE          lhp/{lhp} .............................................................. lhp.destroy ΓÇ║ LHPController@destroy
+  GET|HEAD        lhp/{lhp}/edit ............................................................... lhp.edit ΓÇ║ LHPController@edit
+  POST            lhp/{lhp}/send-otp ..................................................... lhp.sendOtp ΓÇ║ LHPController@sendOtp
+  POST            lhp/{lhp}/verify-otp ............................................... lhp.verifyOtp ΓÇ║ LHPController@verifyOtp
+  GET|HEAD        lhp/{lhp}/view-file .................................................. lhp.viewFile ΓÇ║ LHPController@viewFile
+  GET|HEAD        login ................................................... login ΓÇ║ Auth\AuthenticatedSessionController@create
+  POST            login ............................................................ Auth\AuthenticatedSessionController@store
+  POST            logout ................................................ logout ΓÇ║ Auth\AuthenticatedSessionController@destroy
+  GET|HEAD        notifications/{notification}/read ................... notifications.read ΓÇ║ NotificationController@markAsRead
+  PUT             password .................................................. password.update ΓÇ║ Auth\PasswordController@update
+  GET|HEAD        pdf ........................................................................................................ 
+  GET|HEAD        pelaksanaan ................................................ pelaksanaan.index ΓÇ║ PelaksanaanController@index
+  POST            pelaksanaan ................................................ pelaksanaan.store ΓÇ║ PelaksanaanController@store
+  GET|HEAD        pelaksanaan/create ....................................... pelaksanaan.create ΓÇ║ PelaksanaanController@create
+  GET|HEAD        pelaksanaan/{pelaksanaan} .................................... pelaksanaan.show ΓÇ║ PelaksanaanController@show
+  PUT|PATCH       pelaksanaan/{pelaksanaan} ................................ pelaksanaan.update ΓÇ║ PelaksanaanController@update
+  DELETE          pelaksanaan/{pelaksanaan} .............................. pelaksanaan.destroy ΓÇ║ PelaksanaanController@destroy
+  GET|HEAD        pelaksanaan/{pelaksanaan}/edit ............................... pelaksanaan.edit ΓÇ║ PelaksanaanController@edit
+  GET|HEAD        pelaporan ...................................................... pelaporan.index ΓÇ║ PelaporanController@index
+  POST            pelaporan ...................................................... pelaporan.store ΓÇ║ PelaporanController@store
+  GET|HEAD        pelaporan/create ............................................. pelaporan.create ΓÇ║ PelaporanController@create
+  GET|HEAD        pelaporan/{pelaporan} ............................................ pelaporan.show ΓÇ║ PelaporanController@show
+  PUT|PATCH       pelaporan/{pelaporan} ........................................ pelaporan.update ΓÇ║ PelaporanController@update
+  DELETE          pelaporan/{pelaporan} ...................................... pelaporan.destroy ΓÇ║ PelaporanController@destroy
+  GET|HEAD        pelaporan/{pelaporan}/edit ....................................... pelaporan.edit ΓÇ║ PelaporanController@edit
+  GET|HEAD        penugasan/planning ........................... sekretaris.task.planning ΓÇ║ Sekretaris\TaskController@planning
+  POST            penugasan/store .................................... sekretaris.task.store ΓÇ║ Sekretaris\TaskController@store
+  GET|HEAD        penugasan/view ....................................... sekretaris.task.view ΓÇ║ Sekretaris\TaskController@view
+  PUT             penugasan/{task} ................................. sekretaris.task.update ΓÇ║ Sekretaris\TaskController@update
+  DELETE          penugasan/{task} ............................... sekretaris.task.destroy ΓÇ║ Sekretaris\TaskController@destroy
+  GET|HEAD        penugasan/{task}/edit ................................ sekretaris.task.edit ΓÇ║ Sekretaris\TaskController@edit
+  GET|HEAD        pertimbangan .............................................. pertimbangan ΓÇ║ SekretarisController@pertimbangan
+  GET|HEAD        profile .............................................................. profile.edit ΓÇ║ ProfileController@edit
+  PATCH           profile .......................................................... profile.update ΓÇ║ ProfileController@update
+  DELETE          profile ........................................................ profile.destroy ΓÇ║ ProfileController@destroy
+  GET|HEAD        register ................................................... register ΓÇ║ Auth\RegisteredUserController@create
+  POST            register ............................................................... Auth\RegisteredUserController@store
+  POST            reset-password ........................................... password.store ΓÇ║ Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} .................................. password.reset ΓÇ║ Auth\NewPasswordController@create
+  GET|HEAD        sanctum/csrf-cookie ...................... sanctum.csrf-cookie ΓÇ║ Laravel\Sanctum ΓÇ║ CsrfCookieController@show
+  GET|HEAD        spt ........................................................ sekretaris.spt.index ΓÇ║ AdminController@indexSPT
+  GET|HEAD        spt/upload/{task} ................................... sekretaris.spt.upload ΓÇ║ SekretarisController@createSPT
+  POST            spt/upload/{task} ..................................... sekretaris.spt.store ΓÇ║ SekretarisController@storeSPT
+  PUT             spt/{spt} ........................................... sekretaris.spt.update ΓÇ║ SekretarisController@updateSPT
+  DELETE          spt/{spt} ......................................... sekretaris.spt.destroy ΓÇ║ SekretarisController@destroySPT
+  GET|HEAD        spt/{spt}/edit .......................................... sekretaris.spt.edit ΓÇ║ SekretarisController@editSPT
+  POST            spt/{spt}/preparations .................................... preparations.store ΓÇ║ PreparationController@store
+  GET|HEAD        spt/{spt}/preparations/create ........................... preparations.create ΓÇ║ PreparationController@create
+  GET|HEAD        spt/{task}/proses .............................. sekretaris.spt.proses ΓÇ║ SekretarisController@showProsesForm
+  POST            task/sekretaris/reject ............................ task.sekretaris.reject ΓÇ║ TaskController@rejectWithReason
+  GET|HEAD        task/sekretaris/{id}/accept .................... task.sekretaris.accept ΓÇ║ TaskController@acceptForSekretaris
+  GET|HEAD        tasks/{task}/create-pdf ......................... task.sekretaris.create_pdf ΓÇ║ SekretarisController@showForm
+  POST            tasks/{task}/create-pdf ...... task.sekretaris.create_pdf_with_data ΓÇ║ SekretarisController@createPdfWithData
+  GET|HEAD        verify-email .................................. verification.notice ΓÇ║ Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} .................................. verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                                            Showing [115] routes
+                                                                                                          Showing [115] routes
 
 ```
 
@@ -1597,7 +1595,7 @@ class TaskController extends Controller
 
     public function view()
     {
-        $tasks = Task::paginate(20);
+        $tasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->paginate(20);
 
         $tasks->transform(function ($task) {
             $teamComposition = json_decode($task->team_composition, true);
@@ -1917,14 +1915,89 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class DashboardController extends Controller
 {
+
     public function index()
     {
         $user = Auth::user();
         $data = [];
+
+        $allTasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->get();
+
+        // Kita gunakan Accessor untuk mengelompokkan
+        $taskProgressGroups = $allTasks->groupBy('progress_percentage');
+
+        // Ambil koleksi tugas untuk modal
+        $tasks10 = $taskProgressGroups->get(10, collect());
+        $tasks20 = $taskProgressGroups->get(20, collect());
+        $tasks80 = $taskProgressGroups->get(80, collect());
+        $tasks100 = $taskProgressGroups->get(100, collect());
+        $tasks0 = $taskProgressGroups->get(0, collect());
+
+        // Data untuk stepper (counts)
+        $data['progressTracker'] = [
+            'perencanaan' => $tasks10->count(),
+            'persiapan' => $tasks20->count(),
+            'pelaksanaan' => $tasks80->count(),
+            'lhp_selesai' => $tasks100->count(),
+            'ditolak' => $tasks0->count(),
+        ];
+
+        // Data untuk modal (daftar tugasnya)
+        $pluckData = fn($task) => ['id' => $task->id, 'name' => $task->assignment_type];
+
+        $data['progressTasks'] = [
+            'perencanaan' => $tasks10->map($pluckData),
+            'persiapan'   => $tasks20->map($pluckData),
+            'pelaksanaan' => $tasks80->map($pluckData),
+            'lhp_selesai' => $tasks100->map($pluckData),
+            'ditolak'     => $tasks0->map($pluckData),
+        ];
+
+        // 1. Data Pie Chart (Sebaran Jenis Penugasan)
+        // Kita gunakan $allTasks yang sudah diambil agar tidak query 2x
+        $pieChartData = $allTasks->groupBy('jenis_penugasan')->map->count();
+
+        $data['pieChart'] = [
+            'labels' => $pieChartData->keys(),
+            'data'   => $pieChartData->values(),
+        ];
+
+        // 2. Data Line Chart (Tren Tugas Selesai 12 Bulan Terakhir)
+        $lineChartData = LHP::query()
+            ->select(
+                DB::raw("DATE_FORMAT(updated_at, '%Y-%m') as month_year"),
+                DB::raw('count(*) as total')
+            )
+            ->where('status', 'disetujui')
+            ->where('updated_at', '>=', Carbon::now()->subMonths(11)->startOfMonth())
+            ->groupBy('month_year')
+            ->orderBy('month_year', 'asc')
+            ->pluck('total', 'month_year');
+
+        // Buat label 12 bulan terakhir (misal: "2024-12", "2025-01", ...)
+        $lineLabels = [];
+        $lineData = [];
+        $currentDate = Carbon::now()->subMonths(11)->startOfMonth();
+
+        for ($i = 0; $i < 12; $i++) {
+            $monthYear = $currentDate->format('Y-m');
+            $monthLabel = $currentDate->format('M Y'); // Label: "Nov 2024"
+
+            $lineLabels[] = $monthLabel;
+            $lineData[] = $lineChartData->get($monthYear, 0); // Ambil total, default 0
+
+            $currentDate->addMonth();
+        }
+
+        $data['lineChart'] = [
+            'labels' => $lineLabels,
+            'data'   => $lineData,
+        ];
 
         if ($user->role === 'admin') {
             $data['totalUsers'] = User::count();
@@ -3458,7 +3531,7 @@ class TaskController extends Controller
     public function view()
     {
         // Mengambil data dengan pagination
-        $tasks = Task::paginate(20);
+        $tasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->paginate(20);
 
         // Mengolah data untuk mengganti ID dengan nama
         $tasks->transform(function ($task) {
@@ -4255,7 +4328,7 @@ class Task extends Model
         return $this->hasMany(KM4::class);
     }
 
-    // --- [MODIFIKASI] ---
+    
     /**
      * Relasi ke LHP. Sebuah tugas bisa memiliki satu LHP.
      */
@@ -4278,7 +4351,52 @@ class Task extends Model
         });
     }
 
-    // Relasi ke EntryMeeting
+    public function getProgressPercentageAttribute()
+    {
+        // 1. Perencanaan (10%)
+        if (in_array($this->status, ['Ditolak Sekretaris', 'Ditolak Inspektur'])) {
+            return 0; // Ditolak = 0%
+        }
+        $progress = 10; // Default (Pending, Disetujui Sekretaris)
+
+        // 2. Persiapan (Tambah 10% -> Total 20%)
+        // Kita perlu eager load 'spt.preparation'
+        if ($this->spt->isEmpty()) {
+            return $progress; // Belum ada SPT, masih 10%
+        }
+
+        $persiapanDiterima = $this->spt->contains(function ($spt) {
+            return $spt->preparation && $spt->preparation->status === 'Diterima';
+        });
+
+        if (!$persiapanDiterima) {
+            // Jika status 'Disetujui Inspektur' tapi persiapan belum 'Diterima'
+            if ($this->status === 'Disetujui Inspektur') {
+                return 20; // Tahap Persiapan (Menunggu Persetujuan/Ditolak)
+            }
+            return $progress; // Tetap 10%
+        }
+        $progress = 20; // Persiapan Diterima
+
+        // 3. Pelaksanaan (Tambah 60% -> Total 80%)
+        // Kita perlu eager load 'pelaksanaan'
+        $pelaksanaanSelesai = $this->pelaksanaan->contains(function ($pelaksanaan) {
+            return $pelaksanaan->berita_acara_exit !== null;
+        });
+
+        if (!$pelaksanaanSelesai) {
+            return $progress; // Berhenti di 20% (karena 80% hanya jika pelaksanaan selesai)
+        }
+        $progress = 80;
+
+        // 4. LHP (Tambah 20% -> Total 100%)
+        // Kita perlu eager load 'lhp'
+        if ($this->lhp && $this->lhp->status === 'disetujui') {
+            $progress = 100;
+        }
+        
+        return $progress;
+    }
     
 }
 
@@ -5583,8 +5701,6 @@ $classes = ($active ?? false)
     {{-- Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- Alpine.js (punyamu di public/js) --}}
-    <script src="{{ asset('js/alpine.min.js') }}" defer></script>
 </head>
 
 <body x-data="{ sidebarOpen:false }" class="font-sans antialiased bg-gray-100">
@@ -8919,8 +9035,15 @@ document.addEventListener('DOMContentLoaded', function() {
         </h2>
     </x-slot>
 
-    <div class="py-12" x-data="{ isModalOpen: false, rejectTaskId: null }">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<div class="py-12" x-data="{ 
+        isModalOpen: false, 
+        rejectTaskId: null, 
+        showProgressModal: false, 
+        modalProgress: 0, 
+        modalStatus: '', 
+        modalReason: '' 
+    }">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{-- @if (session('success'))
@@ -8930,12 +9053,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     @endif --}}
 
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 table-fixed">
+<table class="min-w-full divide-y divide-gray-200 table-fixed">
                             <thead class="bg-gray-100">
                                 <tr>
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Jenis Penugasan
+Jenis Penugasan
                                     </th>
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -8943,7 +9066,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </th>
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Komposisi Tim
+Komposisi Tim
                                     </th>
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -8951,7 +9074,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </th>
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
+Status
                                     </th>
                                     <th
                                         class="w-1/5 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -8959,30 +9082,30 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </th>
                                     <th
                                         class="w-1/5 px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Aksi
+Aksi
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($tasks as $task)
+@foreach ($tasks as $task)
                                     <tr class="hover:bg-gray-50">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $task->jenis_penugasan }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            {{ $task->assignment_type }}
+{{ $task->assignment_type }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             <div class="border border-gray-300 rounded-lg p-4 bg-gray-50 shadow-sm">
                                                 <h3 class="text-sm font-semibold text-gray-800 mb-2">Komposisi Tim</h3>
                                                 <table class="table-auto w-full text-left text-sm border border-gray-300">
-                                                    <tbody>
+<tbody>
                                                         <tr class="border border-gray-300">
                                                             <th class="border border-gray-300 px-2 py-1 text-gray-600">Penanggung Jawab:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 {{ $task->team_composition['penanggung_jawab'] ?? '-' }}
                                                             </td>
-                                                        </tr>
+</tr>
                                                         <tr class="border border-gray-300">
                                                             <th class="border border-gray-300 px-2 py-1 text-gray-600">Wakil Penanggung Jawab:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
@@ -8990,110 +9113,121 @@ document.addEventListener('DOMContentLoaded', function() {
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Pengendali Teknis:</th>
+<th class="border border-gray-300 px-2 py-1 text-gray-600">Pengendali Teknis:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 @if (!empty($task->team_composition['pengendali_teknis']))
                                                                     <ul class="list-none pl-0">
                                                                         @foreach ($task->team_composition['pengendali_teknis'] as $pengendali)
                                                                             <li class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
-                                                                                {{ $pengendali }}
+{{ $pengendali }}
                                                                             </li>
                                                                         @endforeach
                                                                     </ul>
                                                                 @else
-                                                                    <span>-</span>
+<span>-</span>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Ketua Tim:</th>
+<th class="border border-gray-300 px-2 py-1 text-gray-600">Ketua Tim:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 {{ $task->team_composition['ketua_tim'] ?? '-' }}
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Anggota Tim:</th>
+<th class="border border-gray-300 px-2 py-1 text-gray-600">Anggota Tim:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 @if (!empty($task->team_composition['anggota_tim']))
                                                                     <ul class="list-none pl-0">
                                                                         @foreach ($task->team_composition['anggota_tim'] as $anggota)
                                                                             <li class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
-                                                                                {{ $anggota }}
+{{ $anggota }}
                                                                             </li>
                                                                         @endforeach
                                                                     </ul>
                                                                 @else
-                                                                    <span>-</span>
+<span>-</span>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                         <tr class="border border-gray-300">
-                                                            <th class="border border-gray-300 px-2 py-1 text-gray-600">Penunjang:</th>
+<th class="border border-gray-300 px-2 py-1 text-gray-600">Penunjang:</th>
                                                             <td class="border border-gray-300 px-2 py-1 text-gray-800">
                                                                 @if (!empty($task->team_composition['penunjang']))
                                                                     <ul class="list-none pl-0">
                                                                         @foreach ($task->team_composition['penunjang'] as $penunjang)
                                                                             <li class="bg-gray-100 rounded px-2 py-1 my-1 border border-gray-300">
-                                                                                {{ $penunjang }}
+{{ $penunjang }}
                                                                             </li>
                                                                         @endforeach
                                                                     </ul>
                                                                 @else
-                                                                    <span>-</span>
+<span>-</span>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                     </tbody>
-                                                </table>
+</table>
                                             </div>
                                         </td>
                                         
                                         
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            {{ $task->number_of_days }} Hari
+{{ $task->number_of_days }} Hari
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            @if ($task->status === 'pending')
-                                                <span
-                                                    class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                                    {{ __('Menunggu persetujuan') }}
-                                                </span>
-                                            @elseif ($task->status === 'Disetujui Sekretaris')
-                                                <span
-                                                    class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                                    {{ __('Disetujui Sekretaris') }}
-                                                </span>
-                                            @elseif ($task->status === 'Disetujui Inspektur')
-                                                <span
-                                                    class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                                    {{ __('Disetujui Inspektur') }}
-                                                </span>
-                                            @elseif ($task->status === 'Ditolak Sekretaris')
-                                                <span
-                                                    class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                                    {{ __('Ditolak Sekretaris') }}
-                                                </span>
-                                            @elseif ($task->status === 'Di Setujui Inspektur')
-                                                <span
-                                                    class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                                    {{ __('Disetujui Inspektur') }}
-                                                </span>
-                                            @elseif ($task->status === 'Ditolak Inspektur')
-                                                <span
-                                                    class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                                    {{ __('Ditolak Inspektur') }}
-                                                </span>
-                                            @else
-                                                <span
-                                                    class="inline-flex px-2 py-1 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                                    {{ __('Ditolak') }}
-                                                </span>
-                                            @endif
-                                        </td>
+@php
+                                                $statusClass = '';
+                                                $statusText = '';
+                                                
+                                                switch ($task->status) {
+                                                    case 'pending':
+                                                        $statusClass = 'text-yellow-800 bg-yellow-100 hover:bg-yellow-200';
+                                                        $statusText = __('Menunggu persetujuan');
+                                                        break;
+                                                    case 'Disetujui Sekretaris':
+                                                        $statusClass = 'text-green-800 bg-green-100 hover:bg-green-200';
+                                                        $statusText = __('Disetujui Sekretaris');
+                                                        break;
+                                                    case 'Disetujui Inspektur':
+                                                        $statusClass = 'text-green-800 bg-green-100 hover:bg-green-200';
+                                                        $statusText = __('Disetujui Inspektur');
+                                                        break;
+                                                    case 'Ditolak Sekretaris':
+                                                        $statusClass = 'text-red-800 bg-red-100 hover:bg-red-200';
+                                                        $statusText = __('Ditolak Sekretaris');
+                                                        break;
+                                                    case 'Di Setujui Inspektur': // Menangani typo jika ada
+                                                        $statusClass = 'text-green-800 bg-green-100 hover:bg-green-200';
+                                                        $statusText = __('Disetujui Inspektur');
+                                                        break;
+                                                    case 'Ditolak Inspektur':
+                                                        $statusClass = 'text-red-800 bg-red-100 hover:bg-red-200';
+                                                        $statusText = __('Ditolak Inspektur');
+                                                        break;
+                                                    default: // Termasuk 'rejected'
+                                                        $statusClass = 'text-red-800 bg-red-100 hover:bg-red-200';
+                                                        $statusText = __('Ditolak');
+                                                        break;
+                                                }
+                                            @endphp
+                                            
+                                            <button 
+                                                type="button" 
+                                                class="inline-flex px-2 py-1 text-xs font-semibold leading-5 rounded-full {{ $statusClass }} transition-colors duration-150"
+                                                @click="
+                                                    showProgressModal = true;
+                                                    modalProgress = {{ $task->progress_percentage }};
+                                                    modalStatus = '{{ $task->status }}';
+                                                    modalReason = '{{ $task->rejection_reason ?? '' }}';
+                                                ">
+                                                {{ $statusText }}
+                                            </button>
+</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             @if (
                                                 ($task->status === 'Ditolak Sekretaris' || $task->status === 'Ditolak Inspektur') &&
-                                                    !empty($task->rejection_reason))
+!empty($task->rejection_reason))
                                                 {{ $task->rejection_reason }}
                                             @else
                                                 -
@@ -9103,56 +9237,130 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                             @if (
                                                 $task->status === 'pending' ||
-                                                    $task->status === 'rejected' ||
+$task->status === 'rejected' ||
                                                     $task->status === 'Ditolak Sekretaris' ||
                                                     $task->status === 'Ditolak Inspektur')
                                                 <div class="flex justify-center space-x-4">
-                                                    <!-- Tombol Edit -->
                                                     <a href="{{ Auth::user()->role === 'admin' ? route('task.edit', $task->id) : route('sekretaris.task.edit', $task->id) }}"
                                                         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
                                                         Edit
                                                     </a>
 
-                                                    <!-- Tombol Hapus dengan Konfirmasi -->
                                                     <form action="{{ Auth::user()->role === 'admin' ? route('task.destroy', $task->id) : route('sekretaris.task.destroy', $task->id) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus tugas ini?');">
                                                         @csrf
-                                                        @method('DELETE')
+@method('DELETE')
                                                         <button type="submit"
                                                             class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md shadow hover:bg-red-700 transition">
                                                             Hapus
-                                                        </button>
+</button>
                                                     </form>
                                                 </div>
                                             @else
-                                                <!-- Menggunakan Ikon dan Teks "Aksi Tidak Tersedia" -->
                                                 <div class="flex items-center justify-center text-gray-500">
-                                                    <!-- Icon Non-Aktif, misalnya ikon lock dari Heroicons -->
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
-                                                            d="M5 8V6a5 5 0 0110 0v2h1a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1v-8a1 1 0 011-1h1zm2-2a3 3 0 116 0v2H7V6zm8 4v6H5v-6h10z"
+d="M5 8V6a5 5 0 0110 0v2h1a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1v-8a1 1 0 011-1h1zm2-2a3 3 0 116 0v2H7V6zm8 4v6H5v-6h10z"
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                     <span>Aksi Tidak Tersedia</span>
-                                                </div>
+</div>
                                             @endif
                                         </td>
                                     </tr>
                                 @endforeach
-                            </tbody>
+</tbody>
                         </table>
                     </div>
 
-                    <!-- Pagination -->
                     <div class="mt-4">
                         {{ $tasks->links() }}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+<div 
+            x-show="showProgressModal" 
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" 
+            x-cloak>
+            
+            <div 
+                @click.away="showProgressModal = false"
+                x-show="showProgressModal"
+                x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-90"
+                class="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6 mx-4">
+                
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Progres Penugasan</h3>
+
+                <div class="stepper-wrapper-modal">
+                    <div class="stepper-item-modal" :class="{
+                        'completed': modalProgress >= 10,
+                        'active': modalProgress == 10,
+                        'rejected': modalStatus == 'Ditolak Sekretaris' || modalStatus == 'Ditolak Inspektur'
+                    }">
+                        <div class="step-counter-modal">1</div>
+                        <div class="step-name-modal">Perencanaan (10%)</div>
+                    </div>
+                    <div class="stepper-item-modal" :class="{
+                        'completed': modalProgress >= 20,
+                        'active': modalProgress == 20,
+                        'rejected': modalStatus == 'Ditolak Sekretaris' || modalStatus == 'Ditolak Inspektur'
+                    }">
+                        <div class="step-counter-modal">2</div>
+                        <div class="step-name-modal">Persiapan (10%)</div>
+                    </div>
+                    <div class="stepper-item-modal" :class="{
+                        'completed': modalProgress >= 80,
+                        'active': modalProgress == 80,
+                        'rejected': modalStatus == 'Ditolak Sekretaris' || modalStatus == 'Ditolak Inspektur'
+                    }">
+                        <div class="step-counter-modal">3</div>
+                        <div class="step-name-modal">Pelaksanaan (60%)</div>
+                    </div>
+                    <div class="stepper-item-modal" :class="{
+                        'completed': modalProgress == 100,
+                        'rejected': modalStatus == 'Ditolak Sekretaris' || modalStatus == 'Ditolak Inspektur'
+                    }">
+                        <div class="step-counter-modal">4</div>
+                        <div class="step-name-modal">LHP Selesai (20%)</div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                    <h4 class="font-semibold">Status Saat Ini: <span x-text="modalStatus"></span></h4>
+                    <div x-show="modalReason" class="mt-2">
+                        <p class="text-sm text-gray-700"><strong>Alasan Penolakan:</strong> <span x-text="modalReason"></span></p>
+                    </div>
+                    <div x-show="!modalReason && modalProgress == 0" class="mt-2">
+                        <p class="text-sm text-gray-700">Tugas ditolak namun alasan tidak dicantumkan.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-right">
+                    <button 
+                        type="button" 
+                        @click="showProgressModal = false"
+                        class="inline-flex items-center px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-md shadow hover:bg-gray-700 transition">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+</div>
 </x-app-layout>
 
 ===== resources\views\task\pertimbangan.blade.php =====
@@ -10004,23 +10212,243 @@ document.addEventListener('DOMContentLoaded', function() {
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12" x-data="{
+        showTaskModal: false,
+        modalTitle: '',
+        modalTasks: [],
+        allTaskGroups: {}
+    }" x-init="allTaskGroups = JSON.parse($el.dataset.tasks)"
+        data-tasks="{{ json_encode($data['progressTasks']) }}">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            
+
+            <!-- Greeting -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
                 <div class="p-6 text-gray-900">
                     Selamat Datang Kembali, {{ Auth::user()->name }}!
                 </div>
             </div>
 
-            @if(Auth::user()->role === 'admin')
+            <!-- Tracker -->
+            <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Tracker Ringkasan Penugasan</h3>
+                @php
+                    $tracker = $data['progressTracker'];
+                    $highestActiveStep = 0;
+                    if ($tracker['perencanaan'] > 0) {
+                        $highestActiveStep = 10;
+                    }
+                    if ($tracker['persiapan'] > 0) {
+                        $highestActiveStep = 20;
+                    }
+                    if ($tracker['pelaksanaan'] > 0) {
+                        $highestActiveStep = 80;
+                    }
+                    if ($highestActiveStep == 0 && $tracker['lhp_selesai'] > 0) {
+                        $highestActiveStep = 100;
+                    }
+                @endphp
+
+                <div class="stepper-wrapper-modal">
+                    <!-- Perencanaan -->
+                    <div
+                        class="stepper-item-modal {{ $highestActiveStep >= 10 ? 'completed' : '' }} {{ $highestActiveStep == 10 ? 'active' : '' }}">
+                        <div class="step-counter-modal">1</div>
+                        <div class="step-name-modal">Perencanaan <br> (10%)</div>
+                        <button type="button"
+                            class="step-count font-bold text-lg cursor-pointer hover:underline disabled:no-underline disabled:opacity-50 disabled:cursor-default"
+                            @disabled($tracker['perencanaan'] == 0)
+                            @click="
+                modalTitle = 'Tugas Tahap Perencanaan';
+                modalTasks = allTaskGroups.perencanaan;
+                showTaskModal = true;
+            ">
+                            {{ $tracker['perencanaan'] }}
+                        </button>
+                    </div>
+
+                    <!-- Persiapan -->
+                    <div
+                        class="stepper-item-modal {{ $highestActiveStep >= 20 ? 'completed' : '' }} {{ $highestActiveStep == 20 ? 'active' : '' }}">
+                        <div class="step-counter-modal">2</div>
+                        <div class="step-name-modal">Persiapan <br> (10%)</div>
+                        <button type="button"
+                            class="step-count font-bold text-lg cursor-pointer hover:underline disabled:no-underline disabled:opacity-50 disabled:cursor-default"
+                            @disabled($tracker['persiapan'] == 0)
+                            @click="
+                modalTitle = 'Tugas Tahap Persiapan';
+                modalTasks = allTaskGroups.persiapan;
+                showTaskModal = true;
+            ">
+                            {{ $tracker['persiapan'] }}
+                        </button>
+                    </div>
+
+                    <!-- Pelaksanaan -->
+                    <div
+                        class="stepper-item-modal {{ $highestActiveStep >= 80 ? 'completed' : '' }} {{ $highestActiveStep == 80 ? 'active' : '' }}">
+                        <div class="step-counter-modal">3</div>
+                        <div class="step-name-modal">Pelaksanaan <br> (60%)</div>
+                        <button type="button"
+                            class="step-count font-bold text-lg cursor-pointer hover:underline disabled:no-underline disabled:opacity-50 disabled:cursor-default"
+                            @disabled($tracker['pelaksanaan'] == 0)
+                            @click="
+                modalTitle = 'Tugas Tahap Pelaksanaan';
+                modalTasks = allTaskGroups.pelaksanaan;
+                showTaskModal = true;
+            ">
+                            {{ $tracker['pelaksanaan'] }}
+                        </button>
+                    </div>
+
+                    <!-- LHP Selesai -->
+                    <div
+                        class="stepper-item-modal {{ $highestActiveStep == 100 || $tracker['lhp_selesai'] > 0 ? 'completed' : '' }}">
+                        <div class="step-counter-modal">4</div>
+                        <div class="step-name-modal">LHP Selesai <br> (20%)</div>
+                        <button type="button"
+                            class="step-count font-bold text-lg cursor-pointer hover:underline disabled:no-underline disabled:opacity-50 disabled:cursor-default"
+                            @disabled($tracker['lhp_selesai'] == 0)
+                            @click="
+                modalTitle = 'Tugas Selesai (LHP Disetujui)';
+                modalTasks = allTaskGroups.lhp_selesai;
+                showTaskModal = true;
+            ">
+                            {{ $tracker['lhp_selesai'] }}
+                        </button>
+                    </div>
+                </div>
+
+                @if ($tracker['ditolak'] > 0)
+                    <div class="text-center text-sm text-red-600 mt-2">
+                        (Terdapat
+                        <button type="button" class="font-semibold hover:underline"
+                            @click="
+                modalTitle = 'Tugas Ditolak/Dibatalkan';
+                modalTasks = allTaskGroups.ditolak;
+                showTaskModal = true;
+            ">
+                            {{ $tracker['ditolak'] }} tugas
+                        </button>
+                        ditolak/dibatalkan)
+                    </div>
+                @endif
+
+
+                @if ($tracker['ditolak'] > 0)
+                    <div class="text-center text-sm text-red-600 mt-2">
+                        (Terdapat
+                        <button type="button" class="font-semibold hover:underline"
+                            @click="
+                                modalTitle = 'Tugas Ditolak/Dibatalkan';
+                                modalTasks = allTaskGroups.ditolak;
+                                showTaskModal = true;
+                            ">
+                            {{ $tracker['ditolak'] }} tugas
+                        </button>
+                        ditolak/dibatalkan)
+                    </div>
+                @endif
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+                <!-- Pie Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Sebaran Jenis Penugasan</h3>
+                    <div x-data x-init="const ctx = $refs.pieChart.getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: {{ Js::from($data['pieChart']['labels']) }},
+                            datasets: [{
+                                data: {{ Js::from($data['pieChart']['data']) }},
+                                backgroundColor: [
+                                    '#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6',
+                                ],
+                                hoverOffset: 4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { position: 'top' }
+                            }
+                        }
+                    });">
+                        <canvas x-ref="pieChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Line Chart -->
+                <div class="lg:col-span-3 bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Tren Tugas Selesai (12 Bulan Terakhir)</h3>
+                    <div x-data x-init="const ctx = $refs.lineChart.getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: {{ Js::from($data['lineChart']['labels']) }},
+                            datasets: [{
+                                label: 'Tugas Selesai',
+                                data: {{ Js::from($data['lineChart']['data']) }},
+                                fill: false,
+                                borderColor: '#3B82F6',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: { precision: 0 }
+                                }
+                            }
+                        }
+                    });">
+                        <canvas x-ref="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            @if (Auth::user()->role === 'admin')
                 @include('dashboard.admin', ['data' => $data])
             @elseif(Auth::user()->role === 'sekretaris')
                 @include('dashboard.sekretaris', ['data' => $data])
             @elseif(Auth::user()->role === 'inspektur')
                 @include('dashboard.inspektur', ['data' => $data])
             @endif
+        </div>
 
+        <!-- Modal -->
+        <div x-show="showTaskModal" x-transition
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" x-cloak>
+            <div @click.away="showTaskModal = false" x-show="showTaskModal" x-transition
+                class="bg-white rounded-lg shadow-xl w-full max-w-lg p-6 mx-4 max-h-[70vh] flex flex-col">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4" x-text="modalTitle"></h3>
+
+                <div class="overflow-y-auto border rounded-md">
+                    <ul class="divide-y divide-gray-200">
+                        <template x-for="(task, index) in modalTasks" :key="index">
+                            <li class="px-4 py-3 flex items-center">
+                                <span class="text-sm font-medium text-gray-500 mr-3" x-text="index + 1 + '.'"></span>
+                                <span class="text-sm text-gray-800" x-text="task.name"></span>
+                            </li>
+                        </template>
+                        <template x-if="modalTasks.length === 0">
+                            <li class="px-4 py-3 text-sm text-gray-500 text-center">
+                                Tidak ada tugas dalam tahap ini.
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+                <div class="mt-6 text-right">
+                    <button type="button" @click="showTaskModal = false"
+                        class="inline-flex items-center px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-md shadow hover:bg-gray-700 transition">
+                        Tutup
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>
@@ -10416,8 +10844,10 @@ class Kernel extends ConsoleKernel
 import './bootstrap';
 
 import Alpine from 'alpinejs';
+import Chart from 'chart.js/auto';
 
 window.Alpine = Alpine;
+window.Chart = Chart;
 
 Alpine.start();
 

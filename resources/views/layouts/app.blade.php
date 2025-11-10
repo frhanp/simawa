@@ -22,6 +22,7 @@
 
     {{-- Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body x-data="{ sidebarOpen:false }" class="font-sans antialiased bg-gray-100">
