@@ -14,6 +14,7 @@ use App\Http\Controllers\OrangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PenemuanController;
+use App\Http\Controllers\LaporanController;
 
 
 
@@ -81,6 +82,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/penemuan/{penemuan}/pdf', [PenemuanController::class, 'downloadPDF'])->name('penemuan.pdf');
     Route::get('/penemuan/{penemuan}/edit', [PenemuanController::class, 'edit'])->name('penemuan.edit');
     Route::put('/penemuan/{penemuan}', [PenemuanController::class, 'update'])->name('penemuan.update');
+
+    Route::get('/laporan-tahunan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan-tahunan/pdf', [LaporanController::class, 'downloadPDF'])->name('laporan.pdf');
 });
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     Route::get('/task/planning', [TaskController::class, 'planning'])->name('task.planning');

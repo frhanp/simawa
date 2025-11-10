@@ -89,6 +89,12 @@
                 </svg>
                 <span>{{ __('Laporan Hasil Pemeriksaan') }}</span>
             </x-nav-link>
+            <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>{{ __('Laporan Akhir Tahun') }}</span>
+            </x-nav-link>
         @endif
 
         {{-- ================== MENU SEKRETARIS ================== --}}
@@ -174,6 +180,12 @@
                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21a6 6 0 00-9-5.197m0 0A4 4 0 119.5 9.172a4 4 0 01-3.5 3.555" />
                 </svg>
                 <span>{{ __('Data Personel') }}</span>
+            </x-nav-link>
+            <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>{{ __('Laporan Akhir Tahun') }}</span>
             </x-nav-link>
         @endif
     </nav>
