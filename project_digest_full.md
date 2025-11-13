@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-11-09 23:19:42_
+_Generated: 2025-11-13 21:29:20_
 **Root:** D:\Laragon\www\simawa
 
 
@@ -54,11 +54,13 @@ app\Http\Controllers\AdminController.php
 app\Http\Controllers\Controller.php
 app\Http\Controllers\DashboardController.php
 app\Http\Controllers\InspekturController.php
+app\Http\Controllers\LaporanController.php
 app\Http\Controllers\LHPController.php
 app\Http\Controllers\NotificationController.php
 app\Http\Controllers\OrangController.php
 app\Http\Controllers\PelaksanaanController.php
 app\Http\Controllers\PelaporanController.php
+app\Http\Controllers\PenemuanController.php
 app\Http\Controllers\PreparationController.php
 app\Http\Controllers\ProfileController.php
 app\Http\Controllers\SekretarisController.php
@@ -96,6 +98,7 @@ app\Models\Notification.php
 app\Models\Orang.php
 app\Models\Pelaksanaan.php
 app\Models\Pelaporan.php
+app\Models\Penemuan.php
 app\Models\Preparation.php
 app\Models\Spt.php
 app\Models\Task.php
@@ -168,6 +171,7 @@ database\migrations\2025_09_06_064619_create_lhp_otps_table.php
 database\migrations\2025_09_17_131621_create_notifications_table.php
 database\migrations\2025_09_30_072015_add_jenis_penugasan_to_tasks_table.php
 database\migrations\2025_10_04_145703_add_is_berjenjang_to_tasks_table.php
+database\migrations\2025_11_10_004609_create_penemuans_table.php
 database\seeders\DatabaseSeeder.php
 database\seeders\OrangSeeder.php
 database\seeders\UserSeeder.php
@@ -178,6 +182,7 @@ public\js
 public\storage
 public\.htaccess
 public\favicon.ico
+public\hot
 public\index.php
 public\robots.txt
 public\css\pdf_style.css
@@ -197,10 +202,12 @@ resources\views\auth
 resources\views\components
 resources\views\dashboard
 resources\views\inspektur
+resources\views\laporan
 resources\views\layouts
 resources\views\lhp
 resources\views\pelaksanaan
 resources\views\pelaporan
+resources\views\penemuan
 resources\views\preparations
 resources\views\profile
 resources\views\sekretaris
@@ -242,6 +249,8 @@ resources\views\inspektur\approve_inspektur.blade.php
 resources\views\inspektur\orang\create.blade.php
 resources\views\inspektur\orang\edit.blade.php
 resources\views\inspektur\orang\index.blade.php
+resources\views\laporan\index.blade.php
+resources\views\laporan\pdf.blade.php
 resources\views\layouts\app.blade.php
 resources\views\layouts\guest.blade.php
 resources\views\layouts\navigation.blade.php
@@ -255,6 +264,10 @@ resources\views\pelaksanaan\show.blade.php
 resources\views\pelaporan\create.blade.php
 resources\views\pelaporan\edit.blade.php
 resources\views\pelaporan\index.blade.php
+resources\views\penemuan\create.blade.php
+resources\views\penemuan\edit.blade.php
+resources\views\penemuan\index.blade.php
+resources\views\penemuan\pdf.blade.php
 resources\views\preparations\admin_index.blade.php
 resources\views\preparations\create.blade.php
 resources\views\preparations\index.blade.php
@@ -504,7 +517,10 @@ storage\framework\cache\data\dc\4a
 storage\framework\cache\data\e1\76
 storage\framework\cache\data\e1\76\e176dcc05cdbc9a8a5e7ee02bcfad53f787583b8
 storage\framework\sessions\.gitignore
-storage\framework\sessions\nJH9GVbFUiLR07VAOBQDLIviMAabaAsFCrtes9bL
+storage\framework\sessions\FXqzdIhj3L7nOmvoD0OmAhcUXThZFq5wrp94keFC
+storage\framework\sessions\I3JNqg7CFycYjv0WwWApLNIbHm9yyVdxrOar1DgR
+storage\framework\sessions\QLPqUIwlKq5zNtl8LmXlhhREyZapTzgpNGdbNS1n
+storage\framework\sessions\RgivpMe5YZqf5YGH8FMESyWVsRUXXSQJWzTLV9Xj
 storage\framework\testing\.gitignore
 storage\framework\views\.gitignore
 storage\framework\views\001cb81e1afba3b8d5675e0496c5347d.php
@@ -513,18 +529,21 @@ storage\framework\views\01079774735f0986214c05908affaf45.php
 storage\framework\views\03a8676d95d6b63316481cade49d8a73.php
 storage\framework\views\0c16913cfa7ee65f45cc147542f16225.php
 storage\framework\views\0cd78db15073c3405b694e777e61b3f4.php
+storage\framework\views\0dda5f3f8f7f28669489ecf0d9dff82c.php
 storage\framework\views\11c3fc84eb1daa63795b629a1f30d850.php
 storage\framework\views\14eddcdb316f568aa09cf92314ed080f.php
 storage\framework\views\15d96078c7fcecd8a783424411363bab.php
 storage\framework\views\1a23cf467ab7363fff6f96da6ae31a7f.php
 storage\framework\views\1a49e2ebe23b0ab30ab3911bd79a1845.php
 storage\framework\views\1a7213077000f1cc333294926e426022.php
+storage\framework\views\1c86f73f5c54fef368e628c5c6832dc1.php
 storage\framework\views\1d03356cfb0ed02f0a916b8e6875f138.php
 storage\framework\views\253df6d4b5b2a3ca5e2a98da1717e9b1.php
 storage\framework\views\302f9b4d1193ee6a929e2219ff51577d.php
 storage\framework\views\361b29ef5e089b1b8f3334ff4d30ff55.php
 storage\framework\views\362f08b0410201dfb6378b2d05b79736.php
 storage\framework\views\39868c82b77a95800e13feabbc0fb055.php
+storage\framework\views\3ad4ef6209f170a680a291365e5cb6d4.php
 storage\framework\views\3ee34c4715e4e4a3930b3c52ea10ce63.php
 storage\framework\views\3fd1b0b4d0860551569bd0dedb7cba79.php
 storage\framework\views\41366b0dbf01c9e09f14970cc6721b90.php
@@ -551,9 +570,11 @@ storage\framework\views\7e3689e151b1d97f459b9791761870cf.php
 storage\framework\views\80f9b9b99c9bc32c0f2a5fa4cdd37253.php
 storage\framework\views\813ca7d5f9d6a1955f98170b7d849746.php
 storage\framework\views\82589d02f87c1d874dc91d424005a54f.php
+storage\framework\views\86508b5decb35096b397de8611d6a826.php
 storage\framework\views\8766cb5751f6bdd59c8383bfa508e49f.php
 storage\framework\views\8af798cf388c0d3b2293767c9f0a68e4.php
 storage\framework\views\8cf2bc2dcb53f9c32ef2d1a387b7b3ee.php
+storage\framework\views\8dcefa5f3c158d094dd5c809e059c7ac.php
 storage\framework\views\90b0e8a5260d45aaf586144f86c08fae.php
 storage\framework\views\99286b23a7b8def6678f6f178ae251ce.php
 storage\framework\views\99940faee05f5ef0a48663f1ae5d8f84.php
@@ -576,6 +597,7 @@ storage\framework\views\b0f5893baddc3aa76b9a8450522dd3fc.php
 storage\framework\views\b2d2c13cfe73f58b55ab770ab48f7dc0.php
 storage\framework\views\b5601252a0b605e285d55b42e6edb37c.php
 storage\framework\views\b882f1089a1b52536047168761487fad.php
+storage\framework\views\b92db154cd4ceb4318023d7ecd062310.php
 storage\framework\views\bc584e00eda95fd1aac4e74417d4c69b.php
 storage\framework\views\c85af56599ef873e2faf5c74a67934ce.php
 storage\framework\views\c9155aba4d4b765885080f2491765172.php
@@ -628,11 +650,11 @@ Branch:
 main
 
 Last 5 commits:
+a13e15b ubah layout lhp
+23f175f add laporan akhir tahun
+12328f8 add laporan individu
 6d0c153 tracker penugasan
 984e460 fix wa v2 without auth info
-027491c fix wa v2
-a53c30f fix wa
-1367dff revisi komsat
 ```
 
 
@@ -791,6 +813,9 @@ use App\Http\Controllers\PreparationController;
 use App\Http\Controllers\OrangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PenemuanController;
+use App\Http\Controllers\LaporanController;
+
 
 
 /*
@@ -849,6 +874,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/lhp/{lhp}/send-otp', [LHPController::class, 'sendOtp'])->name('lhp.sendOtp');
     Route::post('/lhp/{lhp}/verify-otp', [LHPController::class, 'verifyOtp'])->name('lhp.verifyOtp');
     Route::get('/lhp/{lhp}/view-file', [LHPController::class, 'viewFile'])->name('lhp.viewFile');
+
+    Route::get('/lhp/{lhp}/penemuan', [PenemuanController::class, 'index'])->name('lhp.penemuan.index');
+    Route::get('/lhp/{lhp}/penemuan/create', [PenemuanController::class, 'create'])->name('lhp.penemuan.create'); // Rute Form Baru
+    Route::post('/lhp/{lhp}/penemuan', [PenemuanController::class, 'store'])->name('lhp.penemuan.store');
+    Route::delete('/penemuan/{penemuan}', [PenemuanController::class, 'destroy'])->name('penemuan.destroy');
+    Route::get('/penemuan/{penemuan}/pdf', [PenemuanController::class, 'downloadPDF'])->name('penemuan.pdf');
+    Route::get('/penemuan/{penemuan}/edit', [PenemuanController::class, 'edit'])->name('penemuan.edit');
+    Route::put('/penemuan/{penemuan}', [PenemuanController::class, 'update'])->name('penemuan.update');
+
+    Route::get('/laporan-tahunan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan-tahunan/pdf', [LaporanController::class, 'downloadPDF'])->name('laporan.pdf');
 });
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     Route::get('/task/planning', [TaskController::class, 'planning'])->name('task.planning');
@@ -887,7 +923,7 @@ Route::prefix('admin')->middleware(['is_admin'])->group(function () {
 
 // Grup rute untuk Inspektur
 Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur.')->group(function () {
-    
+
     // Halaman persetujuan tugas
     Route::get('/approve', [InspekturController::class, 'approveInspektur'])->name('approve_inspektur');
 
@@ -935,7 +971,7 @@ Route::middleware(['auth', 'isInspektur'])->prefix('inspektur')->name('inspektur
 });
 
 Route::middleware(['auth', 'isSekretaris'])->group(function () {
-    
+
     Route::get('/pertimbangan', [SekretarisController::class, 'pertimbangan'])->name('pertimbangan');
     // Route untuk menampilkan form upload SPT
     Route::get('spt/upload/{task}', [SekretarisController::class, 'createSPT'])->name('sekretaris.spt.upload');
@@ -959,7 +995,7 @@ Route::middleware(['auth', 'isSekretaris'])->group(function () {
     Route::put('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'update'])->name('sekretaris.task.update');
     Route::delete('/penugasan/{task}', [App\Http\Controllers\Sekretaris\TaskController::class, 'destroy'])->name('sekretaris.task.destroy');
 
-    
+
     Route::get('/spt', [AdminController::class, 'indexSPT'])->name('sekretaris.spt.index');
     Route::get('/spt/{spt}/edit', [SekretarisController::class, 'editSPT'])->name('sekretaris.spt.edit');
     Route::put('/spt/{spt}', [SekretarisController::class, 'updateSPT'])->name('sekretaris.spt.update');
@@ -1030,6 +1066,8 @@ require __DIR__ . '/auth.php';
   POST            inspektur/preparations/{preparation}/approve inspektur.preparations.approve ΓÇ║ PreparationController@approve
   POST            inspektur/preparations/{preparation}/reject ... inspektur.preparations.reject ΓÇ║ PreparationController@reject
   POST            inspektur/reject-task .................................... inspektur.reject ΓÇ║ InspekturController@rejectTask
+  GET|HEAD        laporan-tahunan .................................................... laporan.index ΓÇ║ LaporanController@index
+  GET|HEAD        laporan-tahunan/pdf ............................................ laporan.pdf ΓÇ║ LaporanController@downloadPDF
   GET|HEAD        lhp ........................................................................ lhp.index ΓÇ║ LHPController@index
   POST            lhp ........................................................................ lhp.store ΓÇ║ LHPController@store
   GET|HEAD        lhp/create ............................................................... lhp.create ΓÇ║ LHPController@create
@@ -1039,6 +1077,9 @@ require __DIR__ . '/auth.php';
   PUT|PATCH       lhp/{lhp} ................................................................ lhp.update ΓÇ║ LHPController@update
   DELETE          lhp/{lhp} .............................................................. lhp.destroy ΓÇ║ LHPController@destroy
   GET|HEAD        lhp/{lhp}/edit ............................................................... lhp.edit ΓÇ║ LHPController@edit
+  GET|HEAD        lhp/{lhp}/penemuan ........................................... lhp.penemuan.index ΓÇ║ PenemuanController@index
+  POST            lhp/{lhp}/penemuan ........................................... lhp.penemuan.store ΓÇ║ PenemuanController@store
+  GET|HEAD        lhp/{lhp}/penemuan/create .................................. lhp.penemuan.create ΓÇ║ PenemuanController@create
   POST            lhp/{lhp}/send-otp ..................................................... lhp.sendOtp ΓÇ║ LHPController@sendOtp
   POST            lhp/{lhp}/verify-otp ............................................... lhp.verifyOtp ΓÇ║ LHPController@verifyOtp
   GET|HEAD        lhp/{lhp}/view-file .................................................. lhp.viewFile ΓÇ║ LHPController@viewFile
@@ -1062,6 +1103,10 @@ require __DIR__ . '/auth.php';
   PUT|PATCH       pelaporan/{pelaporan} ........................................ pelaporan.update ΓÇ║ PelaporanController@update
   DELETE          pelaporan/{pelaporan} ...................................... pelaporan.destroy ΓÇ║ PelaporanController@destroy
   GET|HEAD        pelaporan/{pelaporan}/edit ....................................... pelaporan.edit ΓÇ║ PelaporanController@edit
+  DELETE          penemuan/{penemuan} .......................................... penemuan.destroy ΓÇ║ PenemuanController@destroy
+  PUT             penemuan/{penemuan} ............................................ penemuan.update ΓÇ║ PenemuanController@update
+  GET|HEAD        penemuan/{penemuan}/edit ........................................... penemuan.edit ΓÇ║ PenemuanController@edit
+  GET|HEAD        penemuan/{penemuan}/pdf ...................................... penemuan.pdf ΓÇ║ PenemuanController@downloadPDF
   GET|HEAD        penugasan/planning ........................... sekretaris.task.planning ΓÇ║ Sekretaris\TaskController@planning
   POST            penugasan/store .................................... sekretaris.task.store ΓÇ║ Sekretaris\TaskController@store
   GET|HEAD        penugasan/view ....................................... sekretaris.task.view ΓÇ║ Sekretaris\TaskController@view
@@ -1093,7 +1138,7 @@ require __DIR__ . '/auth.php';
   GET|HEAD        verify-email .................................. verification.notice ΓÇ║ Auth\EmailVerificationPromptController
   GET|HEAD        verify-email/{id}/{hash} .................................. verification.verify ΓÇ║ Auth\VerifyEmailController
 
-                                                                                                          Showing [115] routes
+                                                                                                          Showing [124] routes
 
 ```
 
@@ -2205,6 +2250,83 @@ class InspekturController extends Controller
     }
 }
 
+===== app\Http\Controllers\LaporanController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Task;
+use App\Models\Penemuan;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+class LaporanController extends Controller
+{
+    /**
+     * Menampilkan halaman laporan (HTML) atau men-download (PDF).
+     */
+    public function index(Request $request)
+    {
+        // 1. Ambil data untuk filter dropdown
+        $jenisPenugasanOptions = Task::select('jenis_penugasan')->distinct()->pluck('jenis_penugasan');
+        $availableYears = Penemuan::join('lhp', 'penemuans.lhp_id', '=', 'lhp.id')
+                            ->select(DB::raw('YEAR(lhp.updated_at) as year'))
+                            ->where('lhp.status', 'disetujui')
+                            ->distinct()
+                            ->orderBy('year', 'desc')
+                            ->pluck('year');
+
+        // 2. Query dasar: Selalu ambil temuan dari LHP yang sudah disetujui
+        $query = Penemuan::with(['lhp.task'])
+                    ->whereHas('lhp', function ($q) {
+                        $q->where('status', 'disetujui');
+                    });
+
+        // 3. Terapkan Filter
+        // Filter Jenis Penugasan
+        $query->when($request->filled('jenis_penugasan'), function ($q) use ($request) {
+            $q->whereHas('lhp.task', function ($taskQuery) use ($request) {
+                $taskQuery->where('jenis_penugasan', $request->jenis_penugasan);
+            });
+        });
+
+        // Filter Tahun
+        $query->when($request->filled('tahun'), function ($q) use ($request) {
+            $q->whereHas('lhp', function ($lhpQuery) use ($request) {
+                $lhpQuery->whereYear('updated_at', $request->tahun);
+            });
+        });
+
+        // Filter Bulan
+        $query->when($request->filled('bulan'), function ($q) use ($request) {
+            $q->whereHas('lhp', function ($lhpQuery) use ($request) {
+                $lhpQuery->whereMonth('updated_at', $request->bulan);
+            });
+        });
+
+        $penemuans = $query->get();
+
+        // 4. Cek apakah minta PDF
+        if ($request->has('pdf')) {
+            $pdf = Pdf::loadView('laporan.pdf', [
+                'penemuans' => $penemuans,
+                'filters' => $request->only(['jenis_penugasan', 'tahun', 'bulan'])
+            ]);
+            $pdf->setPaper('A4', 'landscape'); // Landscape agar tabel muat
+            return $pdf->stream('laporan-rangkuman-temuan.pdf');
+        }
+
+        // 5. Tampilkan Halaman HTML
+        return view('laporan.index', [
+            'penemuans' => $penemuans,
+            'jenisPenugasanOptions' => $jenisPenugasanOptions,
+            'availableYears' => $availableYears,
+            'filters' => $request->only(['jenis_penugasan', 'tahun', 'bulan'])
+        ]);
+    }
+}
+
 ===== app\Http\Controllers\LHPController.php =====
 <?php
 
@@ -2230,8 +2352,8 @@ class LHPController extends Controller
      */
     public function index()
     {
-        // Mengambil LHPs beserta task terkait dengan pagination
-        $lhps = LHP::with('task')->paginate(10);
+        // Mengambil LHPs beserta relasi task dan penemuans (untuk dropdown)
+        $lhps = LHP::with('task', 'penemuans')->paginate(10);
         return view('lhp.index', compact('lhps'));
     }
 
@@ -2263,7 +2385,7 @@ class LHPController extends Controller
             'lhp_file' => $filePath,
             'keterangan' => $request->keterangan,
         ]);
-        // --- [MODIFIKASI] ---
+        
         $task = Task::find($request->task_id);
         $inspekturs = User::where('role', 'inspektur')->get();
         foreach ($inspekturs as $inspektur) {
@@ -2273,7 +2395,7 @@ class LHPController extends Controller
                 'url'     => route('lhp.index'),
             ]);
         }
-        // --- [AKHIR MODIFIKASI] ---
+       
 
         return redirect()->route('lhp.index')->with('success', 'LHP berhasil ditambahkan.');
     }
@@ -2954,6 +3076,119 @@ class PelaporanController extends Controller
         // =======================================================
 
         return back()->with('success', 'Tanggal expose diubah.');
+    }
+}
+
+===== app\Http\Controllers\PenemuanController.php =====
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\LHP;
+use App\Models\Penemuan;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+class PenemuanController extends Controller
+{
+    /**
+     * Menampilkan daftar temuan dan form untuk LHP tertentu.
+     */
+    public function index(LHP $lhp)
+    {
+        // Hanya load relasi yang diperlukan untuk tabel
+        $lhp->load('penemuans', 'task');
+        return view('penemuan.index', compact('lhp'));
+    }
+
+    /**
+     * Menampilkan form untuk membuat temuan baru.
+     */
+    public function create(LHP $lhp)
+    {
+        $lhp->load('task');
+        return view('penemuan.create', compact('lhp'));
+    }
+
+    /**
+     * Menyimpan temuan baru.
+     */
+    public function store(Request $request, LHP $lhp)
+    {
+        $validated = $request->validate([
+            'judul_penemuan' => 'required|string|max:255',
+            'kondisi' => 'required|string',
+            'kriteria' => 'required|string',
+            'penyebab_kategori' => 'required|string|max:255',
+            'penyebab_deskripsi' => 'required|string',
+            'akibat_kategori' => 'required|string|max:255',
+            'akibat_deskripsi' => 'required|string',
+            'rekomendasi_kategori' => 'required|string|max:255',
+            'rekomendasi_deskripsi' => 'required|string',
+        ]);
+
+        $lhp->penemuans()->create($validated);
+
+        return redirect()->route('lhp.penemuan.index', $lhp)->with('success', 'Temuan berhasil ditambahkan.');
+    }
+
+    /**
+     * Menampilkan form untuk mengedit temuan.
+     */
+    public function edit(Penemuan $penemuan)
+    {
+        // Kita juga perlu $lhp untuk konteks di view
+        $lhp = $penemuan->lhp->load('task');
+        return view('penemuan.edit', compact('penemuan', 'lhp'));
+    }
+
+    /**
+     * Memperbarui temuan di database.
+     */
+    public function update(Request $request, Penemuan $penemuan)
+    {
+        $validated = $request->validate([
+            'judul_penemuan' => 'required|string|max:255',
+            'kondisi' => 'required|string',
+            'kriteria' => 'required|string',
+            'penyebab_kategori' => 'required|string|max:255',
+            'penyebab_deskripsi' => 'required|string',
+            'akibat_kategori' => 'required|string|max:255',
+            'akibat_deskripsi' => 'required|string',
+            'rekomendasi_kategori' => 'required|string|max:255',
+            'rekomendasi_deskripsi' => 'required|string',
+        ]);
+
+        $penemuan->update($validated);
+
+        return redirect()->route('lhp.penemuan.index', $penemuan->lhp_id)->with('success', 'Temuan berhasil diperbarui.');
+    }
+
+    /**
+     * Menghapus temuan.
+     */
+    public function destroy(Penemuan $penemuan)
+    {
+        // Simpan lhp_id untuk redirect
+        $lhp_id = $penemuan->lhp_id;
+        $penemuan->delete();
+
+        return redirect()->route('lhp.penemuan.index', $lhp_id)->with('success', 'Temuan berhasil dihapus.');
+    }
+
+    public function downloadPDF(Penemuan $penemuan)
+    {
+        // Load relasi yang diperlukan untuk KOP surat (LHP -> Task)
+        $penemuan->load('lhp.task');
+
+        // Render view PDF dengan data
+        $pdf = Pdf::loadView('penemuan.pdf', compact('penemuan'));
+        
+        // Set ukuran kertas dan orientasi
+        $pdf->setPaper('A4', 'portrait');
+
+        // Download PDF
+        return $pdf->stream('temuan-' . $penemuan->id . '.pdf');
     }
 }
 
@@ -4049,6 +4284,11 @@ class LHP extends Model
     {
         return $this->belongsTo(Task::class);
     }
+
+    public function penemuans()
+    {
+        return $this->hasMany(Penemuan::class, 'lhp_id');
+    }
 }
 
 ===== app\Models\LhpOtp.php =====
@@ -4187,6 +4427,42 @@ class Pelaporan extends Model
     public function task()
     {
         return $this->belongsTo(Task::class);
+    }
+}
+
+===== app\Models\Penemuan.php =====
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Penemuan extends Model
+{
+    use HasFactory;
+
+    protected $table = 'penemuans';
+
+    protected $fillable = [
+        'lhp_id',
+        'judul_penemuan',
+        'kondisi',
+        'kriteria',
+        'penyebab_kategori',
+        'penyebab_deskripsi',
+        'akibat_kategori',
+        'akibat_deskripsi',
+        'rekomendasi_kategori',
+        'rekomendasi_deskripsi',
+    ];
+
+    /**
+     * Relasi ke LHP (Temuan ini dimiliki oleh LHP mana).
+     */
+    public function lhp()
+    {
+        return $this->belongsTo(LHP::class);
     }
 }
 
@@ -5675,6 +5951,281 @@ $classes = ($active ?? false)
     </div>
 </x-app-layout>
 
+===== resources\views\laporan\index.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Laporan Akhir Tahun Rangkuman Temuan') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Filter Laporan</h3>
+                <form action="{{ route('laporan.index') }}" method="GET">
+                    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
+<div>
+                            <label for="jenis_penugasan" class="block text-sm font-medium text-gray-700">Jenis Penugasan</label>
+                            <select id="jenis_penugasan" name="jenis_penugasan" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <option value="">Semua Jenis</option>
+                                @foreach($jenisPenugasanOptions as $jenis)
+                                    <option value="{{ $jenis }}" @selected(($filters['jenis_penugasan'] ?? null) == $jenis)>{{ $jenis }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="tahun" class="block text-sm font-medium text-gray-700">Tahun</label>
+                            <select id="tahun" name="tahun" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <option value="">Semua Tahun</option>
+                                @foreach($availableYears as $year)
+                                    <option value="{{ $year }}" @selected(($filters['tahun'] ?? null) == $year)>{{ $year }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="bulan" class="block text-sm font-medium text-gray-700">Bulan</label>
+                            <select id="bulan" name="bulan" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <option value="">Semua Bulan</option>
+                                @for ($i = 1; $i <= 12; $i++)
+                                    <option value="{{ $i }}" @selected(($filters['bulan'] ?? null) == $i)>{{ \Carbon\Carbon::create()->month($i)->translatedFormat('F') }}</option>
+                                @endfor
+                            </select>
+                        </div>
+<div class="flex items-end space-x-2 col-span-1 md:col-span-4 lg:col-span-3">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700">
+                                Filter
+                            </button>
+                            <a href="{{ route('laporan.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-md shadow hover:bg-gray-700">
+                                Reset
+                            </a>
+                            <button type="submit" name="pdf" value="true" formtarget="_blank" class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700">
+                                Cetak PDF
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white p-4 sm:p-8 shadow sm:rounded-lg">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">No</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Tugas / LHP</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Judul Temuan</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kondisi</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kriteria</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Penyebab</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Akibat</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Rekomendasi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            @forelse ($penemuans as $index => $temuan)
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3">{{ $index + 1 }}</td>
+                                    <td class="px-4 py-3">
+                                        <div class="font-medium text-gray-900">{{ $temuan->lhp->task->assignment_type }}</div>
+                                        <div class="text-xs text-gray-500">({{ $temuan->lhp->task->jenis_penugasan }})</div>
+                                        <div class="text-xs text-gray-500">Disetujui: {{ $temuan->lhp->updated_at->format('d/m/Y') }}</div>
+                                    </td>
+                                    <td class="px-4 py-3 font-medium text-gray-900">{{ $temuan->judul_penemuan }}</td>
+                                    <td class="px-4 py-3 text-gray-700">{{ $temuan->kondisi }}</td>
+                                    <td class="px-4 py-3 text-gray-700">{{ $temuan->kriteria }}</td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        <span class="font-semibold">{{ $temuan->penyebab_kategori }}:</span> {{ $temuan->penyebab_deskripsi }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        <span class="font-semibold">{{ $temuan->akibat_kategori }}:</span> {{ $temuan->akibat_deskripsi }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        <span class="font-semibold">{{ $temuan->rekomendasi_kategori }}:</span> {{ $temuan->rekomendasi_deskripsi }}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="px-4 py-4 text-center text-gray-500">
+                                        Tidak ada data temuan yang sesuai dengan filter.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</x-app-layout>
+
+===== resources\views\laporan\pdf.blade.php =====
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Laporan Rangkuman Temuan</title>
+<style>
+        /* Mengatur margin halaman (landscape) */
+        @page {
+            margin: 1.5cm;
+            size: A4 landscape;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 10pt; /* Ukuran font lebih kecil untuk landscape */
+            line-height: 1.3;
+            color: #333;
+        }
+        
+        /* --- KOP SURAT --- */
+        .kop-surat {
+            width: 100%;
+            border-bottom: 4px double black;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        .kop-surat img {
+            width: 70px; /* Logo sedikit lebih kecil */
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .kop-surat .kop-teks {
+            text-align: center;
+            margin-left: 80px; 
+        }
+        .kop-surat h1, .kop-surat h2, .kop-surat p {
+            margin: 0;
+            line-height: 1.3;
+        }
+        .kop-surat h1 { font-size: 14pt; font-weight: bold; }
+        .kop-surat h2 { font-size: 16pt; font-weight: bold; }
+        .kop-surat p { font-size: 10pt; }
+        
+        /* --- JUDUL LAPORAN --- */
+        .judul-laporan {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        .sub-judul {
+            text-align: center;
+            font-size: 11pt;
+            margin-bottom: 15px;
+        }
+
+        /* --- TABEL KONTEN --- */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .content-table th,
+        .content-table td {
+            border: 1px solid black;
+            padding: 5px; /* Padding lebih kecil */
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word; /* Memecah teks jika terlalu panjang */
+        }
+        .content-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* Mengatur lebar kolom */
+        .col-no { width: 3%; }
+        .col-tugas { width: 15%; }
+        .col-judul { width: 15%; }
+        .col-kondisi { width: 15%; }
+        .col-kriteria { width: 15%; }
+        .col-penyebab { width: 15%; }
+        .col-akibat { width: 12%; }
+        .col-rekomendasi { width: 15%; }
+
+        .sub-header {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kop-surat">
+        <img src="{{ public_path('images/LOGO_KOTA_GORONTALO.png') }}" alt="Logo">
+        <div class="kop-teks">
+            <h1>PEMERINTAH KOTA GORONTALO</h1>
+            <h2>INSPEKTORAT</h2>
+            <p>Jl. Achmad Nadjamudin Telepon (0435) 821012 Kota Gorontalo</p>
+        </div>
+    </div>
+
+    <h3 class="judul-laporan">LAPORAN RANGKUMAN TEMUAN HASIL PENGAWASAN</h3>
+    <p class="sub-judul">
+        Periode: 
+        {{ $filters['bulan'] ? \Carbon\Carbon::create()->month($filters['bulan'])->translatedFormat('F') : 'Semua Bulan' }}
+        {{ $filters['tahun'] ?? 'Semua Tahun' }}
+        | Jenis: {{ $filters['jenis_penugasan'] ?? 'Semua Jenis' }}
+    </p>
+
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th class="col-no">No</th>
+                <th class="col-tugas">Tugas / LHP</th>
+                <th class="col-judul">Judul Temuan</th>
+                <th class="col-kondisi">Kondisi</th>
+                <th class="col-kriteria">Kriteria</th>
+                <th class="col-penyebab">Penyebab</th>
+                <th class="col-akibat">Akibat</th>
+                <th class="col-rekomendasi">Rekomendasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($penemuans as $index => $temuan)
+                <tr>
+                    <td style="text-align: center;">{{ $index + 1 }}</td>
+                    <td>
+                        <span class="sub-header">{{ $temuan->lhp->task->assignment_type }}</span>
+                        ({{ $temuan->lhp->task->jenis_penugasan }})
+                    </td>
+                    <td>{{ $temuan->judul_penemuan }}</td>
+                    <td>{!! nl2br(e($temuan->kondisi)) !!}</td>
+                    <td>{!! nl2br(e($temuan->kriteria)) !!}</td>
+                    <td>
+                        <span class="sub-header">{{ $temuan->penyebab_kategori }}:</span>
+                        {!! nl2br(e($temuan->penyebab_deskripsi)) !!}
+                    </td>
+                    <td>
+                        <span class="sub-header">{{ $temuan->akibat_kategori }}:</span>
+                        {!! nl2br(e($temuan->akibat_deskripsi)) !!}
+                    </td>
+                    <td>
+                        <span class="sub-header">{{ $temuan->rekomendasi_kategori }}:</span>
+                        {!! nl2br(e($temuan->rekomendasi_deskripsi)) !!}
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" style="text-align: center; padding: 20px;">
+                        Tidak ada data temuan yang sesuai dengan filter.
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+</body>
+</html>
+
 ===== resources\views\layouts\app.blade.php =====
 <!-- resources/views/layouts/app.blade.php -->
 
@@ -5958,6 +6509,12 @@ $classes = ($active ?? false)
                 </svg>
                 <span>{{ __('Laporan Hasil Pemeriksaan') }}</span>
             </x-nav-link>
+            <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>{{ __('Laporan Akhir Tahun') }}</span>
+            </x-nav-link>
         @endif
 
         {{-- ================== MENU SEKRETARIS ================== --}}
@@ -6043,6 +6600,12 @@ $classes = ($active ?? false)
                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21a6 6 0 00-9-5.197m0 0A4 4 0 119.5 9.172a4 4 0 01-3.5 3.555" />
                 </svg>
                 <span>{{ __('Data Personel') }}</span>
+            </x-nav-link>
+            <x-nav-link :href="route('laporan.index')" :active="request()->routeIs('laporan.index')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>{{ __('Laporan Akhir Tahun') }}</span>
             </x-nav-link>
         @endif
     </nav>
@@ -6324,7 +6887,7 @@ $classes = ($active ?? false)
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Penugasan</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Tugas</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Hasil Pemeriksaan</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Temuan dan Laporan Hasil Pemeriksaan</th>
                                     {{-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th> --}}
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
@@ -6346,15 +6909,39 @@ $classes = ($active ?? false)
                                             {{ $lhp->task->assignment_type }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                            @if ($lhp->lhp_file)
-                                                <button @click="$dispatch('open-otp-modal', { lhpId: {{ $lhp->id }} })" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                                    <i class="fas fa-file-download mr-2"></i>
-                                                    Lihat Laporan Hasil Pemeriksaan
-                                                </button>
-                                            @else
-                                                <span class="text-gray-500">-</span>
-                                            @endif
+                                            <div class="flex flex-wrap justify-between items-center gap-2">
+                                        
+                                                {{-- Kiri: Tombol LHP --}}
+                                                <div class="flex items-center gap-2">
+                                                    @if ($lhp->lhp_file)
+                                                        <button
+                                                            @click="$dispatch('open-otp-modal', { lhpId: {{ $lhp->id }} })"
+                                                            class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                            Lihat Laporan Hasil Pemeriksaan
+                                                        </button>
+                                                    @else
+                                                        <span class="text-gray-500">-</span>
+                                                    @endif
+                                                </div>
+                                        
+                                                {{-- Kanan: Tombol Laporan Temuan --}}
+                                                <div class="flex flex-wrap justify-end gap-2">
+                                                    @if ($lhp->status === 'disetujui' && (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur'))
+                                                        @if ($lhp->penemuans->isNotEmpty())
+                                                            @foreach ($lhp->penemuans as $index => $temuan)
+                                                                <a href="{{ route('penemuan.pdf', $temuan) }}"
+                                                                    target="_blank"
+                                                                    class="inline-flex items-center justify-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                                                    Lihat Laporan Temuan
+                                                                </a>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                        
+                                            </div>
                                         </td>
+                                        
                                         {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $lhp->keterangan ?? '-' }}
                                         </td> --}}
@@ -6398,6 +6985,12 @@ $classes = ($active ?? false)
                                                     <i class="fas fa-times mr-2"></i>Tolak
                                                 </button>
                                             @endif
+
+                                            @if ($lhp->status === 'disetujui' && (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur'))
+                                                    <a href="{{ route('lhp.penemuan.index', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                                        Kelola Temuan
+                                                    </a>
+                                                @endif
                                         </td>
                                     </tr>
                                 @empty
@@ -7633,6 +8226,536 @@ $classes = ($active ?? false)
         integrity="sha512-pHg+2V8clVjoTjvJkZGJZmS98fLAV6qKQtwEyn7VEl8dvU+8MznRycAI+pNnLOfRlGxhQcaYDFs/jX1H5Z1vQA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </x-app-layout>
+
+===== resources\views\penemuan\create.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Tambah Temuan Baru') }}
+        </h2>
+    </x-slot>
+
+<div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900">
+                    Tugas: {{ $lhp->task->assignment_type }}
+                </h3>
+                <p class="mt-1 text-sm text-gray-600">
+                    Anda sedang menambahkan temuan baru untuk LHP yang disetujui pada {{ $lhp->updated_at->format('d M Y') }}.
+                </p>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                    {{ __('Detail Temuan') }}
+                </h3>
+                
+                @if ($errors->any())
+                    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-md">
+                        <ul class="list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('lhp.penemuan.store', $lhp) }}" class="space-y-6">
+                    @csrf
+
+                    <div>
+                        <x-input-label for="judul_penemuan" :value="__('1. Judul Penemuan')" />
+                        <x-text-input id="judul_penemuan" name="judul_penemuan" type="text" class="mt-1 block w-full" :value="old('judul_penemuan')" required />
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <x-input-label for="kondisi" :value="__('2. Kondisi (Apa yang terjadi)')" />
+                            <textarea id="kondisi" name="kondisi" rows="4" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('kondisi') }}</textarea>
+                        </div>
+                        <div>
+                            <x-input-label for="kriteria" :value="__('3. Kriteria (Aturan/Standar)')" />
+                            <textarea id="kriteria" name="kriteria" rows="4" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('kriteria') }}</textarea>
+                        </div>
+                    </div>
+
+                    <fieldset class="border rounded-md p-4">
+                        <legend class="text-md font-medium text-gray-900 px-2">{{ __('4. Penyebab') }}</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="md:col-span-1">
+                                <x-input-label for="penyebab_kategori" :value="__('Kategori Penyebab')" />
+                                <select id="penyebab_kategori" name="penyebab_kategori" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Manusia" @selected(old('penyebab_kategori') == 'Manusia')>Manusia</option>
+                                    <option value="Uang" @selected(old('penyebab_kategori') == 'Uang')>Uang</option>
+                                    <option value="Material" @selected(old('penyebab_kategori') == 'Material')>Material</option>
+                                    <option value="Mesin" @selected(old('penyebab_kategori') == 'Mesin')>Mesin</option>
+                                    <option value="Metode/Proses" @selected(old('penyebab_kategori') == 'Metode/Proses')>Metode/Proses</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <x-input-label for="penyebab_deskripsi" :value="__('Deskripsi Penyebab')" />
+                                <textarea id="penyebab_deskripsi" name="penyebab_deskripsi" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('penyebab_deskripsi') }}</textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border rounded-md p-4">
+                        <legend class="text-md font-medium text-gray-900 px-2">{{ __('5. Akibat') }}</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="md:col-span-1">
+                                <x-input-label for="akibat_kategori" :value="__('Kategori Akibat')" />
+                                <select id="akibat_kategori" name="akibat_kategori" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Kerugian Keuangan Negara" @selected(old('akibat_kategori') == 'Kerugian Keuangan Negara')>Kerugian Keuangan Negara</option>
+                                    <option value="Administratif" @selected(old('akibat_kategori') == 'Administratif')>Administratif</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <x-input-label for="akibat_deskripsi" :value="__('Deskripsi Akibat')" />
+                                <textarea id="akibat_deskripsi" name="akibat_deskripsi" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('akibat_deskripsi') }}</textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border rounded-md p-4">
+                        <legend class="text-md font-medium text-gray-900 px-2">{{ __('6. Rekomendasi') }}</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="md:col-span-1">
+                                <x-input-label for="rekomendasi_kategori" :value="__('Kategori Rekomendasi')" />
+                                <select id="rekomendasi_kategori" name="rekomendasi_kategori" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Pengembalian Keuangan Negara" @selected(old('rekomendasi_kategori') == 'Pengembalian Keuangan Negara')>Pengembalian Keuangan Negara</option>
+                                    <option value="Sanksi/Teguran" @selected(old('rekomendasi_kategori') == 'Sanksi/Teguran')>Sanksi/Teguran</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <x-input-label for="rekomendasi_deskripsi" :value="__('Deskripsi Rekomendasi')" />
+                                <textarea id="rekomendasi_deskripsi" name="rekomendasi_deskripsi" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('rekomendasi_deskripsi') }}</textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="flex items-center gap-4">
+                        <x-primary-button>{{ __('Simpan Temuan') }}</x-primary-button>
+                        <a href="{{ route('lhp.penemuan.index', $lhp) }}" class="text-sm text-gray-600 hover:underline">
+                            Batal
+                        </a>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</x-app-layout>
+
+===== resources\views\penemuan\edit.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Temuan') }}
+        </h2>
+    </x-slot>
+
+<div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900">
+                    Tugas: {{ $lhp->task->assignment_type }}
+                </h3>
+                <p class="mt-1 text-sm text-gray-600">
+                    Anda sedang mengedit temuan untuk LHP yang disetujui pada {{ $lhp->updated_at->format('d M Y') }}.
+                </p>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                    {{ __('Detail Temuan') }}
+                </h3>
+                
+                @if ($errors->any())
+                    <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-md">
+                        <ul class="list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('penemuan.update', $penemuan) }}" class="space-y-6">
+                    @csrf
+                    @method('PUT')
+
+                    <div>
+                        <x-input-label for="judul_penemuan" :value="__('1. Judul Penemuan')" />
+                        <x-text-input id="judul_penemuan" name="judul_penemuan" type="text" class="mt-1 block w-full" :value="old('judul_penemuan', $penemuan->judul_penemuan)" required />
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <x-input-label for="kondisi" :value="__('2. Kondisi (Apa yang terjadi)')" />
+                            <textarea id="kondisi" name="kondisi" rows="4" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('kondisi', $penemuan->kondisi) }}</textarea>
+                        </div>
+                        <div>
+                            <x-input-label for="kriteria" :value="__('3. Kriteria (Aturan/Standar)')" />
+                            <textarea id="kriteria" name="kriteria" rows="4" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>{{ old('kriteria', $penemuan->kriteria) }}</textarea>
+                        </div>
+                    </div>
+
+                    <fieldset class="border rounded-md p-4">
+                        <legend class="text-md font-medium text-gray-900 px-2">{{ __('4. Penyebab') }}</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="md:col-span-1">
+                                <x-input-label for="penyebab_kategori" :value="__('Kategori Penyebab')" />
+                                <select id="penyebab_kategori" name="penyebab_kategori" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Manusia" @selected(old('penyebab_kategori', $penemuan->penyebab_kategori) == 'Manusia')>Manusia</option>
+                                    <option value="Uang" @selected(old('penyebab_kategori', $penemuan->penyebab_kategori) == 'Uang')>Uang</option>
+                                    <option value="Material" @selected(old('penyebab_kategori', $penemuan->penyebab_kategori) == 'Material')>Material</option>
+                                    <option value="Mesin" @selected(old('penyebab_kategori', $penemuan->penyebab_kategori) == 'Mesin')>Mesin</option>
+                                    <option value="Metode/Proses" @selected(old('penyebab_kategori', $penemuan->penyebab_kategori) == 'Metode/Proses')>Metode/Proses</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <x-input-label for="penyebab_deskripsi" :value="__('Deskripsi Penyebab')" />
+                                <textarea id="penyebab_deskripsi" name="penyebab_deskripsi" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('penyebab_deskripsi', $penemuan->penyebab_deskripsi) }}</textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border rounded-md p-4">
+                        <legend class="text-md font-medium text-gray-900 px-2">{{ __('5. Akibat') }}</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="md:col-span-1">
+                                <x-input-label for="akibat_kategori" :value="__('Kategori Akibat')" />
+                                <select id="akibat_kategori" name="akibat_kategori" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Kerugian Keuangan Negara" @selected(old('akibat_kategori', $penemuan->akibat_kategori) == 'Kerugian Keuangan Negara')>Kerugian Keuangan Negara</option>
+                                    <option value="Administratif" @selected(old('akibat_kategori', $penemuan->akibat_kategori) == 'Administratif')>Administratif</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <x-input-label for="akibat_deskripsi" :value="__('Deskripsi Akibat')" />
+                                <textarea id="akibat_deskripsi" name="akibat_deskripsi" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('akibat_deskripsi', $penemuan->akibat_deskripsi) }}</textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border rounded-md p-4">
+                        <legend class="text-md font-medium text-gray-900 px-2">{{ __('6. Rekomendasi') }}</legend>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                            <div class="md:col-span-1">
+                                <x-input-label for="rekomendasi_kategori" :value="__('Kategori Rekomendasi')" />
+                                <select id="rekomendasi_kategori" name="rekomendasi_kategori" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Pengembalian Keuangan Negara" @selected(old('rekomendasi_kategori', $penemuan->rekomendasi_kategori) == 'Pengembalian Keuangan Negara')>Pengembalian Keuangan Negara</option>
+                                    <option value="Sanksi/Teguran" @selected(old('rekomendasi_kategori', $penemuan->rekomendasi_kategori) == 'Sanksi/Teguran')>Sanksi/Teguran</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <x-input-label for="rekomendasi_deskripsi" :value="__('Deskripsi Rekomendasi')" />
+                                <textarea id="rekomendasi_deskripsi" name="rekomendasi_deskripsi" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('rekomendasi_deskripsi', $penemuan->rekomendasi_deskripsi) }}</textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="flex items-center gap-4">
+                        <x-primary-button>{{ __('Update Temuan') }}</x-primary-button>
+                        <a href="{{ route('lhp.penemuan.index', $penemuan->lhp_id) }}" class="text-sm text-gray-600 hover:underline">
+                            Batal
+                        </a>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</x-app-layout>
+
+===== resources\views\penemuan\index.blade.php =====
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Kelola Temuan LHP') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-8 bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            {{-- Header Card --}}
+            <div class="bg-white p-6 shadow-sm sm:rounded-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">
+                            LHP untuk Tugas:
+                            <span class="text-blue-600 font-semibold">{{ $lhp->task->assignment_type }}</span>
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-1">
+                            Daftar temuan (Kondisi, Kriteria, Penyebab, Akibat) untuk LHP ini.
+                        </p>
+                    </div>
+
+                    <a href="{{ route('lhp.penemuan.create', $lhp) }}"
+                        class="inline-flex items-center gap-2 px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Tambah Temuan Baru
+                    </a>
+                </div>
+            </div>
+            {{-- Tabel --}}
+            <div class="bg-white p-6 shadow-sm sm:rounded-lg">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                    Daftar Temuan Saat Ini
+                </h3>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 text-sm">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Judul</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kondisi</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Penyebab</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Akibat</th>
+                                <th class="px-4 py-3 text-center font-semibold text-gray-600">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            @forelse ($lhp->penemuans as $temuan)
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 text-gray-900 font-medium">
+                                        {{ $temuan->judul_penemuan }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        {{ Str::limit($temuan->kondisi, 40) }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        <span
+                                            class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-medium">
+                                            {{ $temuan->penyebab_kategori }}
+                                        </span>
+                                        <span class="ml-1">{{ Str::limit($temuan->penyebab_deskripsi, 35) }}</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        <span
+                                            class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full font-medium">
+                                            {{ $temuan->akibat_kategori }}
+                                        </span>
+                                        <span class="ml-1">{{ Str::limit($temuan->akibat_deskripsi, 35) }}</span>
+                                    </td>
+                                    <td class="px-4 py-3 text-center">
+                                        <div class="flex justify-center space-x-2">
+                                            <a href="{{ route('penemuan.pdf', $temuan) }}" target="_blank"
+                                                class="px-3 py-1.5 bg-indigo-600 text-white text-xs rounded-md hover:bg-indigo-700">
+                                                Cetak PDF
+                                            </a>
+                                            <a href="{{ route('penemuan.edit', $temuan) }}"
+                                                class="px-3 py-1.5 bg-yellow-500 text-white text-xs rounded-md hover:bg-yellow-600">
+                                                Edit
+                                            </a>
+                                            <form action="{{ route('penemuan.destroy', $temuan) }}" method="POST"
+                                                onsubmit="return confirm('Yakin ingin menghapus temuan ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="px-3 py-1.5 bg-red-600 text-white text-xs rounded-md hover:bg-red-700">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="px-4 py-4 text-center text-gray-500">
+                                        Belum ada temuan untuk LHP ini.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</x-app-layout>
+
+===== resources\views\penemuan\pdf.blade.php =====
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Resume Temuan {{ $penemuan->id }}</title>
+<style>
+        /* Mengatur margin halaman standar (2cm) */
+        @page {
+            margin: 2cm;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.4;
+            color: #333; /* Warna teks standar */
+        }
+        
+        /* --- KOP SURAT --- */
+        .kop-surat {
+            width: 100%;
+            border-bottom: 4px double black; /* Garis ganda tebal */
+            padding-bottom: 10px;
+            position: relative; /* Diperlukan untuk logo absolut */
+        }
+        .kop-surat img {
+            width: 80px; /* Ukuran logo */
+            height: auto;
+            /* Posisi logo di kiri */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .kop-surat .kop-teks {
+            text-align: center;
+            /* Beri ruang agar teks tidak tumpang tindih dengan logo */
+            margin-left: 90px; 
+        }
+        .kop-surat h1, .kop-surat h2, .kop-surat p {
+            margin: 0;
+            line-height: 1.4;
+        }
+        .kop-surat h1 {
+            font-size: 16pt;
+            font-weight: bold;
+        }
+        .kop-surat h2 {
+            font-size: 18pt;
+            font-weight: bold;
+        }
+        .kop-surat p {
+            font-size: 11pt;
+        }
+        
+        /* --- JUDUL LAPORAN --- */
+        .judul-laporan {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-top: 30px; /* Jarak dari kop surat */
+            margin-bottom: 25px; /* Jarak ke tabel */
+        }
+
+        /* --- TABEL KONTEN --- */
+        .content-table {
+            width: 100%;
+            border-collapse: collapse; /* Menghilangkan spasi antar border */
+            margin-bottom: 20px;
+            border: 1px solid #555; /* Border luar tabel */
+        }
+        .content-table th,
+        .content-table td {
+            border: 1px solid #555; /* Border untuk setiap sel */
+            padding: 10px; /* Padding di dalam sel */
+            text-align: left;
+            vertical-align: top; /* Teks mulai dari atas */
+        }
+        
+        /* Kolom Header (Kiri) */
+        .content-table th {
+            font-weight: bold;
+            background-color: #f7f7f7; /* Latar belakang abu-abu sangat muda */
+            width: 25%; /* Lebar kolom header */
+        }
+        
+        /* Kolom Data (Kanan) */
+        .content-table td {
+            width: 75%;
+        }
+
+        /* Styling untuk Kategori dan Deskripsi di dalam sel */
+        .sub-header {
+            font-weight: bold;
+            display: block; /* Agar kategori di baris sendiri */
+            margin-bottom: 5px;
+        }
+        .sub-data {
+            /* Teks deskripsi */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kop-surat">
+        <img src="{{ public_path('images/LOGO_KOTA_GORONTALO.png') }}" alt="Logo">
+        <div class="kop-teks">
+            <h1>PEMERINTAH KOTA GORONTALO</h1>
+            <h2>INSPEKTORAT</h2>
+            <p>Jl. Achmad Nadjamudin Telepon (0435) 821012 Kota Gorontalo</p>
+        </div>
+    </div>
+
+    <h3 class="judul-laporan">RESUME HASIL PENGAWASAN</h3>
+
+    <table class="content-table">
+        <tr>
+            <th>Jenis Penugasan</th>
+            <td>{{ $penemuan->lhp->task->jenis_penugasan ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <th>Nama Tugas</th>
+            <td>{{ $penemuan->lhp->task->assignment_type ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <th>Tanggal LHP Disetujui</th>
+            <td>{{ $penemuan->lhp->updated_at ? $penemuan->lhp->updated_at->format('d M Y') : 'N/A' }}</td>
+        </tr>
+    </table>
+
+    <table class="content-table">
+        <tr>
+            <th>1. Judul Penemuan</th>
+            <td>{{ $penemuan->judul_penemuan }}</td>
+        </tr>
+        <tr>
+            <th>2. Kondisi</th>
+            <td>{!! nl2br(e($penemuan->kondisi)) !!}</td>
+        </tr>
+        <tr>
+            <th>3. Kriteria</th>
+            <td>{!! nl2br(e($penemuan->kriteria)) !!}</td>
+        </tr>
+        <tr>
+            <th>4. Penyebab</th>
+            <td>
+<span class="sub-header">{{ $penemuan->penyebab_kategori }}</span>
+                <div class="sub-data">{!! nl2br(e($penemuan->penyebab_deskripsi)) !!}</div>
+</td>
+        </tr>
+        <tr>
+            <th>5. Akibat</th>
+            <td>
+<span class="sub-header">{{ $penemuan->akibat_kategori }}</span>
+                <div class="sub-data">{!! nl2br(e($penemuan->akibat_deskripsi)) !!}</div>
+</td>
+        </tr>
+        <tr>
+            <th>6. Rekomendasi</th>
+            <td>
+<span class="sub-header">{{ $penemuan->rekomendasi_kategori }}</span>
+                <div class="sub-data">{!! nl2br(e($penemuan->rekomendasi_deskripsi)) !!}</div>
+</td>
+        </tr>
+    </table>
+
+</body>
+</html>
 
 ===== resources\views\preparations\admin_index.blade.php =====
 <x-app-layout>

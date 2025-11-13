@@ -17,59 +17,74 @@ class LaporanController extends Controller
     {
         // 1. Ambil data untuk filter dropdown
         $jenisPenugasanOptions = Task::select('jenis_penugasan')->distinct()->pluck('jenis_penugasan');
-        $availableYears = Penemuan::join('lhp', 'penemuans.lhp_id', '=', 'lhp.id')
-                            ->select(DB::raw('YEAR(lhp.updated_at) as year'))
-                            ->where('lhp.status', 'disetujui')
+        
+        // Ambil tahun dari LHP
+        $availableYears = DB::table('lhp')
+                            ->select(DB::raw('YEAR(updated_at) as year'))
                             ->distinct()
                             ->orderBy('year', 'desc')
                             ->pluck('year');
+        
+        $lhpStatusOptions = [
+            'disetujui' => 'Selesai (Disetujui)',
+            'pending' => 'Menunggu Persetujuan',
+            'ditolak' => 'Ditolak',
+        ];
 
-        // 2. Query dasar: Selalu ambil temuan dari LHP yang sudah disetujui
-        $query = Penemuan::with(['lhp.task'])
-                    ->whereHas('lhp', function ($q) {
-                        $q->where('status', 'disetujui');
-                    });
+        // 2. Query dasar (REVISI: Query ke Task, bukan Penemuan)
+        $query = Task::with('lhp');
 
         // 3. Terapkan Filter
         // Filter Jenis Penugasan
         $query->when($request->filled('jenis_penugasan'), function ($q) use ($request) {
-            $q->whereHas('lhp.task', function ($taskQuery) use ($request) {
-                $taskQuery->where('jenis_penugasan', $request->jenis_penugasan);
-            });
+            $q->where('jenis_penugasan', $request->jenis_penugasan);
         });
 
-        // Filter Tahun
+        // Filter Tahun (berdasarkan LHP)
         $query->when($request->filled('tahun'), function ($q) use ($request) {
             $q->whereHas('lhp', function ($lhpQuery) use ($request) {
                 $lhpQuery->whereYear('updated_at', $request->tahun);
             });
         });
 
-        // Filter Bulan
+        // Filter Bulan (berdasarkan LHP)
         $query->when($request->filled('bulan'), function ($q) use ($request) {
             $q->whereHas('lhp', function ($lhpQuery) use ($request) {
                 $lhpQuery->whereMonth('updated_at', $request->bulan);
             });
         });
 
-        $penemuans = $query->get();
+        // Filter Status LHP (BARU)
+        $query->when($request->filled('status_lhp'), function ($q) use ($request) {
+            $q->whereHas('lhp', function ($lhpQuery) use ($request) {
+                $lhpQuery->where('status', $request->status_lhp);
+            });
+        });
+
+        // Ambil data Task (bukan Penemuan)
+        $tasks = $query->get();
+        
+        // Simpan filter yang sedang aktif
+        $filters = $request->only(['jenis_penugasan', 'tahun', 'bulan', 'status_lhp']);
 
         // 4. Cek apakah minta PDF
         if ($request->has('pdf')) {
             $pdf = Pdf::loadView('laporan.pdf', [
-                'penemuans' => $penemuans,
-                'filters' => $request->only(['jenis_penugasan', 'tahun', 'bulan'])
+                'tasks' => $tasks, // Kirim $tasks
+                'filters' => $filters,
+                'lhpStatusOptions' => $lhpStatusOptions
             ]);
-            $pdf->setPaper('A4', 'landscape'); // Landscape agar tabel muat
-            return $pdf->stream('laporan-rangkuman-temuan.pdf');
+            $pdf->setPaper('A4', 'portrait'); // Kembali ke portrait
+            return $pdf->stream('laporan-rangkuman-tugas.pdf');
         }
 
         // 5. Tampilkan Halaman HTML
         return view('laporan.index', [
-            'penemuans' => $penemuans,
+            'tasks' => $tasks, // Kirim $tasks
             'jenisPenugasanOptions' => $jenisPenugasanOptions,
             'availableYears' => $availableYears,
-            'filters' => $request->only(['jenis_penugasan', 'tahun', 'bulan'])
+            'lhpStatusOptions' => $lhpStatusOptions,
+            'filters' => $filters
         ]);
     }
 }
