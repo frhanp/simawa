@@ -21,14 +21,16 @@
                         </p>
                     </div>
 
-                    <a href="{{ route('lhp.penemuan.create', $lhp) }}"
-                        class="inline-flex items-center gap-2 px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                        Tambah Temuan Baru
-                    </a>
+                    @if (auth()->user()->role !== 'inspektur')
+                        <a href="{{ route('lhp.penemuan.create', $lhp) }}"
+                            class="inline-flex items-center gap-2 px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Tambah Temuan Baru
+                        </a>
+                    @endif
                 </div>
             </div>
             {{-- Tabel --}}
@@ -43,6 +45,7 @@
                             <tr>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Judul</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Kondisi</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kriteria</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Penyebab</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Akibat</th>
                                 <th class="px-4 py-3 text-center font-semibold text-gray-600">Aksi</th>
@@ -56,6 +59,9 @@
                                     </td>
                                     <td class="px-4 py-3 text-gray-700">
                                         {{ Str::limit($temuan->kondisi, 40) }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        {{ $temuan->kriteria }}
                                     </td>
                                     <td class="px-4 py-3 text-gray-700">
                                         <span
@@ -77,19 +83,22 @@
                                                 class="px-3 py-1.5 bg-indigo-600 text-white text-xs rounded-md hover:bg-indigo-700">
                                                 Cetak PDF
                                             </a>
-                                            <a href="{{ route('penemuan.edit', $temuan) }}"
-                                                class="px-3 py-1.5 bg-yellow-500 text-white text-xs rounded-md hover:bg-yellow-600">
-                                                Edit
-                                            </a>
-                                            <form action="{{ route('penemuan.destroy', $temuan) }}" method="POST"
-                                                onsubmit="return confirm('Yakin ingin menghapus temuan ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="px-3 py-1.5 bg-red-600 text-white text-xs rounded-md hover:bg-red-700">
-                                                    Hapus
-                                                </button>
-                                            </form>
+                                            @if (auth()->user()->role !== 'inspektur')
+                                                <a href="{{ route('penemuan.edit', $temuan) }}"
+                                                    class="px-3 py-1.5 bg-yellow-500 text-white text-xs rounded-md hover:bg-yellow-600">
+                                                    Edit
+                                                </a>
+                                                @endif
+                                                <form action="{{ route('penemuan.destroy', $temuan) }}" method="POST"
+                                                    onsubmit="return confirm('Yakin ingin menghapus temuan ini?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="px-3 py-1.5 bg-red-600 text-white text-xs rounded-md hover:bg-red-700">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            
                                         </div>
                                     </td>
                                 </tr>
