@@ -217,16 +217,37 @@
             class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" x-cloak>
             <div @click.away="showTaskModal = false" x-show="showTaskModal" x-transition
                 class="bg-white rounded-lg shadow-xl w-full max-w-lg p-6 mx-4 max-h-[70vh] flex flex-col">
+                
                 <h3 class="text-lg font-semibold text-gray-900 mb-4" x-text="modalTitle"></h3>
 
                 <div class="overflow-y-auto border rounded-md">
                     <ul class="divide-y divide-gray-200">
                         <template x-for="(task, index) in modalTasks" :key="index">
-                            <li class="px-4 py-3 flex items-center">
-                                <span class="text-sm font-medium text-gray-500 mr-3" x-text="index + 1 + '.'"></span>
-                                <span class="text-sm text-gray-800" x-text="task.name"></span>
+                            <li class="px-4 py-3 hover:bg-gray-50">
+                                <div class="flex justify-between items-start">
+                                    
+                                    {{-- KIRI: Nomor, Nama Tugas, Wakil PJ --}}
+                                    <div class="flex items-start">
+                                        <span class="text-sm font-medium text-gray-500 mr-3 mt-0.5" x-text="index + 1 + '.'"></span>
+                                        <div>
+                                            <div class="text-sm font-bold text-gray-800" x-text="task.name"></div>
+                                            <div class="text-xs text-gray-600 mt-1">
+                                                <span class="font-semibold">Wakil PJ:</span> 
+                                                <span x-text="task.wpj"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{-- KANAN: Tanggal Tahapan --}}
+                                    <div class="ml-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100" 
+                                              x-text="task.date"></span>
+                                    </div>
+
+                                </div>
                             </li>
                         </template>
+
                         <template x-if="modalTasks.length === 0">
                             <li class="px-4 py-3 text-sm text-gray-500 text-center">
                                 Tidak ada tugas dalam tahap ini.

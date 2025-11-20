@@ -21,6 +21,9 @@ class DashboardController extends Controller
 
         $allTasks = Task::with('spt.preparation', 'pelaksanaan', 'lhp')->get();
 
+        // [BARU] Ambil lookup nama orang untuk mempercepat query (key: id, value: nama)
+        $orangLookup = \App\Models\Orang::pluck('nama', 'id');
+
         // Kita gunakan Accessor untuk mengelompokkan
         $taskProgressGroups = $allTasks->groupBy('progress_percentage');
 
@@ -40,8 +43,41 @@ class DashboardController extends Controller
             'ditolak' => $tasks0->count(),
         ];
 
-        // Data untuk modal (daftar tugasnya)
-        $pluckData = fn($task) => ['id' => $task->id, 'name' => $task->assignment_type];
+        // [MODIFIKASI] Data untuk modal (tambah WPJ & Tanggal)
+        $pluckData = function($task) use ($orangLookup) {
+            // 1. Ambil Nama Wakil Penanggung Jawab
+            $tc = is_string($task->team_composition) ? json_decode($task->team_composition, true) : $task->team_composition;
+            $wpjId = $tc['wakil_penanggung_jawab'] ?? null;
+            // Jaga-jaga jika formatnya array [id], ambil index 0
+            if (is_array($wpjId)) $wpjId = $wpjId[0] ?? null;
+            
+            $wpjName = $wpjId ? ($orangLookup[$wpjId] ?? '-') : '-';
+
+            // 2. Tentukan Tanggal Berdasarkan Progress
+            $date = $task->created_at; // Default Perencanaan
+            $prog = $task->progress_percentage;
+
+            if ($prog == 20) { // Persiapan
+                $prep = $task->spt->first()?->preparation;
+                // Prioritas: Tgl Persiapan -> Tgl SPT -> Tgl Update Task
+                $date = $prep ? $prep->created_at : ($task->spt->first()?->created_at ?? $task->updated_at);
+            } elseif ($prog == 80) { // Pelaksanaan
+                $pel = $task->pelaksanaan->first();
+                $date = $pel ? $pel->created_at : $task->updated_at;
+            } elseif ($prog == 100) { // LHP Selesai
+                $lhp = $task->lhp;
+                $date = $lhp ? $lhp->updated_at : $task->updated_at;
+            } elseif ($prog == 0) { // Ditolak
+                $date = $task->updated_at;
+            }
+
+            return [
+                'id' => $task->id, 
+                'name' => $task->assignment_type,
+                'wpj' => $wpjName, // Data Baru
+                'date' => $date ? $date->format('d M Y') : '-' // Data Baru
+            ];
+        };
 
         $data['progressTasks'] = [
             'perencanaan' => $tasks10->map($pluckData),

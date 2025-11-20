@@ -1,5 +1,5 @@
 ﻿# Project Digest (Full Content)
-_Generated: 2025-11-13 21:29:20_
+_Generated: 2025-11-20 09:28:25_
 **Root:** D:\Laragon\www\simawa
 
 
@@ -517,10 +517,10 @@ storage\framework\cache\data\dc\4a
 storage\framework\cache\data\e1\76
 storage\framework\cache\data\e1\76\e176dcc05cdbc9a8a5e7ee02bcfad53f787583b8
 storage\framework\sessions\.gitignore
-storage\framework\sessions\FXqzdIhj3L7nOmvoD0OmAhcUXThZFq5wrp94keFC
-storage\framework\sessions\I3JNqg7CFycYjv0WwWApLNIbHm9yyVdxrOar1DgR
-storage\framework\sessions\QLPqUIwlKq5zNtl8LmXlhhREyZapTzgpNGdbNS1n
-storage\framework\sessions\RgivpMe5YZqf5YGH8FMESyWVsRUXXSQJWzTLV9Xj
+storage\framework\sessions\ExaQ479WYFwtjafQVqgm23DUNevAO9nqx4OkSrhu
+storage\framework\sessions\hrmu5fSKi8VKgTi9Rt5biYkIzboiQXmpH2m6ubeb
+storage\framework\sessions\IOJkMTzh5K7SnCdwFOt1TOiZiuAbCtOTTqdLjnG5
+storage\framework\sessions\vaNFedLuP3vfUmMkRvuWgi2bDAGPWo8GbOrko4rx
 storage\framework\testing\.gitignore
 storage\framework\views\.gitignore
 storage\framework\views\001cb81e1afba3b8d5675e0496c5347d.php
@@ -650,11 +650,11 @@ Branch:
 main
 
 Last 5 commits:
+b47a39a add revisi
+4439f40 edit laporan akhir
 a13e15b ubah layout lhp
 23f175f add laporan akhir tahun
 12328f8 add laporan individu
-6d0c153 tracker penugasan
-984e460 fix wa v2 without auth info
 ```
 
 
@@ -2270,59 +2270,74 @@ class LaporanController extends Controller
     {
         // 1. Ambil data untuk filter dropdown
         $jenisPenugasanOptions = Task::select('jenis_penugasan')->distinct()->pluck('jenis_penugasan');
-        $availableYears = Penemuan::join('lhp', 'penemuans.lhp_id', '=', 'lhp.id')
-                            ->select(DB::raw('YEAR(lhp.updated_at) as year'))
-                            ->where('lhp.status', 'disetujui')
+        
+        // Ambil tahun dari LHP
+        $availableYears = DB::table('lhp')
+                            ->select(DB::raw('YEAR(updated_at) as year'))
                             ->distinct()
                             ->orderBy('year', 'desc')
                             ->pluck('year');
+        
+        $lhpStatusOptions = [
+            'disetujui' => 'Selesai (Disetujui)',
+            'pending' => 'Menunggu Persetujuan',
+            'ditolak' => 'Ditolak',
+        ];
 
-        // 2. Query dasar: Selalu ambil temuan dari LHP yang sudah disetujui
-        $query = Penemuan::with(['lhp.task'])
-                    ->whereHas('lhp', function ($q) {
-                        $q->where('status', 'disetujui');
-                    });
+        // 2. Query dasar (REVISI: Query ke Task, bukan Penemuan)
+        $query = Task::with('lhp');
 
         // 3. Terapkan Filter
         // Filter Jenis Penugasan
         $query->when($request->filled('jenis_penugasan'), function ($q) use ($request) {
-            $q->whereHas('lhp.task', function ($taskQuery) use ($request) {
-                $taskQuery->where('jenis_penugasan', $request->jenis_penugasan);
-            });
+            $q->where('jenis_penugasan', $request->jenis_penugasan);
         });
 
-        // Filter Tahun
+        // Filter Tahun (berdasarkan LHP)
         $query->when($request->filled('tahun'), function ($q) use ($request) {
             $q->whereHas('lhp', function ($lhpQuery) use ($request) {
                 $lhpQuery->whereYear('updated_at', $request->tahun);
             });
         });
 
-        // Filter Bulan
+        // Filter Bulan (berdasarkan LHP)
         $query->when($request->filled('bulan'), function ($q) use ($request) {
             $q->whereHas('lhp', function ($lhpQuery) use ($request) {
                 $lhpQuery->whereMonth('updated_at', $request->bulan);
             });
         });
 
-        $penemuans = $query->get();
+        // Filter Status LHP (BARU)
+        $query->when($request->filled('status_lhp'), function ($q) use ($request) {
+            $q->whereHas('lhp', function ($lhpQuery) use ($request) {
+                $lhpQuery->where('status', $request->status_lhp);
+            });
+        });
+
+        // Ambil data Task (bukan Penemuan)
+        $tasks = $query->get();
+        
+        // Simpan filter yang sedang aktif
+        $filters = $request->only(['jenis_penugasan', 'tahun', 'bulan', 'status_lhp']);
 
         // 4. Cek apakah minta PDF
         if ($request->has('pdf')) {
             $pdf = Pdf::loadView('laporan.pdf', [
-                'penemuans' => $penemuans,
-                'filters' => $request->only(['jenis_penugasan', 'tahun', 'bulan'])
+                'tasks' => $tasks, // Kirim $tasks
+                'filters' => $filters,
+                'lhpStatusOptions' => $lhpStatusOptions
             ]);
-            $pdf->setPaper('A4', 'landscape'); // Landscape agar tabel muat
-            return $pdf->stream('laporan-rangkuman-temuan.pdf');
+            $pdf->setPaper('A4', 'portrait'); // Kembali ke portrait
+            return $pdf->stream('laporan-rangkuman-tugas.pdf');
         }
 
         // 5. Tampilkan Halaman HTML
         return view('laporan.index', [
-            'penemuans' => $penemuans,
+            'tasks' => $tasks, // Kirim $tasks
             'jenisPenugasanOptions' => $jenisPenugasanOptions,
             'availableYears' => $availableYears,
-            'filters' => $request->only(['jenis_penugasan', 'tahun', 'bulan'])
+            'lhpStatusOptions' => $lhpStatusOptions,
+            'filters' => $filters
         ]);
     }
 }
@@ -5955,7 +5970,7 @@ $classes = ($active ?? false)
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Laporan Akhir Tahun Rangkuman Temuan') }}
+            {{ __('Laporan Akhir Tahun Rangkuman Tugas') }}
         </h2>
     </x-slot>
 
@@ -5965,8 +5980,8 @@ $classes = ($active ?? false)
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <h3 class="text-lg font-medium text-gray-900 mb-4">Filter Laporan</h3>
                 <form action="{{ route('laporan.index') }}" method="GET">
-                    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
-<div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div>
                             <label for="jenis_penugasan" class="block text-sm font-medium text-gray-700">Jenis Penugasan</label>
                             <select id="jenis_penugasan" name="jenis_penugasan" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                                 <option value="">Semua Jenis</option>
@@ -5977,7 +5992,7 @@ $classes = ($active ?? false)
                         </div>
 
                         <div>
-                            <label for="tahun" class="block text-sm font-medium text-gray-700">Tahun</label>
+                            <label for="tahun" class="block text-sm font-medium text-gray-700">Tahun ACC</label>
                             <select id="tahun" name="tahun" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                                 <option value="">Semua Tahun</option>
                                 @foreach($availableYears as $year)
@@ -5987,7 +6002,7 @@ $classes = ($active ?? false)
                         </div>
 
                         <div>
-                            <label for="bulan" class="block text-sm font-medium text-gray-700">Bulan</label>
+                            <label for="bulan" class="block text-sm font-medium text-gray-700">Bulan ACC</label>
                             <select id="bulan" name="bulan" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                                 <option value="">Semua Bulan</option>
                                 @for ($i = 1; $i <= 12; $i++)
@@ -5995,7 +6010,18 @@ $classes = ($active ?? false)
                                 @endfor
                             </select>
                         </div>
-<div class="flex items-end space-x-2 col-span-1 md:col-span-4 lg:col-span-3">
+
+                        <div>
+                            <label for="status_lhp" class="block text-sm font-medium text-gray-700">Status LHP</label>
+                            <select id="status_lhp" name="status_lhp" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <option value="">Semua Status</option>
+                                @foreach($lhpStatusOptions as $value => $label)
+                                    <option value="{{ $value }}" @selected(($filters['status_lhp'] ?? null) == $value)>{{ $label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="flex items-end space-x-2 col-span-1">
                             <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700">
                                 Filter
                             </button>
@@ -6003,54 +6029,60 @@ $classes = ($active ?? false)
                                 Reset
                             </a>
                             <button type="submit" name="pdf" value="true" formtarget="_blank" class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md shadow hover:bg-green-700">
-                                Cetak PDF
+                                PDF
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
 
-            <div class="bg-white p-4 sm:p-8 shadow sm:rounded-lg">
+<div class="bg-white p-4 sm:p-8 shadow sm:rounded-lg">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 text-sm">
                         <thead class="bg-gray-100">
                             <tr>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">No</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Tugas / LHP</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Judul Temuan</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kondisi</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kriteria</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Penyebab</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Akibat</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Rekomendasi</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Jenis Penugasan</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Nama Tugas</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Status LHP</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Tanggal ACC</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
-                            @forelse ($penemuans as $index => $temuan)
+                            @forelse ($tasks as $index => $task)
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-4 py-3">{{ $index + 1 }}</td>
+                                    <td class="px-4 py-3 font-medium text-gray-900">{{ $task->jenis_penugasan }}</td>
+                                    <td class="px-4 py-3 font-medium text-gray-900">{{ $task->assignment_type }}</td>
                                     <td class="px-4 py-3">
-                                        <div class="font-medium text-gray-900">{{ $temuan->lhp->task->assignment_type }}</div>
-                                        <div class="text-xs text-gray-500">({{ $temuan->lhp->task->jenis_penugasan }})</div>
-                                        <div class="text-xs text-gray-500">Disetujui: {{ $temuan->lhp->updated_at->format('d/m/Y') }}</div>
+                                        @if ($task->lhp)
+                                            @php
+                                                $status = $task->lhp->status;
+                                                $badge = match ($status) {
+                                                    'disetujui' => 'bg-green-100 text-green-800',
+                                                    'pending' => 'bg-yellow-100 text-yellow-800',
+                                                    'ditolak' => 'bg-red-100 text-red-800',
+                                                    default => 'bg-gray-100 text-gray-800',
+                                                };
+                                                $statusText = $lhpStatusOptions[$status] ?? ucfirst($status);
+                                            @endphp
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full {{ $badge }}">
+                                                {{ $statusText }}
+                                            </span>
+                                        @else
+                                            <span class="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800">
+                                                Belum ada LHP
+                                            </span>
+                                        @endif
                                     </td>
-                                    <td class="px-4 py-3 font-medium text-gray-900">{{ $temuan->judul_penemuan }}</td>
-                                    <td class="px-4 py-3 text-gray-700">{{ $temuan->kondisi }}</td>
-                                    <td class="px-4 py-3 text-gray-700">{{ $temuan->kriteria }}</td>
                                     <td class="px-4 py-3 text-gray-700">
-                                        <span class="font-semibold">{{ $temuan->penyebab_kategori }}:</span> {{ $temuan->penyebab_deskripsi }}
-                                    </td>
-                                    <td class="px-4 py-3 text-gray-700">
-                                        <span class="font-semibold">{{ $temuan->akibat_kategori }}:</span> {{ $temuan->akibat_deskripsi }}
-                                    </td>
-                                    <td class="px-4 py-3 text-gray-700">
-                                        <span class="font-semibold">{{ $temuan->rekomendasi_kategori }}:</span> {{ $temuan->rekomendasi_deskripsi }}
+                                        {{ ($task->lhp && $task->lhp->status == 'disetujui') ? $task->lhp->updated_at->format('d M Y') : '-' }}
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="px-4 py-4 text-center text-gray-500">
-                                        Tidak ada data temuan yang sesuai dengan filter.
+                                    <td colspan="5" class="px-4 py-4 text-center text-gray-500">
+                                        Tidak ada data tugas yang sesuai dengan filter.
                                     </td>
                                 </tr>
                             @endforelse
@@ -6058,57 +6090,72 @@ $classes = ($active ?? false)
                     </table>
                 </div>
             </div>
-
-        </div>
+</div>
     </div>
 </x-app-layout>
 
 ===== resources\views\laporan\pdf.blade.php =====
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Laporan Rangkuman Temuan</title>
-<style>
-        /* Mengatur margin halaman (landscape) */
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Laporan Rangkuman Tugas</title>
+    <style>
         @page {
             margin: 1.5cm;
-            size: A4 landscape;
+            size: A4 portrait;
+            /* Diubah ke Portrait */
         }
+
         body {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 10pt; /* Ukuran font lebih kecil untuk landscape */
+            font-size: 11pt;
+            /* Font sedikit lebih besar */
             line-height: 1.3;
             color: #333;
         }
-        
-        /* --- KOP SURAT --- */
+
         .kop-surat {
             width: 100%;
             border-bottom: 4px double black;
             padding-bottom: 10px;
             position: relative;
         }
+
         .kop-surat img {
-            width: 70px; /* Logo sedikit lebih kecil */
+            width: 70px;
             height: auto;
             position: absolute;
             top: 0;
             left: 0;
         }
+
         .kop-surat .kop-teks {
             text-align: center;
-            margin-left: 80px; 
+            margin-left: 80px;
         }
-        .kop-surat h1, .kop-surat h2, .kop-surat p {
+
+        .kop-surat h1 {
+            font-size: 14pt;
+            font-weight: bold;
             margin: 0;
             line-height: 1.3;
         }
-        .kop-surat h1 { font-size: 14pt; font-weight: bold; }
-        .kop-surat h2 { font-size: 16pt; font-weight: bold; }
-        .kop-surat p { font-size: 10pt; }
-        
-        /* --- JUDUL LAPORAN --- */
+
+        .kop-surat h2 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .kop-surat p {
+            font-size: 10pt;
+            margin: 0;
+            line-height: 1.3;
+        }
+
         .judul-laporan {
             text-align: center;
             font-size: 14pt;
@@ -6117,46 +6164,56 @@ $classes = ($active ?? false)
             margin-top: 20px;
             margin-bottom: 5px;
         }
+
         .sub-judul {
             text-align: center;
             font-size: 11pt;
             margin-bottom: 15px;
         }
 
-        /* --- TABEL KONTEN --- */
         .content-table {
             width: 100%;
             border-collapse: collapse;
         }
+
         .content-table th,
         .content-table td {
             border: 1px solid black;
-            padding: 5px; /* Padding lebih kecil */
+            padding: 6px;
+            /* Padding disesuaikan */
             text-align: left;
             vertical-align: top;
-            word-wrap: break-word; /* Memecah teks jika terlalu panjang */
+            word-wrap: break-word;
         }
+
         .content-table th {
             background-color: #f2f2f2;
             font-weight: bold;
             text-align: center;
         }
-        
-        /* Mengatur lebar kolom */
-        .col-no { width: 3%; }
-        .col-tugas { width: 15%; }
-        .col-judul { width: 15%; }
-        .col-kondisi { width: 15%; }
-        .col-kriteria { width: 15%; }
-        .col-penyebab { width: 15%; }
-        .col-akibat { width: 12%; }
-        .col-rekomendasi { width: 15%; }
 
-        .sub-header {
-            font-weight: bold;
+        .col-no {
+            width: 5%;
+        }
+
+        .col-jenis {
+            width: 20%;
+        }
+
+        .col-nama {
+            width: 40%;
+        }
+
+        .col-status {
+            width: 20%;
+        }
+
+        .col-tgl {
+            width: 15%;
         }
     </style>
 </head>
+
 <body>
 
     <div class="kop-surat">
@@ -6168,62 +6225,67 @@ $classes = ($active ?? false)
         </div>
     </div>
 
-    <h3 class="judul-laporan">LAPORAN RANGKUMAN TEMUAN HASIL PENGAWASAN</h3>
-    <p class="sub-judul">
-        Periode: 
-        {{ $filters['bulan'] ? \Carbon\Carbon::create()->month($filters['bulan'])->translatedFormat('F') : 'Semua Bulan' }}
-        {{ $filters['tahun'] ?? 'Semua Tahun' }}
-        | Jenis: {{ $filters['jenis_penugasan'] ?? 'Semua Jenis' }}
-    </p>
+    <h3 class="judul-laporan">LAPORAN AKHIR TAHUN</h3>
+    {{-- <p class="sub-judul">
+        @php
+            $filterText = [];
+            if (!empty($filters['jenis_penugasan'])) {
+                $filterText[] = 'Jenis: ' . $filters['jenis_penugasan'];
+            }
+            if (!empty($filters['tahun'])) {
+                $filterText[] = 'Tahun: ' . $filters['tahun'];
+            }
+            if (!empty($filters['bulan'])) {
+                $filterText[] = 'Bulan: ' . \Carbon\Carbon::create()->month($filters['bulan'])->translatedFormat('F');
+            }
+            if (!empty($filters['status_lhp'])) {
+                $filterText[] = 'Status: ' . ($lhpStatusOptions[$filters['status_lhp']] ?? ucfirst($filters['status_lhp']));
+            }
+            if (empty($filterText)) {
+                $filterText[] = 'Semua Data';
+            }
+        @endphp
+        Filter: {{ implode(' | ', $filterText) }}
+    </p> --}}
 
     <table class="content-table">
         <thead>
             <tr>
                 <th class="col-no">No</th>
-                <th class="col-tugas">Tugas / LHP</th>
-                <th class="col-judul">Judul Temuan</th>
-                <th class="col-kondisi">Kondisi</th>
-                <th class="col-kriteria">Kriteria</th>
-                <th class="col-penyebab">Penyebab</th>
-                <th class="col-akibat">Akibat</th>
-                <th class="col-rekomendasi">Rekomendasi</th>
+                <th class="col-jenis">Jenis Penugasan</th>
+                <th class="col-nama">Nama Tugas</th>
+                <th class="col-status">Status LHP</th>
+                <th class="col-tgl">Tanggal ACC</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($penemuans as $index => $temuan)
+            @forelse ($tasks as $index => $task)
                 <tr>
                     <td style="text-align: center;">{{ $index + 1 }}</td>
-                    <td>
-                        <span class="sub-header">{{ $temuan->lhp->task->assignment_type }}</span>
-                        ({{ $temuan->lhp->task->jenis_penugasan }})
+                    <td>{{ $task->jenis_penugasan }}</td>
+                    <td>{{ $task->assignment_type }}</td>
+                    <td style="text-align: center;">
+                        @if ($task->lhp)
+                            {{ $lhpStatusOptions[$task->lhp->status] ?? ucfirst($task->lhp->status) }}
+                        @else
+                            Belum ada LHP
+                        @endif
                     </td>
-                    <td>{{ $temuan->judul_penemuan }}</td>
-                    <td>{!! nl2br(e($temuan->kondisi)) !!}</td>
-                    <td>{!! nl2br(e($temuan->kriteria)) !!}</td>
-                    <td>
-                        <span class="sub-header">{{ $temuan->penyebab_kategori }}:</span>
-                        {!! nl2br(e($temuan->penyebab_deskripsi)) !!}
-                    </td>
-                    <td>
-                        <span class="sub-header">{{ $temuan->akibat_kategori }}:</span>
-                        {!! nl2br(e($temuan->akibat_deskripsi)) !!}
-                    </td>
-                    <td>
-                        <span class="sub-header">{{ $temuan->rekomendasi_kategori }}:</span>
-                        {!! nl2br(e($temuan->rekomendasi_deskripsi)) !!}
+                    <td style="text-align: center;">
+                        {{ $task->lhp && $task->lhp->status == 'disetujui' ? $task->lhp->updated_at->format('d M Y') : '-' }}
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" style="text-align: center; padding: 20px;">
-                        Tidak ada data temuan yang sesuai dengan filter.
+                    <td colspan="5" style="text-align: center; padding: 20px;">
+                        Tidak ada data tugas yang sesuai dengan filter.
                     </td>
                 </tr>
             @endforelse
         </tbody>
     </table>
-
 </body>
+
 </html>
 
 ===== resources\views\layouts\app.blade.php =====
@@ -6988,7 +7050,7 @@ $classes = ($active ?? false)
 
                                             @if ($lhp->status === 'disetujui' && (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur'))
                                                     <a href="{{ route('lhp.penemuan.index', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                                                        Kelola Temuan
+                                                        Lihat Temuan
                                                     </a>
                                                 @endif
                                         </td>
@@ -8500,14 +8562,16 @@ $classes = ($active ?? false)
                         </p>
                     </div>
 
-                    <a href="{{ route('lhp.penemuan.create', $lhp) }}"
-                        class="inline-flex items-center gap-2 px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                        Tambah Temuan Baru
-                    </a>
+                    @if (auth()->user()->role !== 'inspektur')
+                        <a href="{{ route('lhp.penemuan.create', $lhp) }}"
+                            class="inline-flex items-center gap-2 px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Tambah Temuan Baru
+                        </a>
+                    @endif
                 </div>
             </div>
             {{-- Tabel --}}
@@ -8522,6 +8586,7 @@ $classes = ($active ?? false)
                             <tr>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Judul</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Kondisi</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kriteria</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Penyebab</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Akibat</th>
                                 <th class="px-4 py-3 text-center font-semibold text-gray-600">Aksi</th>
@@ -8535,6 +8600,9 @@ $classes = ($active ?? false)
                                     </td>
                                     <td class="px-4 py-3 text-gray-700">
                                         {{ Str::limit($temuan->kondisi, 40) }}
+                                    </td>
+                                    <td class="px-4 py-3 text-gray-700">
+                                        {{ $temuan->kriteria }}
                                     </td>
                                     <td class="px-4 py-3 text-gray-700">
                                         <span
@@ -8556,19 +8624,22 @@ $classes = ($active ?? false)
                                                 class="px-3 py-1.5 bg-indigo-600 text-white text-xs rounded-md hover:bg-indigo-700">
                                                 Cetak PDF
                                             </a>
-                                            <a href="{{ route('penemuan.edit', $temuan) }}"
-                                                class="px-3 py-1.5 bg-yellow-500 text-white text-xs rounded-md hover:bg-yellow-600">
-                                                Edit
-                                            </a>
-                                            <form action="{{ route('penemuan.destroy', $temuan) }}" method="POST"
-                                                onsubmit="return confirm('Yakin ingin menghapus temuan ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="px-3 py-1.5 bg-red-600 text-white text-xs rounded-md hover:bg-red-700">
-                                                    Hapus
-                                                </button>
-                                            </form>
+                                            @if (auth()->user()->role !== 'inspektur')
+                                                <a href="{{ route('penemuan.edit', $temuan) }}"
+                                                    class="px-3 py-1.5 bg-yellow-500 text-white text-xs rounded-md hover:bg-yellow-600">
+                                                    Edit
+                                                </a>
+                                                @endif
+                                                <form action="{{ route('penemuan.destroy', $temuan) }}" method="POST"
+                                                    onsubmit="return confirm('Yakin ingin menghapus temuan ini?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="px-3 py-1.5 bg-red-600 text-white text-xs rounded-md hover:bg-red-700">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            
                                         </div>
                                     </td>
                                 </tr>
