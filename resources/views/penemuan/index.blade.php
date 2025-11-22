@@ -44,67 +44,84 @@
                         <thead class="bg-gray-100">
                             <tr>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-600">Judul</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kondisi</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Kriteria</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Penyebab</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-600">Akibat</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600 w-1/6">Kondisi</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600 w-1/6">Kriteria</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600 w-1/6">Penyebab</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600 w-1/6">Akibat</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-600 w-1/6">Rekomendasi</th>
                                 <th class="px-4 py-3 text-center font-semibold text-gray-600">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
                             @forelse ($lhp->penemuans as $temuan)
-                                <tr class="hover:bg-gray-50">
+                                <tr class="hover:bg-gray-50 align-top">
+                                    {{-- Judul --}}
                                     <td class="px-4 py-3 text-gray-900 font-medium">
                                         {{ $temuan->judul_penemuan }}
                                     </td>
+
+                                    {{-- Kondisi (Full Text) --}}
                                     <td class="px-4 py-3 text-gray-700">
-                                        {{ Str::limit($temuan->kondisi, 40) }}
+                                        <div class="whitespace-pre-wrap">{{ $temuan->kondisi }}</div>
                                     </td>
+
+                                    {{-- Kriteria (Full Text) --}}
                                     <td class="px-4 py-3 text-gray-700">
-                                        {{ $temuan->kriteria }}
+                                        <div class="whitespace-pre-wrap">{{ $temuan->kriteria }}</div>
                                     </td>
+
+                                    {{-- Penyebab (Full Text) --}}
                                     <td class="px-4 py-3 text-gray-700">
-                                        <span
-                                            class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-medium">
+                                        <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full font-medium mb-1">
                                             {{ $temuan->penyebab_kategori }}
                                         </span>
-                                        <span class="ml-1">{{ Str::limit($temuan->penyebab_deskripsi, 35) }}</span>
+                                        <div class="whitespace-pre-wrap">{{ $temuan->penyebab_deskripsi }}</div>
                                     </td>
+
+                                    {{-- Akibat (Full Text) --}}
                                     <td class="px-4 py-3 text-gray-700">
-                                        <span
-                                            class="bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full font-medium">
+                                        <span class="inline-block bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded-full font-medium mb-1">
                                             {{ $temuan->akibat_kategori }}
                                         </span>
-                                        <span class="ml-1">{{ Str::limit($temuan->akibat_deskripsi, 35) }}</span>
+                                        <div class="whitespace-pre-wrap">{{ $temuan->akibat_deskripsi }}</div>
                                     </td>
+                                    
+                                    {{-- Rekomendasi (Full Text) --}}
+                                    <td class="px-4 py-3 text-gray-700">
+                                        <span class="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium mb-1">
+                                            {{ $temuan->rekomendasi_kategori }}
+                                        </span>
+                                        <div class="whitespace-pre-wrap">{{ $temuan->rekomendasi_deskripsi }}</div>
+                                    </td>
+
+                                    {{-- Aksi --}}
                                     <td class="px-4 py-3 text-center">
-                                        <div class="flex justify-center space-x-2">
+                                        <div class="flex flex-col space-y-2 items-center">
                                             <a href="{{ route('penemuan.pdf', $temuan) }}" target="_blank"
-                                                class="px-3 py-1.5 bg-indigo-600 text-white text-xs rounded-md hover:bg-indigo-700">
+                                                class="w-full px-3 py-1.5 bg-indigo-600 text-white text-xs rounded-md hover:bg-indigo-700 text-center">
                                                 Cetak PDF
                                             </a>
                                             @if (auth()->user()->role !== 'inspektur')
                                                 <a href="{{ route('penemuan.edit', $temuan) }}"
-                                                    class="px-3 py-1.5 bg-yellow-500 text-white text-xs rounded-md hover:bg-yellow-600">
+                                                    class="w-full px-3 py-1.5 bg-yellow-500 text-white text-xs rounded-md hover:bg-yellow-600 text-center">
                                                     Edit
                                                 </a>
-                                                @endif
                                                 <form action="{{ route('penemuan.destroy', $temuan) }}" method="POST"
-                                                    onsubmit="return confirm('Yakin ingin menghapus temuan ini?');">
+                                                    onsubmit="return confirm('Yakin ingin menghapus temuan ini?');" class="w-full">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                        class="px-3 py-1.5 bg-red-600 text-white text-xs rounded-md hover:bg-red-700">
+                                                        class="w-full px-3 py-1.5 bg-red-600 text-white text-xs rounded-md hover:bg-red-700">
                                                         Hapus
                                                     </button>
                                                 </form>
-                                            
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="px-4 py-4 text-center text-gray-500">
+                                    <td colspan="7" class="px-4 py-4 text-center text-gray-500">
                                         Belum ada temuan untuk LHP ini.
                                     </td>
                                 </tr>

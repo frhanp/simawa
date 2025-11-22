@@ -16,10 +16,12 @@
                     <textarea id="reason" name="reason" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                 </div>
                 <div class="flex justify-end">
-                    <button type="button" onclick="closeRejectModal()" class="px-4 py-2 bg-gray-300 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-400">
+                    <button type="button" onclick="closeRejectModal()"
+                        class="px-4 py-2 bg-gray-300 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-400">
                         Batal
                     </button>
-                    <button type="submit" class="ml-2 px-4 py-2 bg-red-600 text-sm font-medium text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <button type="submit"
+                        class="ml-2 px-4 py-2 bg-red-600 text-sm font-medium text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
                         Tolak
                     </button>
                 </div>
@@ -27,26 +29,37 @@
         </div>
     </div>
 
-    <div x-data="otpModal()" x-show="show" @keydown.escape.window="show = false" class="fixed inset-0 z-50 bg-gray-500 bg-opacity-75 flex justify-center items-center" style="display: none;">
+    <div x-data="otpModal()" x-show="show" @keydown.escape.window="show = false"
+        class="fixed inset-0 z-50 bg-gray-500 bg-opacity-75 flex justify-center items-center" style="display: none;">
         <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-sm" @click.away="show = false">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Verifikasi OTP</h3>
-            <p class="text-gray-600 mb-4">Kami telah mengirimkan kode OTP ke nomor WhatsApp Anda. Silakan masukkan kode di bawah ini.</p>
-            
-            <div x-show="message" :class="{ 'bg-green-100 text-green-800': !error, 'bg-red-100 text-red-800': error }" class="p-3 rounded-md mb-4 text-sm" x-text="message"></div>
-            
+            <p class="text-gray-600 mb-4">Kami telah mengirimkan kode OTP ke nomor WhatsApp Anda. Silakan masukkan kode
+                di bawah ini.</p>
+
+            <div x-show="message" :class="{ 'bg-green-100 text-green-800': !error, 'bg-red-100 text-red-800': error }"
+                class="p-3 rounded-md mb-4 text-sm" x-text="message"></div>
+
             <form @submit.prevent="verifyOtp()">
                 <div class="mb-4">
                     <label for="otp" class="block text-sm font-medium text-gray-700">Kode OTP</label>
-                    <input type="text" id="otp" x-model="otp" maxlength="6" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-center tracking-widest text-lg" required>
+                    <input type="text" id="otp" x-model="otp" maxlength="6"
+                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-center tracking-widest text-lg"
+                        required>
                 </div>
                 <div class="flex justify-end">
-                    <button type="button" @click="show = false" class="px-4 py-2 bg-gray-300 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-400">
+                    <button type="button" @click="show = false"
+                        class="px-4 py-2 bg-gray-300 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-400">
                         Batal
                     </button>
-                    <button type="submit" :disabled="loading" class="ml-2 px-4 py-2 bg-blue-600 text-sm font-medium text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center">
-                        <svg x-show="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <button type="submit" :disabled="loading"
+                        class="ml-2 px-4 py-2 bg-blue-600 text-sm font-medium text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center">
+                        <svg x-show="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
                         </svg>
                         <span x-text="loading ? 'Memverifikasi...' : 'Verifikasi'"></span>
                     </button>
@@ -62,9 +75,12 @@
                     @if (auth()->user()->role !== 'inspektur')
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="text-lg font-medium text-gray-700">Laporan Hasil Pemeriksaan</h3>
-                            <a href="{{ route('lhp.create') }}" class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            <a href="{{ route('lhp.create') }}"
+                                class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4" />
                                 </svg>
                                 Tambah Laporan Hasil Pemeriksaan
                             </a>
@@ -75,13 +91,25 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Penugasan</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Tugas</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">File Laporan Temuan dan Laporan Hasil Pemeriksaan</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        No</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Jenis Penugasan</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Nama Tugas</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        File Laporan Hasil Pemeriksaan</th>
                                     {{-- <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keterangan</th> --}}
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status</th>
+                                    <th
+                                        class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -101,7 +129,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             <div class="flex flex-wrap justify-between items-center gap-2">
-                                        
+
                                                 {{-- Kiri: Tombol LHP --}}
                                                 <div class="flex items-center gap-2">
                                                     @if ($lhp->lhp_file)
@@ -114,9 +142,9 @@
                                                         <span class="text-gray-500">-</span>
                                                     @endif
                                                 </div>
-                                        
+
                                                 {{-- Kanan: Tombol Laporan Temuan --}}
-                                                <div class="flex flex-wrap justify-end gap-2">
+                                                {{-- <div class="flex flex-wrap justify-end gap-2">
                                                     @if ($lhp->status === 'disetujui' && (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur'))
                                                         @if ($lhp->penemuans->isNotEmpty())
                                                             @foreach ($lhp->penemuans as $index => $temuan)
@@ -128,11 +156,11 @@
                                                             @endforeach
                                                         @endif
                                                     @endif
-                                                </div>
-                                        
+                                                </div> --}}
+
                                             </div>
                                         </td>
-                                        
+
                                         {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                                             {{ $lhp->keterangan ?? '-' }}
                                         </td> --}}
@@ -143,7 +171,8 @@
                                                     $statusText = 'Menunggu persetujuan';
                                                 }
                                             @endphp
-                                            <span class="inline-flex items-center justify-center px-1 py-1 text-xs font-semibold rounded-full 
+                                            <span
+                                                class="inline-flex items-center justify-center px-1 py-1 text-xs font-semibold rounded-full 
                                                 {{ $lhp->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
                                                 {{ $lhp->status === 'disetujui' ? 'bg-green-100 text-green-800' : '' }}
                                                 {{ $lhp->status === 'ditolak' ? 'bg-red-100 text-red-800' : '' }}">
@@ -156,37 +185,45 @@
                                                     {{-- <a href="{{ route('lhp.edit', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                                                         <i class="fas fa-edit mr-2"></i>Edit
                                                     </a> --}}
-                                                    <form action="{{ route('lhp.destroy', $lhp->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus?')">
+                                                    <form action="{{ route('lhp.destroy', $lhp->id) }}"
+                                                        method="POST" class="inline-block"
+                                                        onsubmit="return confirm('Yakin ingin menghapus?')">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                                        <button type="submit"
+                                                            class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
                                                             <i class="fas fa-trash-alt mr-2"></i>Hapus
                                                         </button>
                                                     </form>
                                                 @endif
                                             @endif
                                             @if (auth()->user()->role === 'inspektur' && $lhp->status !== 'disetujui')
-                                                <form action="{{ route('lhp.acc', $lhp->id) }}" method="POST" class="inline-block mr-2">
+                                                <form action="{{ route('lhp.acc', $lhp->id) }}" method="POST"
+                                                    class="inline-block mr-2">
                                                     @csrf
-                                                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                                                    <button type="submit"
+                                                        class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
                                                         <i class="fas fa-check mr-2"></i>Acc
                                                     </button>
                                                 </form>
-                                                <button onclick="showRejectModal({{ $lhp->id }})" class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                                                <button onclick="showRejectModal({{ $lhp->id }})"
+                                                    class="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
                                                     <i class="fas fa-times mr-2"></i>Tolak
                                                 </button>
                                             @endif
 
                                             @if ($lhp->status === 'disetujui' && (auth()->user()->role === 'admin' || auth()->user()->role === 'inspektur'))
-                                                    <a href="{{ route('lhp.penemuan.index', $lhp->id) }}" class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                                                        Lihat Temuan
-                                                    </a>
-                                                @endif
+                                                <a href="{{ route('lhp.penemuan.index', $lhp->id) }}"
+                                                    class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                                    Lihat Temuan
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
+                                        <td colspan="6"
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center">
                                             Tidak ada Laporan Hasil Pemeriksaan.
                                         </td>
                                     </tr>
@@ -240,58 +277,62 @@
                     this.loading = true;
                     this.message = 'Mengirim OTP...';
                     fetch(`/lhp/${this.lhpId}/send-otp`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Accept': 'application/json',
-                        }
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        this.loading = false;
-                        if (data.success) {
-                            this.error = false;
-                            this.message = data.success;
-                        } else {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                    'content'),
+                                'Accept': 'application/json',
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            this.loading = false;
+                            if (data.success) {
+                                this.error = false;
+                                this.message = data.success;
+                            } else {
+                                this.error = true;
+                                this.message = data.error || 'Gagal mengirim OTP.';
+                            }
+                        }).catch(() => {
+                            this.loading = false;
                             this.error = true;
-                            this.message = data.error || 'Gagal mengirim OTP.';
-                        }
-                    }).catch(() => {
-                        this.loading = false;
-                        this.error = true;
-                        this.message = 'Terjadi kesalahan. Coba lagi.';
-                    });
+                            this.message = 'Terjadi kesalahan. Coba lagi.';
+                        });
                 },
                 verifyOtp() {
                     this.loading = true;
                     this.message = '';
                     fetch(`/lhp/${this.lhpId}/verify-otp`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json',
-                        },
-                        body: JSON.stringify({ otp: this.otp })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        this.loading = false;
-                        if (data.success) {
-                            this.error = false;
-                            this.message = data.success;
-                            // Buka file di tab baru
-                            window.open(data.redirect_url, '_blank');
-                            this.show = false;
-                        } else {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                    'content'),
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                otp: this.otp
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            this.loading = false;
+                            if (data.success) {
+                                this.error = false;
+                                this.message = data.success;
+                                // Buka file di tab baru
+                                window.open(data.redirect_url, '_blank');
+                                this.show = false;
+                            } else {
+                                this.error = true;
+                                this.message = data.error || 'Terjadi kesalahan.';
+                            }
+                        }).catch(() => {
+                            this.loading = false;
                             this.error = true;
-                            this.message = data.error || 'Terjadi kesalahan.';
-                        }
-                    }).catch(() => {
-                        this.loading = false;
-                        this.error = true;
-                        this.message = 'Terjadi kesalahan. Coba lagi.';
-                    });
+                            this.message = 'Terjadi kesalahan. Coba lagi.';
+                        });
                 }
             }
         }
@@ -302,5 +343,7 @@
         });
     </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pHg+2V8clVjoTjvJkZGJZmS98fLAV6qKQtwEyn7VEl8dvU+8MznRycAI+pNnLOfRlGxhQcaYDFs/jX1H5Z1vQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-pHg+2V8clVjoTjvJkZGJZmS98fLAV6qKQtwEyn7VEl8dvU+8MznRycAI+pNnLOfRlGxhQcaYDFs/jX1H5Z1vQA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </x-app-layout>
